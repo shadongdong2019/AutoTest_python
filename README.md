@@ -1,0 +1,2 @@
+# AutoTest_python
+使用python编写的接口自动化测试框架，仅使用于请求地址和参数的接口
