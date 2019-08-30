@@ -1,0 +1,4 @@
+2019-08-09 18:43:40,088 [ERROR] [__file__:52] [writer_data ]- 操作EXCEL表类写入数据异常，异常原因：String longer than 32767 characters
+2019-08-09 18:43:43,468 [ERROR] [__file__:52] [writer_data ]- 操作EXCEL表类写入数据异常，异常原因：String longer than 32767 characters
+2019-08-09 18:44:24,655 [ERROR] [__file__:52] [writer_data ]- 操作EXCEL表类写入数据异常，异常原因：String longer than 32767 characters
+2019-08-09 18:45:54,862 [ERROR] [__file__:52] [writer_data ]- 操作EXCEL表类写入数据异常，异常原因：String longer than 32767 characters

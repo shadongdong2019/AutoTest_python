@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>版权服务2.0生产环境接口测试报告（https）</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+<style type="text/css" media="screen">
+body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
+table       { font-size: 100%; }
+pre         { }
+
+/* -- heading ---------------------------------------------------------------------- */
+h1 {
+	font-size: 16pt;
+	color: gray;
+}
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+
+.heading .attribute {
+    margin-top: 1ex;
+    margin-bottom: 0;
+}
+
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+
+/* -- css div popup ------------------------------------------------------------------------ */
+a.popup_link {
+}
+
+a.popup_link:hover {
+    color: red;
+}
+
+.popup_window {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    padding: 10px;
+    background-color: #E6E6D6;
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 8pt;
+    width: 500px;
+}
+
+}
+/* -- report ------------------------------------------------------------------------ */
+#show_detail_line {
+    margin-top: 3ex;
+    margin-bottom: 1ex;
+}
+#result_table {
+    width: 80%;
+    border-collapse: collapse;
+    border: 1px solid #777;
+}
+#header_row {
+    font-weight: bold;
+    color: white;
+    background-color: #777;
+}
+#result_table td {
+    border: 1px solid #777;
+    padding: 2px;
+}
+#total_row  { font-weight: bold; }
+.passClass  { background-color: #6c6; }
+.failClass  { background-color: #c60; }
+.errorClass { background-color: #c00; }
+.passCase   { color: #6c6; }
+.failCase   { color: #c60; font-weight: bold; }
+.errorCase  { color: #c00; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+
+
+/* -- ending ---------------------------------------------------------------------- */
+#ending {
+}
+
+</style>
+
+</head>
+<body>
+<script language="javascript" type="text/javascript"><!--
+output_list = Array();
+
+/* level - 0:Summary; 1:Failed; 2:All */
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level < 1) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level > 1) {
+                tr.className = '';
+            }
+            else {
+                tr.className = 'hiddenRow';
+            }
+        }
+    }
+}
+
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        tid0 = 't' + cid.substr(1) + '.' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        if (toHide) {
+            document.getElementById('div_'+tid).style.display = 'none'
+            document.getElementById(tid).className = 'hiddenRow';
+        }
+        else {
+            document.getElementById(tid).className = '';
+        }
+    }
+}
+
+
+function showTestDetail(div_id){
+    var details_div = document.getElementById(div_id)
+    var displayState = details_div.style.display
+    // alert(displayState)
+    if (displayState != 'block' ) {
+        displayState = 'block'
+        details_div.style.display = 'block'
+    }
+    else {
+        details_div.style.display = 'none'
+    }
+}
+
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+
+/* obsoleted by detail in <div>
+function showOutput(id, name) {
+    var w = window.open("", //url
+                    name,
+                    "resizable,scrollbars,status,width=800,height=450");
+    d = w.document;
+    d.write("<pre>");
+    d.write(html_escape(output_list[id]));
+    d.write("\n");
+    d.write("<a href='javascript:window.close()'>close</a>\n");
+    d.write("</pre>\n");
+    d.close();
+}
+*/
+--></script>
+
+<div class='heading'>
+<h1>版权服务2.0生产环境接口测试报告（https）</h1>
+<p class='attribute'><strong>Start Time:</strong> 2019-08-16 17:18:21</p>
+<p class='attribute'><strong>Duration:</strong> 0:00:08.651779</p>
+<p class='attribute'><strong>Status:</strong> Failure 1</p>
+
+<p class='description'>确权接口-主流程测试用例-主要验证所有参数合法参数确权成功及必填参数非法数据确权失败</p>
+</div>
+
+
+
+<p id='show_detail_line'>Show
+<a href='javascript:showCase(0)'>Summary</a>
+<a href='javascript:showCase(1)'>Failed</a>
+<a href='javascript:showCase(2)'>All</a>
+</p>
+<table id='result_table'>
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row'>
+    <td>Test Group/Test case</td>
+    <td>Count</td>
+    <td>Pass</td>
+    <td>Fail</td>
+    <td>Error</td>
+    <td>View</td>
+</tr>
+
+<tr class='failClass'>
+    <td>CaseRun</td>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c1',1)">Detail</a></td>
+</tr>
+
+<tr id='ft1.1' class='none'>
+    <td class='failCase'><div class='testcase'>test_apply_https_1</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.1')" >
+        fail</a>
+
+    <div id='div_ft1.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.1: '确权接口用例执行详情如下：'
+'确权接口执行测试用例编号：[BQ_S_006]'
+'确权接口测试目的：申请接口-申请成功- 回调成功'
+'确权接口用例描述：http-选择性必填参数-作品hash值正确传入，作品文件不传，其它必填信息正确传入-用户接口校验码按服务器顺序进行hash传入'
+'确权接口地址：https://ipp.tsa.cn/v2/api/confirm/opusConfirm'
+'确权接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'确权接口预期回调状态值={"callbackFlag":true}'
+'确权接口请求耗时：0.3106100559234619'
+('确权接口响应结果={"msg":"请求成功","salt":"a63c0aabc57e8ddd46c0948eded37cd2UWTGXVIPC3BYD3ZJZSKE","data":[{"timestampDate":"2019-08-16 '
+ '17:18:24","serialNo":"359790077888704512","timestamp":"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"}],"success":true,"resultCode":"0204000"}')
+下载接口请求响应时间：0.9815194606781006
+'确权接口响应结果验证耗时：5.022644758224487'
+'确权接口请求数据与数据库存入值校验结果：数据库存储验证结果：一致（申请接口参数请求值与数据库存储值一致）'
+'确权接口预期回调接口值与数据库回调值校验结果：回调结果与预期不一致：回调失败,预期回调结果callbackFlag=True，实际数据库存储callbackFlag=False'
+'------------------------------------------------------------------------------------------'
+('确权接口传入参数={"partnerID": "201907200200058528", "partnerKey": '
+ '"UWTGXVIPC3BYD3ZJZSKE", "hash": '
+ '"CF1BE883E1B8EA5E3C949268EB1D1C5EEE7E54FC2CEB8655B6A5901745042AB2", '
+ '"opusName": "《红与黑》", "fileExtension": "json", "opusDescribe": '
+ '"《红与黑》是19世纪法国乃至欧洲文学的一座丰碑。小说围绕主人公于连的个人奋斗及两次爱情经历的描写，揭示了复辟王朝时期的波澜的阶级大博斗，反映了政治黑暗、教会腐败，贵族反动和资产阶级利欲熏心的广阔生活画面。于连的两次爱情动机都是以爱情占有为出发点最终要达到自己的政治目的。", '
+ '"applyType": "103", "applyUserType": "102", "applyNationality": "CN", '
+ '"applyName": "马敬", "applyIDType": "999", "applyIDNumber": '
+ '"210203197503102721", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "salt": '
+ '"8c246f7222e21f3463cd0d32dd3d225aUWTGXVIPC3BYD3ZJZSKE"}')
+'------------------------------------------------------------------------------------------'
+'下载接口请求地址=https://ipp.tsa.cn/v2/api/confirm/downloadOpusCertificate'
+("下载接口请求数据={'partnerID': '201907200200058528', 'partnerKey': "
+ "'UWTGXVIPC3BYD3ZJZSKE', 'serialNo': '359790077888704512', 'salt': "
+ "'6135464e93384624e00987e1c95c0ee9UWTGXVIPC3BYD3ZJZSKE'}")
+("下载接口响应数据={'msg': '请求成功', 'salt': "
+ "'8e6faab0e6cd72e0a9b30ca099a163aeUWTGXVIPC3BYD3ZJZSKE', 'success': True, "
+ "'resultCode': '0204000'}")
+'注：下载接口响应数据中因文件流data参数过大，所以不写入测试报告，以防止测试报告过大'
+'------------------------------------------------------------------------------------------'
+Traceback (most recent call last):
+  File "/home/ma/.local/lib/python3.6/site-packages/ddt.py", line 145, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/ma/PycharmProjects/InterfaceTest/python_excel/unittest_run/case_main.py", line 331, in test_apply_https
+    self.assertTrue(is_pass, "测试用例执行未通过")
+AssertionError: False is not true : 测试用例执行未通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='total_row'>
+    <td>Total</td>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>&nbsp;</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+
+</body>
+</html>

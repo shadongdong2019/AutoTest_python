@@ -1,0 +1,2 @@
+2019-08-16 16:24:51,806 [ERROR] [/home/ma/PycharmProjects/InterfaceTest/python_excel/common/cmp_res_req.py:236] [download_case ]- 下载接口获取返回信息异常 ，异常原因：Expecting value: line 1 column 1 (char 0)
+2019-08-16 16:24:51,806 [ERROR] [/home/ma/PycharmProjects/InterfaceTest/python_excel/common/cmp_res_req.py:144] [verify_is_pass ]- 测试用例预期结果与实际结果对比方法出现异常，异常原因：local variable 'res' referenced before assignment

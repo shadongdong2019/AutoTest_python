@@ -1,0 +1,1686 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>版权服务2.0生产环境接口测试报告（http/https）</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+<style type="text/css" media="screen">
+body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
+table       { font-size: 100%; }
+pre         { }
+
+/* -- heading ---------------------------------------------------------------------- */
+h1 {
+	font-size: 16pt;
+	color: gray;
+}
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+
+.heading .attribute {
+    margin-top: 1ex;
+    margin-bottom: 0;
+}
+
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+
+/* -- css div popup ------------------------------------------------------------------------ */
+a.popup_link {
+}
+
+a.popup_link:hover {
+    color: red;
+}
+
+.popup_window {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    padding: 10px;
+    background-color: #E6E6D6;
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 8pt;
+    width: 500px;
+}
+
+}
+/* -- report ------------------------------------------------------------------------ */
+#show_detail_line {
+    margin-top: 3ex;
+    margin-bottom: 1ex;
+}
+#result_table {
+    width: 80%;
+    border-collapse: collapse;
+    border: 1px solid #777;
+}
+#header_row {
+    font-weight: bold;
+    color: white;
+    background-color: #777;
+}
+#result_table td {
+    border: 1px solid #777;
+    padding: 2px;
+}
+#total_row  { font-weight: bold; }
+.passClass  { background-color: #6c6; }
+.failClass  { background-color: #c60; }
+.errorClass { background-color: #c00; }
+.passCase   { color: #6c6; }
+.failCase   { color: #c60; font-weight: bold; }
+.errorCase  { color: #c00; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+
+
+/* -- ending ---------------------------------------------------------------------- */
+#ending {
+}
+
+</style>
+
+</head>
+<body>
+<script language="javascript" type="text/javascript"><!--
+output_list = Array();
+
+/* level - 0:Summary; 1:Failed; 2:All */
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level < 1) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level > 1) {
+                tr.className = '';
+            }
+            else {
+                tr.className = 'hiddenRow';
+            }
+        }
+    }
+}
+
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        tid0 = 't' + cid.substr(1) + '.' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        if (toHide) {
+            document.getElementById('div_'+tid).style.display = 'none'
+            document.getElementById(tid).className = 'hiddenRow';
+        }
+        else {
+            document.getElementById(tid).className = '';
+        }
+    }
+}
+
+
+function showTestDetail(div_id){
+    var details_div = document.getElementById(div_id)
+    var displayState = details_div.style.display
+    // alert(displayState)
+    if (displayState != 'block' ) {
+        displayState = 'block'
+        details_div.style.display = 'block'
+    }
+    else {
+        details_div.style.display = 'none'
+    }
+}
+
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+
+/* obsoleted by detail in <div>
+function showOutput(id, name) {
+    var w = window.open("", //url
+                    name,
+                    "resizable,scrollbars,status,width=800,height=450");
+    d = w.document;
+    d.write("<pre>");
+    d.write(html_escape(output_list[id]));
+    d.write("\n");
+    d.write("<a href='javascript:window.close()'>close</a>\n");
+    d.write("</pre>\n");
+    d.close();
+}
+*/
+--></script>
+
+<div class='heading'>
+<h1>版权服务2.0生产环境接口测试报告（http/https）</h1>
+<p class='attribute'><strong>Start Time:</strong> 2019-08-12 09:59:29</p>
+<p class='attribute'><strong>Duration:</strong> 1:54:50.380122</p>
+<p class='attribute'><strong>Status:</strong> Pass 24</p>
+
+<p class='description'>申请接口-参数为大文件验证-作品文件file保证最大可上传50M文件，授权协议authProtocol保证最大可传上10M文件，如超过限制会返回参数不合法</p>
+</div>
+
+
+
+<p id='show_detail_line'>Show
+<a href='javascript:showCase(0)'>Summary</a>
+<a href='javascript:showCase(1)'>Failed</a>
+<a href='javascript:showCase(2)'>All</a>
+</p>
+<table id='result_table'>
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row'>
+    <td>Test Group/Test case</td>
+    <td>Count</td>
+    <td>Pass</td>
+    <td>Fail</td>
+    <td>Error</td>
+    <td>View</td>
+</tr>
+
+<tr class='passClass'>
+    <td>CaseRun</td>
+    <td>24</td>
+    <td>24</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c1',24)">Detail</a></td>
+</tr>
+
+<tr id='pt1.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_big_file_http_01</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
+        pass</a>
+
+    <div id='div_pt1.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.1: '确权接口用例执行详情如下：'
+'确权接口执行测试用例编号：[BQ_big_01]'
+'确权接口测试目的：申请接口-申请成功- 回调成功'
+'确权接口用例描述：http-上传文件大于等 于10MB，但选择文件标识为小文件，其它必填参数-正确传入'
+'确权接口地址：http://ipp.tsa.cn/v2/api/confirm/opusConfirm'
+'确权接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'确权接口预期回调状态值={"callbackFlag":true}'
+'确权接口请求耗时：14.310741186141968'
+('确权接口响应结果={"msg":"请求成功","salt":"05f3650a5e122a052e1417ed4d48a83bSJ2P5TW43R0ZLCR6V556","data":[{"timestampDate":"2019-08-12 '
+ '09:59:44","serialNo":"345506567774277632","timestamp":"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"}],"success":true,"resultCode":"0204000"}')
+下载接口请求响应时间：1.9326961040496826
+'确权接口响应结果验证耗时：88.6463029384613'
+'因证书为异步生成，所以此用列需等待生成后进行下载，需循环验证，共验证&lt;2&gt;次,找到PDF证书'
+'确权接口请求数据与数据库存入值校验结果：数据库存储验证结果：一致（申请接口参数请求值与数据库存储值一致）'
+'确权接口预期回调接口值与数据库回调值校验结果：数据库回调状态值与预期状态值一致：回调成功'
+'------------------------------------------------------------------------------------------'
+'注：作品文件（file）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+('确权接口传入参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "hash": '
+ '"0EA595AF0CBC01792F9948AD0C471E15ACA96F2FE3A3DAE97C27FADF6A3D28E6", '
+ '"opusName": "是非成败转头空，青山依旧在，惯看秋月春风。一壶.docx", "fileExtension": "pdf", '
+ '"opusDescribe": "荷花种类很多，分观赏和食用两大类。原产亚洲热带和温带地区，中国早在周朝就有栽培记载。", "applyType": '
+ '"102", "applyUserType": "102", "applyNationality": "JAPA", "applyName": '
+ '"小潘潘", "applyIDType": "102", "applyIDNumber": "2019070901", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "hashAlgorithm": '
+ '"SHA256", "fileSzieFlag": "0", "fileType": "101", "opusState": "0", '
+ '"opusPartnerID": "070901", "opusLabel": "有红,粉红,白,紫等色", "opusStore": "101", '
+ '"opusType": "101", "opusCreativeType": "101", "opusCreativeNature": "101", '
+ '"applyPhone": "13012340001", "applyMail": "test@tsa.cn", "applyAddress": '
+ '"辽宁省 沈阳市 沈河区 大西路1号 文峰大厦", "applyEmergencyName": "潘小潘", '
+ '"applyEmergencyPhone": "15012340001", "authType": "101", "authValidiy": '
+ '"99999", "authTime": "2019-07-09 15:15:15", "authBusiness": "0", '
+ '"authPlatform": "中国版权协会", "authPlatformID": "111222", "authPrice": "10000", '
+ '"authAllowType": "0", "authUse": "编辑,商用,民用", "authCountry": "CN,DZ,BY,SY", '
+ '"authSell": "0", "authLimit": "未经允许，不许复制", "authRemark": '
+ '"花期6至9月，单生于花梗顶端，花瓣多数，嵌生在花托穴内，有红、粉红、白、紫等色，或有彩纹、镶边。坚果椭圆形，种子卵形。", '
+ '"authUserType": "101", "authUserNationality": "CN", "authUserName": "Amy", '
+ '"authUserIDType": "101", "authUserIDNumber": "130102196303250459", '
+ '"authUserPhone": "13012340002", "authUserMail": "test@163.com", '
+ '"authUserAddress": "15012340002", "remark1": '
+ '"古时江南风俗，阴历六月二十四日为荷花生日，荷花因而又有“六月花神”的雅号。", "remark2": '
+ '"为了表达对荷花高洁形态的赞赏，以金芙蓉和草芙蓉比喻荷花品性的难得。", "remark3": "溪客、静客都是强调荷花的生长环境和安静娴雅的状态。", '
+ '"encodeFmt": "base64", "salt": '
+ '"a3bce5f4dc72ad8f44c90bf37fd26d53SJ2P5TW43R0ZLCR6V556", "file": '
+ '"../applay_file/file_12M.pdf"}')
+'------------------------------------------------------------------------------------------'
+'下载接口请求地址=http://ipp.tsa.cn/v2/api/confirm/downloadOpusCertificate'
+("下载接口请求数据={'partnerID': '201907200200058182', 'partnerKey': "
+ "'SJ2P5TW43R0ZLCR6V556', 'serialNo': '345506567774277632', 'salt': "
+ "'4b6e01fb5fce50113c082e0df910b02fSJ2P5TW43R0ZLCR6V556'}")
+("下载接口响应数据={'msg': '请求成功', 'salt': "
+ "'661672983257a59f5363e68d751eded8SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000'}")
+'注：下载接口响应数据中因文件流data参数过大，所以不写入测试报告，以防止测试报告过大'
+'------------------------------------------------------------------------------------------'
+'测试用例执行通过'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_big_file_http_02</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.2')" >
+        pass</a>
+
+    <div id='div_pt1.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.2: '确权接口用例执行详情如下：'
+'确权接口执行测试用例编号：[BQ_big_02]'
+'确权接口测试目的：申请接口-申请成功- 回调成功'
+'确权接口用例描述：http-作品文件小于50M(47M)-作品hash传入-作品文件不传入-其它必填参数正确传入'
+'确权接口地址：http://ipp.tsa.cn/v2/api/confirm/opusConfirm'
+'确权接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'确权接口预期回调状态值={"callbackFlag":true}'
+'确权接口请求耗时：0.126906156539917'
+('确权接口响应结果={"msg":"请求成功","salt":"ca2567c5146715729239bc6fd2974c11SJ2P5TW43R0ZLCR6V556","data":[{"timestampDate":"2019-08-12 '
+ '10:01:18","serialNo":"345506962072408064","timestamp":"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"}],"success":true,"resultCode":"0204000"}')
+下载接口请求响应时间：0.06577491760253906
+下载接口请求响应时间：0.07137918472290039
+下载接口请求响应时间：0.09336209297180176
+下载接口请求响应时间：0.3028416633605957
+'确权接口响应结果验证耗时：0.9055840969085693'
+'因证书为异步生成，所以此用列需等待生成后进行下载，需循环验证，共验证&lt;5&gt;次,找到PDF证书'
+'确权接口请求数据与数据库存入值校验结果：数据库存储验证结果：一致（申请接口参数请求值与数据库存储值一致）'
+'确权接口预期回调接口值与数据库回调值校验结果：数据库回调状态值与预期状态值一致：回调成功'
+'------------------------------------------------------------------------------------------'
+('确权接口传入参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "hash": '
+ '"B2A61ABE483050714D20D19819424075020186421F2D22C249AA1044FFB4268B", '
+ '"opusName": "file10M", "opusDescribe": '
+ '"荷花种类很多，分观赏和食用两大类。原产亚洲热带和温带地区，中国早在周朝就有栽培记载。", "applyType": "102", '
+ '"applyUserType": "102", "applyNationality": "JAPA", "applyName": "小潘潘", '
+ '"applyIDType": "102", "applyIDNumber": "2019070901", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "salt": '
+ '"56403967c86a926b47438f9a6b37960cSJ2P5TW43R0ZLCR6V556"}')
+'------------------------------------------------------------------------------------------'
+'下载接口请求地址=http://ipp.tsa.cn/v2/api/confirm/downloadOpusCertificate'
+("下载接口请求数据={'partnerID': '201907200200058182', 'partnerKey': "
+ "'SJ2P5TW43R0ZLCR6V556', 'serialNo': '345506962072408064', 'salt': "
+ "'88cd2278bb4e429112179d52db48fb7dSJ2P5TW43R0ZLCR6V556'}")
+("下载接口响应数据={'msg': '请求成功', 'salt': "
+ "'4da2f7b8d1495654a5748f20264ed8c4SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000'}")
+'注：下载接口响应数据中因文件流data参数过大，所以不写入测试报告，以防止测试报告过大'
+'------------------------------------------------------------------------------------------'
+'测试用例执行通过'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_big_file_http_03</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.3')" >
+        pass</a>
+
+    <div id='div_pt1.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.3: '确权接口用例执行详情如下：'
+'确权接口执行测试用例编号：[BQ_big_03]'
+'确权接口测试目的：申请接口-申请成功- 回调成功'
+'确权接口用例描述：http-作品文件小于50M(47M)-作品hash不传入-作品文件传入-其它必填参数正确传入'
+'确权接口地址：http://ipp.tsa.cn/v2/api/confirm/opusConfirm'
+'确权接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'确权接口预期回调状态值={"callbackFlag":true}'
+'确权接口请求耗时：57.80380916595459'
+('确权接口响应结果={"msg":"请求成功","salt":"d5149fce6a7377018c98d80f596e988fSJ2P5TW43R0ZLCR6V556","data":[{"timestampDate":"2019-08-12 '
+ '10:02:11","serialNo":"345507182017515520","timestamp":"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"}],"success":true,"resultCode":"0204000"}')
+下载接口请求响应时间：8.360682725906372
+'确权接口响应结果验证耗时：361.9558644294739'
+'因证书为异步生成，所以此用列需等待生成后进行下载，需循环验证，共验证&lt;2&gt;次,找到PDF证书'
+'确权接口请求数据与数据库存入值校验结果：数据库存储验证结果：一致（申请接口参数请求值与数据库存储值一致）'
+'确权接口预期回调接口值与数据库回调值校验结果：数据库回调状态值与预期状态值一致：回调成功'
+'------------------------------------------------------------------------------------------'
+'注：作品文件（file）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+('确权接口传入参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "opusName": "file10M", "fileExtension": "zip", '
+ '"opusDescribe": "荷花种类很多，分观赏和食用两大类。原产亚洲热带和温带地区，中国早在周朝就有栽培记载。", "applyType": '
+ '"102", "applyUserType": "102", "applyNationality": "JAPA", "applyName": '
+ '"小潘潘", "applyIDType": "102", "applyIDNumber": "2019070901", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "salt": '
+ '"d7e2b178c942aa58d2b98be7c1fb6db9SJ2P5TW43R0ZLCR6V556", "file": '
+ '"../applay_file/file_47M.zip"}')
+'------------------------------------------------------------------------------------------'
+'下载接口请求地址=http://ipp.tsa.cn/v2/api/confirm/downloadOpusCertificate'
+("下载接口请求数据={'partnerID': '201907200200058182', 'partnerKey': "
+ "'SJ2P5TW43R0ZLCR6V556', 'serialNo': '345507182017515520', 'salt': "
+ "'9e92eb7a7f19fb8f8897b53fbe481d55SJ2P5TW43R0ZLCR6V556'}")
+("下载接口响应数据={'msg': '请求成功', 'salt': "
+ "'11a172b35ddf8434d0388e1fa296e254SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000'}")
+'注：下载接口响应数据中因文件流data参数过大，所以不写入测试报告，以防止测试报告过大'
+'------------------------------------------------------------------------------------------'
+'测试用例执行通过'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.4' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_big_file_http_04</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.4')" >
+        pass</a>
+
+    <div id='div_pt1.4' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.4').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.4: '确权接口用例执行详情如下：'
+'确权接口执行测试用例编号：[BQ_big_04]'
+'确权接口测试目的：申请接口-申请成功- 回调成功'
+'确权接口用例描述：http-作品文件小于50M(47M)-作品hash传入-作品文件传入-其它必填参数正确传入'
+'确权接口地址：http://ipp.tsa.cn/v2/api/confirm/opusConfirm'
+'确权接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'确权接口预期回调状态值={"callbackFlag":true}'
+'确权接口请求耗时：57.52253723144531'
+('确权接口响应结果={"msg":"请求成功","salt":"2430f617dcc47b942a33e8652be27b15SJ2P5TW43R0ZLCR6V556","data":[{"timestampDate":"2019-08-12 '
+ '10:09:14","serialNo":"345508954425528320","timestamp":"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"}],"success":true,"resultCode":"0204000"}')
+下载接口请求响应时间：8.521111011505127
+'确权接口响应结果验证耗时：362.0538229942322'
+'因证书为异步生成，所以此用列需等待生成后进行下载，需循环验证，共验证&lt;2&gt;次,找到PDF证书'
+'确权接口请求数据与数据库存入值校验结果：数据库存储验证结果：一致（申请接口参数请求值与数据库存储值一致）'
+'确权接口预期回调接口值与数据库回调值校验结果：数据库回调状态值与预期状态值一致：回调成功'
+'------------------------------------------------------------------------------------------'
+'注：作品文件（file）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+('确权接口传入参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "hash": '
+ '"B2A61ABE483050714D20D19819424075020186421F2D22C249AA1044FFB4268B", '
+ '"opusName": "file10M", "fileExtension": "zip", "opusDescribe": '
+ '"荷花种类很多，分观赏和食用两大类。原产亚洲热带和温带地区，中国早在周朝就有栽培记载。", "applyType": "102", '
+ '"applyUserType": "102", "applyNationality": "JAPA", "applyName": "小潘潘", '
+ '"applyIDType": "102", "applyIDNumber": "2019070901", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "salt": '
+ '"37e763aa188fba8f9bc052d691cf33cdSJ2P5TW43R0ZLCR6V556", "file": '
+ '"../applay_file/file_47M.zip"}')
+'------------------------------------------------------------------------------------------'
+'下载接口请求地址=http://ipp.tsa.cn/v2/api/confirm/downloadOpusCertificate'
+("下载接口请求数据={'partnerID': '201907200200058182', 'partnerKey': "
+ "'SJ2P5TW43R0ZLCR6V556', 'serialNo': '345508954425528320', 'salt': "
+ "'5de5f7510d1e0a67b4d6c1fcf18f88d3SJ2P5TW43R0ZLCR6V556'}")
+("下载接口响应数据={'msg': '请求成功', 'salt': "
+ "'963f76e34c17f0d52af927214143eb7cSJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000'}")
+'注：下载接口响应数据中因文件流data参数过大，所以不写入测试报告，以防止测试报告过大'
+'------------------------------------------------------------------------------------------'
+'测试用例执行通过'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.5' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_big_file_http_05</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.5')" >
+        pass</a>
+
+    <div id='div_pt1.5' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.5').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.5: '确权接口用例执行详情如下：'
+'确权接口执行测试用例编号：[BQ_big_05]'
+'确权接口测试目的：申请接口-申请成功- 回调成功(保证作品文件至少可以传50M文件)'
+'确权接口用例描述：http-作品文件小于50M(54M)-作品hash传入-作品文件传入-其它必填参数正确传入'
+'确权接口地址：http://ipp.tsa.cn/v2/api/confirm/opusConfirm'
+'确权接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'确权接口预期回调状态值={"callbackFlag":true}'
+'确权接口请求耗时：69.93029832839966'
+('确权接口响应结果={"msg":"请求成功","salt":"9a51ad282f6e65a6d4b17e9fc46a263eSJ2P5TW43R0ZLCR6V556","data":[{"timestampDate":"2019-08-12 '
+ '10:16:25","serialNo":"345510764112515072","timestamp":"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"}],"success":true,"resultCode":"0204000"}')
+下载接口请求响应时间：9.975298404693604
+'确权接口响应结果验证耗时：415.002578496933'
+'因证书为异步生成，所以此用列需等待生成后进行下载，需循环验证，共验证&lt;2&gt;次,找到PDF证书'
+'确权接口请求数据与数据库存入值校验结果：数据库存储验证结果：一致（申请接口参数请求值与数据库存储值一致）'
+'确权接口预期回调接口值与数据库回调值校验结果：数据库回调状态值与预期状态值一致：回调成功'
+'------------------------------------------------------------------------------------------'
+'注：作品文件（file）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+('确权接口传入参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "hash": '
+ '"89749A823D12CD25F81F489A0E13EAAA33C208F29B97001A0CB5C30F81402F58", '
+ '"opusName": "file10M", "fileExtension": "zip", "opusDescribe": '
+ '"荷花种类很多，分观赏和食用两大类。原产亚洲热带和温带地区，中国早在周朝就有栽培记载。", "applyType": "102", '
+ '"applyUserType": "102", "applyNationality": "JAPA", "applyName": "小潘潘", '
+ '"applyIDType": "102", "applyIDNumber": "2019070901", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "salt": '
+ '"e883380fceebfb225caadf151397eb6eSJ2P5TW43R0ZLCR6V556", "file": '
+ '"../applay_file/50m.zip"}')
+'------------------------------------------------------------------------------------------'
+'下载接口请求地址=http://ipp.tsa.cn/v2/api/confirm/downloadOpusCertificate'
+("下载接口请求数据={'partnerID': '201907200200058182', 'partnerKey': "
+ "'SJ2P5TW43R0ZLCR6V556', 'serialNo': '345510764112515072', 'salt': "
+ "'f5bf4cd8681c84414a9ddc4a425eada6SJ2P5TW43R0ZLCR6V556'}")
+("下载接口响应数据={'msg': '请求成功', 'salt': "
+ "'c4df63aefa29c831baf8ed2b86bc53bdSJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000'}")
+'注：下载接口响应数据中因文件流data参数过大，所以不写入测试报告，以防止测试报告过大'
+'------------------------------------------------------------------------------------------'
+'测试用例执行通过'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.6' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_big_file_http_06</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.6')" >
+        pass</a>
+
+    <div id='div_pt1.6' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.6').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.6: '确权接口用例执行详情如下：'
+'确权接口执行测试用例编号：[BQ_big_06]'
+'确权接口测试目的：申请接口-申请成功- 回调成功（hash值不可逆不进行大小验证）'
+'确权接口用例描述：http-作品文件大于50M(67M)-作品hash传入-作品文件不传入,其它必填参数-正确传入'
+'确权接口地址：http://ipp.tsa.cn/v2/api/confirm/opusConfirm'
+'确权接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'确权接口预期回调状态值={"callbackFlag":true}'
+'确权接口请求耗时：0.14156198501586914'
+('确权接口响应结果={"msg":"请求成功","salt":"27e7718b84cb3ec2d9012c9917d7b348SJ2P5TW43R0ZLCR6V556","data":[{"timestampDate":"2019-08-12 '
+ '10:23:37","serialNo":"345512574210543616","timestamp":"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"}],"success":true,"resultCode":"0204000"}')
+下载接口请求响应时间：0.06824755668640137
+下载接口请求响应时间：0.18768906593322754
+下载接口请求响应时间：0.281444787979126
+'确权接口响应结果验证耗时：0.7971847057342529'
+'因证书为异步生成，所以此用列需等待生成后进行下载，需循环验证，共验证&lt;4&gt;次,找到PDF证书'
+'确权接口请求数据与数据库存入值校验结果：数据库存储验证结果：一致（申请接口参数请求值与数据库存储值一致）'
+'确权接口预期回调接口值与数据库回调值校验结果：数据库回调状态值与预期状态值一致：回调成功'
+'------------------------------------------------------------------------------------------'
+('确权接口传入参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "hash": '
+ '"3674ACF5F9933976C00783EE15A2835FC45328B1C57F072949903A0BABE2E6E4", '
+ '"opusName": "file10M", "opusDescribe": '
+ '"荷花种类很多，分观赏和食用两大类。原产亚洲热带和温带地区，中国早在周朝就有栽培记载。", "applyType": "102", '
+ '"applyUserType": "102", "applyNationality": "JAPA", "applyName": "小潘潘", '
+ '"applyIDType": "102", "applyIDNumber": "2019070901", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "salt": '
+ '"5ea32d85745ccebdd5e3e878f2f470baSJ2P5TW43R0ZLCR6V556"}')
+'------------------------------------------------------------------------------------------'
+'下载接口请求地址=http://ipp.tsa.cn/v2/api/confirm/downloadOpusCertificate'
+("下载接口请求数据={'partnerID': '201907200200058182', 'partnerKey': "
+ "'SJ2P5TW43R0ZLCR6V556', 'serialNo': '345512574210543616', 'salt': "
+ "'fea96100d15ee0a3aaf9aa1a439d419cSJ2P5TW43R0ZLCR6V556'}")
+("下载接口响应数据={'msg': '请求成功', 'salt': "
+ "'aff74ca68b72fb263ff645f051461d2dSJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000'}")
+'注：下载接口响应数据中因文件流data参数过大，所以不写入测试报告，以防止测试报告过大'
+'------------------------------------------------------------------------------------------'
+'测试用例执行通过'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.7' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_big_file_http_07</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.7')" >
+        pass</a>
+
+    <div id='div_pt1.7' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.7').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.7: '确权接口用例执行详情如下：'
+'确权接口执行测试用例编号：[BQ_big_07]'
+'确权接口测试目的：申请接口-申请成功- 回调成功'
+'确权接口用例描述：http-作品文件等于50M(54M)-授权文件等于10M（11M）,其它必填参数-正确传入'
+'确权接口地址：http://ipp.tsa.cn/v2/api/confirm/opusConfirm'
+'确权接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'确权接口预期回调状态值={"callbackFlag":true}'
+'确权接口请求耗时：77.65942358970642'
+('确权接口响应结果={"msg":"请求成功","salt":"6f7d35774ad04f9f66021361195b4dacSJ2P5TW43R0ZLCR6V556","data":[{"timestampDate":"2019-08-12 '
+ '10:24:45","serialNo":"345512863021928448","timestamp":"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"}],"success":true,"resultCode":"0204000"}')
+下载接口请求响应时间：10.788041353225708
+'确权接口响应结果验证耗时：552.549887418747'
+'因证书为异步生成，所以此用列需等待生成后进行下载，需循环验证，共验证&lt;2&gt;次,找到PDF证书'
+'确权接口请求数据与数据库存入值校验结果：数据库存储验证结果：一致（申请接口参数请求值与数据库存储值一致）'
+'确权接口预期回调接口值与数据库回调值校验结果：数据库回调状态值与预期状态值一致：回调成功'
+'------------------------------------------------------------------------------------------'
+'注：作品文件（file）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+'注：授权协议（authProtocol）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+('确权接口传入参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "opusName": "file10M", "fileExtension": "zip", '
+ '"opusDescribe": "荷花种类很多，分观赏和食用两大类。原产亚洲热带和温带地区，中国早在周朝就有栽培记载。", "applyType": '
+ '"102", "applyUserType": "102", "applyNationality": "JAPA", "applyName": '
+ '"小潘潘", "applyIDType": "102", "applyIDNumber": "2019070901", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "salt": '
+ '"b58ef7bf3148e31be867483bab1abd9bSJ2P5TW43R0ZLCR6V556", "file": '
+ '"../applay_file/50m.zip", "authProtocol": "../applay_file/file_11.html"}')
+'------------------------------------------------------------------------------------------'
+'下载接口请求地址=http://ipp.tsa.cn/v2/api/confirm/downloadOpusCertificate'
+("下载接口请求数据={'partnerID': '201907200200058182', 'partnerKey': "
+ "'SJ2P5TW43R0ZLCR6V556', 'serialNo': '345512863021928448', 'salt': "
+ "'471f9c76eb0697608441bf48a8734126SJ2P5TW43R0ZLCR6V556'}")
+("下载接口响应数据={'msg': '请求成功', 'salt': "
+ "'ccfa94f1708fc9deef523d6d5f64c733SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000'}")
+'注：下载接口响应数据中因文件流data参数过大，所以不写入测试报告，以防止测试报告过大'
+'------------------------------------------------------------------------------------------'
+'测试用例执行通过'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.8' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_big_file_http_08</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.8')" >
+        pass</a>
+
+    <div id='div_pt1.8' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.8').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.8: '确权接口用例执行详情如下：'
+'确权接口执行测试用例编号：[BQ_big_08]'
+'确权接口测试目的：申请接口-申请成功- 回调成功'
+'确权接口用例描述：http-授权协议小于50M,作品文件小于10M-其它必填参数-正确传入'
+'确权接口地址：http://ipp.tsa.cn/v2/api/confirm/opusConfirm'
+'确权接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'确权接口预期回调状态值={"callbackFlag":true}'
+'确权接口请求耗时：66.97392082214355'
+('确权接口响应结果={"msg":"请求成功","salt":"48bc30a78e477281eee863f80bf5a65fSJ2P5TW43R0ZLCR6V556","data":[{"timestampDate":"2019-08-12 '
+ '10:35:11","serialNo":"345515486034792448","timestamp":"MIAGCSqGSIb3DQEHAqCAMIIJ4AIBAzEPMA0GCWCGSAFlAwQCAQUAMIIB8QYLKoZIhvcNAQkQAQSgggHgBIIB3DCCAdgCAQEGBCoEBQUwMTANBglghkgBZQMEAgEFAAQgsqYavkgwUHFNINGYGUJAdQIBhkIfLSLCSaoQRP+0JosCCB4k5IA9lPY1GA8yMDE5MDgxMjAyMzUxMVoCBgFsg630AqGCAXUwggFxBggrBgEEAYH9awSCAWMfiwgAAAAAAAAAVVHBSsNAEL0L/kPIXXfTixa26cEqeNCT/YCYrhJo05AEqTepIFVaiyIoNaWCxbSHSiqKsRp/xkwST/6CmzQVCwv75s2b2bczJF+rlLkDqhtKVc3xwjLmOarK1ZKi7uf44s7G0iqfFxcXiGlI6zWTMw81muMxzyiOI2mdKBA0gwkvaZqICYqvJJarqklVk1OlCqvelQxFnnZgOZ1K5aJB9W2WE8FpB94NOwTN8al2s7Am6SUxg4UsXsFZzN5NqTlBbFIUcGaWTeJUUaCGrCuaGXuNWq/R2Ti0W+H4HT4b0O/8fDShcRLZ9eilDZfN7/teeDXw3T70bab5OqrDec+f2P6kEzw/hccjcB+YLHCHMbAcaE5YB98dwa0XXA/BGsDFILC64IwD6zS486D3Fj06keexVgT995La21PKNPlxDAS8RdAfk0wSpaOMV4KmO2HwF/BYUDvGAQAAoIIF3zCCArEwggGZoAMCAQICEAEXLCO77jqaPV+XX5t1kQEwDQYJKoZIhvcNAQEFBQAwPjEjMCEGA1UEChMaQ2hpbmEgVGltZS1TdGFtcCBBdXRob3JpdHkxFzAVBgNVBAMTDkNoaW5hIFRTQSBSb290MB4XDTA3MDIxMjAwMDAwMFoXDTM3MDIxMjIzNTk1OVowOzEUMBIGA1UEAwwLQ2hpbmEgVFNBLTIxIzAhBgNVBAoMGkNoaW5hIFRpbWUtU3RhbXAgQXV0aG9yaXR5MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCHi0BnBo9eDyWTIpT3QLssELvMJ7M0s0tS/rMq4pepY2kr9yxsAyr3ItLPOYHSLZ32/g02ROteWZ23zDkebWZ+TiCfN/Sp7b3RaNPmaL2tynsCPL7OSs9WkCLVjwRAlCMHu07/6VwV2bQwC+dfX4BCtiS2QBR9CcouHAaOrk0WAwIDAQABozIwMDAJBgNVHRMEAjAAMAsGA1UdDwQEAwIGwDAWBgNVHSUBAf8EDDAKBggrBgEFBQcDCDANBgkqhkiG9w0BAQUFAAOCAQEBkc1gn2W3VFiPOzoJY7OL4asSH6+vKJPZSq/ZtGV7Du/+rMOUB4R95yB0s2IOHnMt7Uc/XV/bbD3w/i9FldRknwLy+eY2hodyvWiRg962oXw4omfQYI31j17+4ot0X47Os7jwlxiXmCiiWnVv7jeNKbcRhxHtc6POyJiI5w18XUVX0RiOE2p5o4ZpmiUjve5nGGrIiE6ZOjyrzDc9n5GOM2G1TKI3RqZPawXMcEKw97RQOHNz/My7FqKIcjsSwdl7FBz36EqDeBdg0yNH29wY6Qz4mtxhMd0kufXTxRfK5FTMOd+V0r/uvBrNFy4f+YjCfQ/EiRp8hCMv8Yh8Fz8pijCCAyYwggIOoAMCAQICEAEW1kgiUAule48ZZb9OLAEwDQYJKoZIhvcNAQEFBQAwPjEjMCEGA1UEChMaQ2hpbmEgVGltZS1TdGFtcCBBdXRob3JpdHkxFzAVBgNVBAMTDkNoaW5hIFRTQSBSb290MB4XDTA3MDIxMjAwMDAwMFoXDTM3MDIxMjIzNTk1OVowPjEjMCEGA1UEChMaQ2hpbmEgVGltZS1TdGFtcCBBdXRob3JpdHkxFzAVBgNVBAMTDkNoaW5hIFRTQSBSb290MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuN4d2sw4f8qmY/RhFshoO3iXGdXGK8ANqjhIcNwo8DL1q0d07JBXiE1YR3m7Meew4oJLhWjHTskYzOPdJRiwzfnP3kzb7UWyUyiTrwpp0vLiX8lCVke/cScrja9NHCkuNu0PAdZjdCbEbkeczc3l4lmA2nTacXJ3EqkPRLdpQt2KczPQpOCooujnOO8cc+AyEQLLh/tRv8jTRDJsoT4KIjbO11115rbFTjQMj5fD3IltTB33acEO+yGTCFxLWMyZp51D8wpgs/c3kzP3YpX4Z8GFHfjdEhJfnsxoU6TOjiBV8i6dBhy2Wq5g4v2CNdfT00LpnZ2ui5NHTs//mDFsuQIDAQABoyAwHjAMBgNVHRMEBTADAQH/MA4GA1UdDwEB/wQEAwIBBjANBgkqhkiG9w0BAQUFAAOCAQEAVhlfQWljR25qn53T+nof5oZLD78CpzRFflhA6yWy186cmECVNnTyOJkCWxXK5vXaNbPq1sx7zSkiiI7wzJmj2DP+jqqW5VSaj7Dp+QpHh59UpuB2f552qcxnGYjLRc8ixB4VuvKi8ENvfHIsNAasumkjcxDO7GtUjFmAuIKS+D2kET5Wa6T4QOg4WZU7Tbv3cS06chABUDkEdnjk4ykvjcUYubb+i964IKL7Hw//8C1VKWYV728oK/Axc6f6unUclpqt0D6/hGqUphiHJ4yiz9nqfOQlzSxTMI1Kz60CV5vnyqLnEoJMyYOpSaIikODXffSiZfd75yqlMet/XMT/DDGCAfAwggHsAgEBMFIwPjEjMCEGA1UEChMaQ2hpbmEgVGltZS1TdGFtcCBBdXRob3JpdHkxFzAVBgNVBAMTDkNoaW5hIFRTQSBSb290AhABFywju+46mj1fl1+bdZEBMA0GCWCGSAFlAwQCAQUAoIHxMBoGCSqGSIb3DQEJAzENBgsqhkiG9w0BCRABBDAcBgkqhkiG9w0BCQUxDxcNMTkwODEyMDIzNTExWjAvBgkqhkiG9w0BCQQxIgQg/6Ea+Y7w6+xJ2tAbfaGOmwTyXpwnQiSzl1501WiXmKowgYMGCyqGSIb3DQEJEAIMMXQwcjBwMG4EFERqwPIVHZ/VRBuLCkPgwSG9QqSVMFYwQqRAMD4xFzAVBgNVBAMMDkNoaW5hIFRTQSBSb290MSMwIQYDVQQKDBpDaGluYSBUaW1lLVN0YW1wIEF1dGhvcml0eQIQARcsI7vuOpo9X5dfm3WRATANBgkqhkiG9w0BAQEFAASBgCeGW32QD+73p9WV5Kl8PMqT/YQhgNjrP0dn9xFKnYtmyc/eevrXyuQsLovasSGWQk2jNjfqZ/d60lpDZb2sl+9/bWKV8bRBeo0lCe+crQpRf/1HYfu3dBEEmj28aAXad28pmCNPIKBx+Wr0WvThilWxtAEEJj4gHEe08E2o5VSaAAAAAA=="}],"success":true,"resultCode":"0204000"}')
+下载接口请求响应时间：8.780816078186035
+'确权接口响应结果验证耗时：481.4448962211609'
+'因证书为异步生成，所以此用列需等待生成后进行下载，需循环验证，共验证&lt;2&gt;次,找到PDF证书'
+'确权接口请求数据与数据库存入值校验结果：数据库存储验证结果：一致（申请接口参数请求值与数据库存储值一致）'
+'确权接口预期回调接口值与数据库回调值校验结果：数据库回调状态值与预期状态值一致：回调成功'
+'------------------------------------------------------------------------------------------'
+'注：作品文件（file）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+'注：授权协议（authProtocol）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+('确权接口传入参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "opusName": "file10M", "fileExtension": "zip", '
+ '"opusDescribe": "荷花种类很多，分观赏和食用两大类。原产亚洲热带和温带地区，中国早在周朝就有栽培记载。", "applyType": '
+ '"102", "applyUserType": "102", "applyNationality": "JAPA", "applyName": '
+ '"小潘潘", "applyIDType": "102", "applyIDNumber": "2019070901", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "salt": '
+ '"8e5cced10b1cf2b42323b3f4af7b57a7SJ2P5TW43R0ZLCR6V556", "file": '
+ '"../applay_file/file_47M.zip", "authProtocol": "../applay_file/file_9.html"}')
+'------------------------------------------------------------------------------------------'
+'下载接口请求地址=http://ipp.tsa.cn/v2/api/confirm/downloadOpusCertificate'
+("下载接口请求数据={'partnerID': '201907200200058182', 'partnerKey': "
+ "'SJ2P5TW43R0ZLCR6V556', 'serialNo': '345515486034792448', 'salt': "
+ "'8e555c439a04e0d78647015ac8dc43cdSJ2P5TW43R0ZLCR6V556'}")
+("下载接口响应数据={'msg': '请求成功', 'salt': "
+ "'2f82106eeed77050beaf0fe3e16f9bc9SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000'}")
+'注：下载接口响应数据中因文件流data参数过大，所以不写入测试报告，以防止测试报告过大'
+'------------------------------------------------------------------------------------------'
+'测试用例执行通过'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.9' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_big_file_http_09</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.9')" >
+        pass</a>
+
+    <div id='div_pt1.9' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.9').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.9: '确权接口用例执行详情如下：'
+'确权接口执行测试用例编号：[BQ_big_09]'
+'确权接口测试目的：申请接口-申请成功- 回调成功(保证授权文件至少可以传10M文件)'
+'确权接口用例描述：http-授权协议小于50M（47M）,作品文件等 于10M(11M)-其它必填参数-正确传入'
+'确权接口地址：http://ipp.tsa.cn/v2/api/confirm/opusConfirm'
+'确权接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'确权接口预期回调状态值={"callbackFlag":true}'
+'确权接口请求耗时：68.48677706718445'
+('确权接口响应结果={"msg":"请求成功","salt":"2df8050ce47b8812f912d2c6a89cd702SJ2P5TW43R0ZLCR6V556","data":[{"timestampDate":"2019-08-12 '
+ '10:44:24","serialNo":"345517804612489216","timestamp":"MIAGCSqGSIb3DQEHAqCAMIIJ4AIBAzEPMA0GCWCGSAFlAwQCAQUAMIIB8QYLKoZIhvcNAQkQAQSgggHgBIIB3DCCAdgCAQEGBCoEBQUwMTANBglghkgBZQMEAgEFAAQgsqYavkgwUHFNINGYGUJAdQIBhkIfLSLCSaoQRP+0JosCCCDqPImt25mqGA8yMDE5MDgxMjAyNDQyNFoCBgFsg7ZjXqGCAXUwggFxBggrBgEEAYH9awSCAWMfiwgAAAAAAAAAVVHBSsNAEL0L/kPIXXfTixa26cEqeNCT/YCYrhJo05AEqTepIFVaiyIoNaWCxbSHSiqKsRp/xkwST/6CmzQVCwv75s2b2bczJF+rlLkDqhtKVc3xwjLmOarK1ZKi7uf44s7G0iqfFxcXiGlI6zWTMw81muMxzyiOI2mdKBA0gwkvaZqICYqvJJarqklVk1OlCqvelQxFnnZgOZ1K5aJB9W2WE8FpB94NOwTN8al2s7Am6SUxg4UsXsFZzN5NqTlBbFIUcGaWTeJUUaCGrCuaGXuNWq/R2Ti0W+H4HT4b0O/8fDShcRLZ9eilDZfN7/teeDXw3T70bab5OqrDec+f2P6kEzw/hccjcB+YLHCHMbAcaE5YB98dwa0XXA/BGsDFILC64IwD6zS486D3Fj06keexVgT995La21PKNPlxDAS8RdAfk0wSpaOMV4KmO2HwF/BYUDvGAQAAoIIF3zCCArEwggGZoAMCAQICEAEXLCO77jqaPV+XX5t1kQEwDQYJKoZIhvcNAQEFBQAwPjEjMCEGA1UEChMaQ2hpbmEgVGltZS1TdGFtcCBBdXRob3JpdHkxFzAVBgNVBAMTDkNoaW5hIFRTQSBSb290MB4XDTA3MDIxMjAwMDAwMFoXDTM3MDIxMjIzNTk1OVowOzEUMBIGA1UEAwwLQ2hpbmEgVFNBLTIxIzAhBgNVBAoMGkNoaW5hIFRpbWUtU3RhbXAgQXV0aG9yaXR5MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCHi0BnBo9eDyWTIpT3QLssELvMJ7M0s0tS/rMq4pepY2kr9yxsAyr3ItLPOYHSLZ32/g02ROteWZ23zDkebWZ+TiCfN/Sp7b3RaNPmaL2tynsCPL7OSs9WkCLVjwRAlCMHu07/6VwV2bQwC+dfX4BCtiS2QBR9CcouHAaOrk0WAwIDAQABozIwMDAJBgNVHRMEAjAAMAsGA1UdDwQEAwIGwDAWBgNVHSUBAf8EDDAKBggrBgEFBQcDCDANBgkqhkiG9w0BAQUFAAOCAQEBkc1gn2W3VFiPOzoJY7OL4asSH6+vKJPZSq/ZtGV7Du/+rMOUB4R95yB0s2IOHnMt7Uc/XV/bbD3w/i9FldRknwLy+eY2hodyvWiRg962oXw4omfQYI31j17+4ot0X47Os7jwlxiXmCiiWnVv7jeNKbcRhxHtc6POyJiI5w18XUVX0RiOE2p5o4ZpmiUjve5nGGrIiE6ZOjyrzDc9n5GOM2G1TKI3RqZPawXMcEKw97RQOHNz/My7FqKIcjsSwdl7FBz36EqDeBdg0yNH29wY6Qz4mtxhMd0kufXTxRfK5FTMOd+V0r/uvBrNFy4f+YjCfQ/EiRp8hCMv8Yh8Fz8pijCCAyYwggIOoAMCAQICEAEW1kgiUAule48ZZb9OLAEwDQYJKoZIhvcNAQEFBQAwPjEjMCEGA1UEChMaQ2hpbmEgVGltZS1TdGFtcCBBdXRob3JpdHkxFzAVBgNVBAMTDkNoaW5hIFRTQSBSb290MB4XDTA3MDIxMjAwMDAwMFoXDTM3MDIxMjIzNTk1OVowPjEjMCEGA1UEChMaQ2hpbmEgVGltZS1TdGFtcCBBdXRob3JpdHkxFzAVBgNVBAMTDkNoaW5hIFRTQSBSb290MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuN4d2sw4f8qmY/RhFshoO3iXGdXGK8ANqjhIcNwo8DL1q0d07JBXiE1YR3m7Meew4oJLhWjHTskYzOPdJRiwzfnP3kzb7UWyUyiTrwpp0vLiX8lCVke/cScrja9NHCkuNu0PAdZjdCbEbkeczc3l4lmA2nTacXJ3EqkPRLdpQt2KczPQpOCooujnOO8cc+AyEQLLh/tRv8jTRDJsoT4KIjbO11115rbFTjQMj5fD3IltTB33acEO+yGTCFxLWMyZp51D8wpgs/c3kzP3YpX4Z8GFHfjdEhJfnsxoU6TOjiBV8i6dBhy2Wq5g4v2CNdfT00LpnZ2ui5NHTs//mDFsuQIDAQABoyAwHjAMBgNVHRMEBTADAQH/MA4GA1UdDwEB/wQEAwIBBjANBgkqhkiG9w0BAQUFAAOCAQEAVhlfQWljR25qn53T+nof5oZLD78CpzRFflhA6yWy186cmECVNnTyOJkCWxXK5vXaNbPq1sx7zSkiiI7wzJmj2DP+jqqW5VSaj7Dp+QpHh59UpuB2f552qcxnGYjLRc8ixB4VuvKi8ENvfHIsNAasumkjcxDO7GtUjFmAuIKS+D2kET5Wa6T4QOg4WZU7Tbv3cS06chABUDkEdnjk4ykvjcUYubb+i964IKL7Hw//8C1VKWYV728oK/Axc6f6unUclpqt0D6/hGqUphiHJ4yiz9nqfOQlzSxTMI1Kz60CV5vnyqLnEoJMyYOpSaIikODXffSiZfd75yqlMet/XMT/DDGCAfAwggHsAgEBMFIwPjEjMCEGA1UEChMaQ2hpbmEgVGltZS1TdGFtcCBBdXRob3JpdHkxFzAVBgNVBAMTDkNoaW5hIFRTQSBSb290AhABFywju+46mj1fl1+bdZEBMA0GCWCGSAFlAwQCAQUAoIHxMBoGCSqGSIb3DQEJAzENBgsqhkiG9w0BCRABBDAcBgkqhkiG9w0BCQUxDxcNMTkwODEyMDI0NDI0WjAvBgkqhkiG9w0BCQQxIgQg1D3PbtjPFCx1bqcD6Nn2/uZ2/rxwLimFDO2MMNVwFpwwgYMGCyqGSIb3DQEJEAIMMXQwcjBwMG4EFERqwPIVHZ/VRBuLCkPgwSG9QqSVMFYwQqRAMD4xFzAVBgNVBAMMDkNoaW5hIFRTQSBSb290MSMwIQYDVQQKDBpDaGluYSBUaW1lLVN0YW1wIEF1dGhvcml0eQIQARcsI7vuOpo9X5dfm3WRATANBgkqhkiG9w0BAQEFAASBgAy3wxHLdV+RkMSrIbN0xhm2Gcnax10Duc+g+/h3j98xIYXwqIUwYTjXHrXY1qNsSU+pw6bHc7e4B5UcQW6plywvHckSo2LQq97PV4sVf5Z/McSvBb9hSL0uo5iidC/zoes4Y0/1urQhdcfi3vhAQibPn8cCBCceDryMgbGmLVbdAAAAAA=="}],"success":true,"resultCode":"0204000"}')
+下载接口请求响应时间：9.294575929641724
+'确权接口响应结果验证耗时：481.5879342556'
+'因证书为异步生成，所以此用列需等待生成后进行下载，需循环验证，共验证&lt;2&gt;次,找到PDF证书'
+'确权接口请求数据与数据库存入值校验结果：数据库存储验证结果：一致（申请接口参数请求值与数据库存储值一致）'
+'确权接口预期回调接口值与数据库回调值校验结果：数据库回调状态值与预期状态值一致：回调成功'
+'------------------------------------------------------------------------------------------'
+'注：作品文件（file）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+'注：授权协议（authProtocol）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+('确权接口传入参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "opusName": "file10M", "fileExtension": "zip", '
+ '"opusDescribe": "荷花种类很多，分观赏和食用两大类。原产亚洲热带和温带地区，中国早在周朝就有栽培记载。", "applyType": '
+ '"102", "applyUserType": "102", "applyNationality": "JAPA", "applyName": '
+ '"小潘潘", "applyIDType": "102", "applyIDNumber": "2019070901", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "salt": '
+ '"8e5cced10b1cf2b42323b3f4af7b57a7SJ2P5TW43R0ZLCR6V556", "file": '
+ '"../applay_file/file_47M.zip", "authProtocol": "../applay_file/file_9.html"}')
+'------------------------------------------------------------------------------------------'
+'下载接口请求地址=http://ipp.tsa.cn/v2/api/confirm/downloadOpusCertificate'
+("下载接口请求数据={'partnerID': '201907200200058182', 'partnerKey': "
+ "'SJ2P5TW43R0ZLCR6V556', 'serialNo': '345517804612489216', 'salt': "
+ "'a117451d9c3e21d9607b7715ad9d8e07SJ2P5TW43R0ZLCR6V556'}")
+("下载接口响应数据={'msg': '请求成功', 'salt': "
+ "'e5c5d31d53771e9a85718b162d3c53b3SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000'}")
+'注：下载接口响应数据中因文件流data参数过大，所以不写入测试报告，以防止测试报告过大'
+'------------------------------------------------------------------------------------------'
+'测试用例执行通过'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.10' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_big_file_http_10</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.10')" >
+        pass</a>
+
+    <div id='div_pt1.10' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.10').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.10: '确权接口用例执行详情如下：'
+'确权接口执行测试用例编号：[BQ_big_10]'
+'确权接口测试目的：申请接口-申请失败'
+'确权接口用例描述：http-作品文件大于50M（67M）-作品hash不传入-作品文件传入,其它必填参数-正确传入'
+'确权接口地址：http://ipp.tsa.cn/v2/api/confirm/opusConfirm'
+'确权接口预期接口返回值={"msg":"file参数不合法","success":false,"resultCode":"0202001"}'
+'确权接口预期回调状态值={"callbackFlag":None}'
+'确权接口请求耗时：75.23138356208801'
+'确权接口响应结果={"msg":"file参数不合法","salt":"145f5e06ddb78bf320cdde42742bc9fdSJ2P5TW43R0ZLCR6V556","success":false,"resultCode":"0202001"}'
+'确权接口响应结果验证耗时：5.030632019042969e-05'
+'------------------------------------------------------------------------------------------'
+'注：作品文件（file）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+'注：授权协议（authProtocol）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+('确权接口传入参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "opusName": "file10M", "fileExtension": "html", '
+ '"opusDescribe": "荷花种类很多，分观赏和食用两大类。原产亚洲热带和温带地区，中国早在周朝就有栽培记载。", "applyType": '
+ '"102", "applyUserType": "102", "applyNationality": "JAPA", "applyName": '
+ '"小潘潘", "applyIDType": "102", "applyIDNumber": "2019070901", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "salt": '
+ '"f0e44ea9e69659f3c346b823a17eef5aSJ2P5TW43R0ZLCR6V556", "file": '
+ '"../applay_file/file_67M.html", "authProtocol": '
+ '"../applay_file/file_11.html"}')
+'------------------------------------------------------------------------------------------'
+'------------------------------------------------------------------------------------------'
+'测试用例执行通过'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.11' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_big_file_http_11</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.11')" >
+        pass</a>
+
+    <div id='div_pt1.11' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.11').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.11: '确权接口用例执行详情如下：'
+'确权接口执行测试用例编号：[BQ_big_11]'
+'确权接口测试目的：申请接口-申请失败'
+'确权接口用例描述：http-作品文件大于50M（67M）-授权协议小于10M（9M）-其它必填参数-正确传入'
+'确权接口地址：http://ipp.tsa.cn/v2/api/confirm/opusConfirm'
+'确权接口预期接口返回值={"msg":"file参数不合法","success":false,"resultCode":"0202001"}'
+'确权接口预期回调状态值={"callbackFlag":None}'
+'确权接口请求耗时：73.74769139289856'
+'确权接口响应结果={"msg":"file参数不合法","salt":"145f5e06ddb78bf320cdde42742bc9fdSJ2P5TW43R0ZLCR6V556","success":false,"resultCode":"0202001"}'
+'确权接口响应结果验证耗时：4.9114227294921875e-05'
+'------------------------------------------------------------------------------------------'
+'注：作品文件（file）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+'注：授权协议（authProtocol）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+('确权接口传入参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "opusName": "file10M", "fileExtension": "html", '
+ '"opusDescribe": "荷花种类很多，分观赏和食用两大类。原产亚洲热带和温带地区，中国早在周朝就有栽培记载。", "applyType": '
+ '"102", "applyUserType": "102", "applyNationality": "JAPA", "applyName": '
+ '"小潘潘", "applyIDType": "102", "applyIDNumber": "2019070901", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "salt": '
+ '"29dccd39291e9ce41d90095f124ae8c0SJ2P5TW43R0ZLCR6V556", "file": '
+ '"../applay_file/file_67M.html", "authProtocol": '
+ '"../applay_file/file_9.html"}')
+'------------------------------------------------------------------------------------------'
+'------------------------------------------------------------------------------------------'
+'测试用例执行通过'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.12' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_big_file_http_12</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.12')" >
+        pass</a>
+
+    <div id='div_pt1.12' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.12').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.12: '确权接口用例执行详情如下：'
+'确权接口执行测试用例编号：[BQ_big_12]'
+'确权接口测试目的：申请接口-申请失败'
+'确权接口用例描述：http-作品文件小于50M（47M）-授权协议大于10M(47M)-其它必填参数-正确传入（成功）'
+'确权接口地址：http://ipp.tsa.cn/v2/api/confirm/opusConfirm'
+'确权接口预期接口返回值={"msg":"authProtocol参数不合法","success":false,"resultCode":"0202001"}'
+'确权接口预期回调状态值={"callbackFlag":None}'
+'确权接口请求耗时：94.04281425476074'
+'确权接口响应结果={"msg":"authProtocol参数不合法","salt":"7b37ddd62b07e4998777c59f936e9006SJ2P5TW43R0ZLCR6V556","success":false,"resultCode":"0202001"}'
+'确权接口响应结果验证耗时：5.1021575927734375e-05'
+'------------------------------------------------------------------------------------------'
+'注：作品文件（file）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+'注：授权协议（authProtocol）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+('确权接口传入参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "hash": '
+ '"B2A61ABE483050714D20D19819424075020186421F2D22C249AA1044FFB4268B", '
+ '"opusName": "file10M", "fileExtension": "zip", "opusDescribe": '
+ '"荷花种类很多，分观赏和食用两大类。原产亚洲热带和温带地区，中国早在周朝就有栽培记载。", "applyType": "102", '
+ '"applyUserType": "102", "applyNationality": "JAPA", "applyName": "小潘潘", '
+ '"applyIDType": "102", "applyIDNumber": "2019070901", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "salt": '
+ '"fbb291ff111354542c74e4dc86394690SJ2P5TW43R0ZLCR6V556", "file": '
+ '"../applay_file/file_47M.zip", "authProtocol": '
+ '"../applay_file/file_47M.zip"}')
+'------------------------------------------------------------------------------------------'
+'------------------------------------------------------------------------------------------'
+'测试用例执行通过'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.13' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_hz_https_01</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.13')" >
+        pass</a>
+
+    <div id='div_pt1.13' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.13').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.13: '确权接口用例执行详情如下：'
+'确权接口执行测试用例编号：[BQ_big_01]'
+'确权接口测试目的：申请接口-申请成功- 回调成功'
+'确权接口用例描述：http-上传文件大于等 于10MB，但选择文件标识为小文件，其它必填参数-正确传入'
+'确权接口地址：https://ipp.tsa.cn/v2/api/confirm/opusConfirm'
+'确权接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'确权接口预期回调状态值={"callbackFlag":true}'
+'确权接口请求耗时：13.969482183456421'
+('确权接口响应结果={"msg":"请求成功","salt":"87785656682efceb5838fcb4681fdbfbSJ2P5TW43R0ZLCR6V556","data":[{"timestampDate":"2019-08-12 '
+ '10:57:03","serialNo":"345520991402725376","timestamp":"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"}],"success":true,"resultCode":"0204000"}')
+下载接口请求响应时间：2.0552759170532227
+'确权接口响应结果验证耗时：88.65037798881531'
+'因证书为异步生成，所以此用列需等待生成后进行下载，需循环验证，共验证&lt;2&gt;次,找到PDF证书'
+'确权接口请求数据与数据库存入值校验结果：数据库存储验证结果：一致（申请接口参数请求值与数据库存储值一致）'
+'确权接口预期回调接口值与数据库回调值校验结果：数据库回调状态值与预期状态值一致：回调成功'
+'------------------------------------------------------------------------------------------'
+'注：作品文件（file）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+('确权接口传入参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "hash": '
+ '"0EA595AF0CBC01792F9948AD0C471E15ACA96F2FE3A3DAE97C27FADF6A3D28E6", '
+ '"opusName": "是非成败转头空，青山依旧在，惯看秋月春风。一壶.docx", "fileExtension": "pdf", '
+ '"opusDescribe": "荷花种类很多，分观赏和食用两大类。原产亚洲热带和温带地区，中国早在周朝就有栽培记载。", "applyType": '
+ '"102", "applyUserType": "102", "applyNationality": "JAPA", "applyName": '
+ '"小潘潘", "applyIDType": "102", "applyIDNumber": "2019070901", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "hashAlgorithm": '
+ '"SHA256", "fileSzieFlag": "0", "fileType": "101", "opusState": "0", '
+ '"opusPartnerID": "070901", "opusLabel": "有红,粉红,白,紫等色", "opusStore": "101", '
+ '"opusType": "101", "opusCreativeType": "101", "opusCreativeNature": "101", '
+ '"applyPhone": "13012340001", "applyMail": "test@tsa.cn", "applyAddress": '
+ '"辽宁省 沈阳市 沈河区 大西路1号 文峰大厦", "applyEmergencyName": "潘小潘", '
+ '"applyEmergencyPhone": "15012340001", "authType": "101", "authValidiy": '
+ '"99999", "authTime": "2019-07-09 15:15:15", "authBusiness": "0", '
+ '"authPlatform": "中国版权协会", "authPlatformID": "111222", "authPrice": "10000", '
+ '"authAllowType": "0", "authUse": "编辑,商用,民用", "authCountry": "CN,DZ,BY,SY", '
+ '"authSell": "0", "authLimit": "未经允许，不许复制", "authRemark": '
+ '"花期6至9月，单生于花梗顶端，花瓣多数，嵌生在花托穴内，有红、粉红、白、紫等色，或有彩纹、镶边。坚果椭圆形，种子卵形。", '
+ '"authUserType": "101", "authUserNationality": "CN", "authUserName": "Amy", '
+ '"authUserIDType": "101", "authUserIDNumber": "130102196303250459", '
+ '"authUserPhone": "13012340002", "authUserMail": "test@163.com", '
+ '"authUserAddress": "15012340002", "remark1": '
+ '"古时江南风俗，阴历六月二十四日为荷花生日，荷花因而又有“六月花神”的雅号。", "remark2": '
+ '"为了表达对荷花高洁形态的赞赏，以金芙蓉和草芙蓉比喻荷花品性的难得。", "remark3": "溪客、静客都是强调荷花的生长环境和安静娴雅的状态。", '
+ '"encodeFmt": "base64", "salt": '
+ '"a3bce5f4dc72ad8f44c90bf37fd26d53SJ2P5TW43R0ZLCR6V556", "file": '
+ '"../applay_file/file_12M.pdf"}')
+'------------------------------------------------------------------------------------------'
+'下载接口请求地址=https://ipp.tsa.cn/v2/api/confirm/downloadOpusCertificate'
+("下载接口请求数据={'partnerID': '201907200200058182', 'partnerKey': "
+ "'SJ2P5TW43R0ZLCR6V556', 'serialNo': '345520991402725376', 'salt': "
+ "'dcbc48f898e3fc180043edbc14b26303SJ2P5TW43R0ZLCR6V556'}")
+("下载接口响应数据={'msg': '请求成功', 'salt': "
+ "'8cc18fbdb82af0abc966cdc0f0c4a1e7SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000'}")
+'注：下载接口响应数据中因文件流data参数过大，所以不写入测试报告，以防止测试报告过大'
+'------------------------------------------------------------------------------------------'
+'测试用例执行通过'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.14' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_hz_https_02</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.14')" >
+        pass</a>
+
+    <div id='div_pt1.14' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.14').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.14: '确权接口用例执行详情如下：'
+'确权接口执行测试用例编号：[BQ_big_02]'
+'确权接口测试目的：申请接口-申请成功- 回调成功'
+'确权接口用例描述：http-作品文件小于50M(47M)-作品hash传入-作品文件不传入-其它必填参数正确传入'
+'确权接口地址：https://ipp.tsa.cn/v2/api/confirm/opusConfirm'
+'确权接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'确权接口预期回调状态值={"callbackFlag":true}'
+'确权接口请求耗时：0.19850730895996094'
+('确权接口响应结果={"msg":"请求成功","salt":"f5b5761bb79b4bcc78865d2dc950fb94SJ2P5TW43R0ZLCR6V556","data":[{"timestampDate":"2019-08-12 '
+ '10:58:38","serialNo":"345521386850095104","timestamp":"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"}],"success":true,"resultCode":"0204000"}')
+下载接口请求响应时间：0.311112642288208
+下载接口请求响应时间：0.38834619522094727
+'确权接口响应结果验证耗时：0.8983995914459229'
+'因证书为异步生成，所以此用列需等待生成后进行下载，需循环验证，共验证&lt;3&gt;次,找到PDF证书'
+'确权接口请求数据与数据库存入值校验结果：数据库存储验证结果：一致（申请接口参数请求值与数据库存储值一致）'
+'确权接口预期回调接口值与数据库回调值校验结果：数据库回调状态值与预期状态值一致：回调成功'
+'------------------------------------------------------------------------------------------'
+('确权接口传入参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "hash": '
+ '"B2A61ABE483050714D20D19819424075020186421F2D22C249AA1044FFB4268B", '
+ '"opusName": "file10M", "opusDescribe": '
+ '"荷花种类很多，分观赏和食用两大类。原产亚洲热带和温带地区，中国早在周朝就有栽培记载。", "applyType": "102", '
+ '"applyUserType": "102", "applyNationality": "JAPA", "applyName": "小潘潘", '
+ '"applyIDType": "102", "applyIDNumber": "2019070901", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "salt": '
+ '"56403967c86a926b47438f9a6b37960cSJ2P5TW43R0ZLCR6V556"}')
+'------------------------------------------------------------------------------------------'
+'下载接口请求地址=https://ipp.tsa.cn/v2/api/confirm/downloadOpusCertificate'
+("下载接口请求数据={'partnerID': '201907200200058182', 'partnerKey': "
+ "'SJ2P5TW43R0ZLCR6V556', 'serialNo': '345521386850095104', 'salt': "
+ "'9acc1eb170d26a1d05dcddee3d309d9eSJ2P5TW43R0ZLCR6V556'}")
+("下载接口响应数据={'msg': '请求成功', 'salt': "
+ "'1b607da021b182e7ebf18b92c3ada757SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000'}")
+'注：下载接口响应数据中因文件流data参数过大，所以不写入测试报告，以防止测试报告过大'
+'------------------------------------------------------------------------------------------'
+'测试用例执行通过'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.15' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_hz_https_03</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.15')" >
+        pass</a>
+
+    <div id='div_pt1.15' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.15').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.15: '确权接口用例执行详情如下：'
+'确权接口执行测试用例编号：[BQ_big_03]'
+'确权接口测试目的：申请接口-申请成功- 回调成功'
+'确权接口用例描述：http-作品文件小于50M(47M)-作品hash不传入-作品文件传入-其它必填参数正确传入'
+'确权接口地址：https://ipp.tsa.cn/v2/api/confirm/opusConfirm'
+'确权接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'确权接口预期回调状态值={"callbackFlag":true}'
+'确权接口请求耗时：57.77150797843933'
+('确权接口响应结果={"msg":"请求成功","salt":"ed83fb08c66ae8adcf6474b042291405SJ2P5TW43R0ZLCR6V556","data":[{"timestampDate":"2019-08-12 '
+ '10:59:29","serialNo":"345521603947270144","timestamp":"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"}],"success":true,"resultCode":"0204000"}')
+下载接口请求响应时间：8.681077241897583
+'确权接口响应结果验证耗时：362.1471779346466'
+'因证书为异步生成，所以此用列需等待生成后进行下载，需循环验证，共验证&lt;2&gt;次,找到PDF证书'
+'确权接口请求数据与数据库存入值校验结果：数据库存储验证结果：一致（申请接口参数请求值与数据库存储值一致）'
+'确权接口预期回调接口值与数据库回调值校验结果：数据库回调状态值与预期状态值一致：回调成功'
+'------------------------------------------------------------------------------------------'
+'注：作品文件（file）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+('确权接口传入参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "opusName": "file10M", "fileExtension": "zip", '
+ '"opusDescribe": "荷花种类很多，分观赏和食用两大类。原产亚洲热带和温带地区，中国早在周朝就有栽培记载。", "applyType": '
+ '"102", "applyUserType": "102", "applyNationality": "JAPA", "applyName": '
+ '"小潘潘", "applyIDType": "102", "applyIDNumber": "2019070901", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "salt": '
+ '"d7e2b178c942aa58d2b98be7c1fb6db9SJ2P5TW43R0ZLCR6V556", "file": '
+ '"../applay_file/file_47M.zip"}')
+'------------------------------------------------------------------------------------------'
+'下载接口请求地址=https://ipp.tsa.cn/v2/api/confirm/downloadOpusCertificate'
+("下载接口请求数据={'partnerID': '201907200200058182', 'partnerKey': "
+ "'SJ2P5TW43R0ZLCR6V556', 'serialNo': '345521603947270144', 'salt': "
+ "'25499c672c5c30972cc0814945f8c6c0SJ2P5TW43R0ZLCR6V556'}")
+("下载接口响应数据={'msg': '请求成功', 'salt': "
+ "'c3ea686f820820006f20eae47344601aSJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000'}")
+'注：下载接口响应数据中因文件流data参数过大，所以不写入测试报告，以防止测试报告过大'
+'------------------------------------------------------------------------------------------'
+'测试用例执行通过'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.16' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_hz_https_04</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.16')" >
+        pass</a>
+
+    <div id='div_pt1.16' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.16').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.16: '确权接口用例执行详情如下：'
+'确权接口执行测试用例编号：[BQ_big_04]'
+'确权接口测试目的：申请接口-申请成功- 回调成功'
+'确权接口用例描述：http-作品文件小于50M(47M)-作品hash传入-作品文件传入-其它必填参数正确传入'
+'确权接口地址：https://ipp.tsa.cn/v2/api/confirm/opusConfirm'
+'确权接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'确权接口预期回调状态值={"callbackFlag":true}'
+'确权接口请求耗时：57.920592069625854'
+('确权接口响应结果={"msg":"请求成功","salt":"d45cb3fe30dbf0502c83c5538885e7faSJ2P5TW43R0ZLCR6V556","data":[{"timestampDate":"2019-08-12 '
+ '11:06:33","serialNo":"345523379014471680","timestamp":"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"}],"success":true,"resultCode":"0204000"}')
+下载接口请求响应时间：8.951184511184692
+'确权接口响应结果验证耗时：362.544930934906'
+'因证书为异步生成，所以此用列需等待生成后进行下载，需循环验证，共验证&lt;2&gt;次,找到PDF证书'
+'确权接口请求数据与数据库存入值校验结果：数据库存储验证结果：一致（申请接口参数请求值与数据库存储值一致）'
+'确权接口预期回调接口值与数据库回调值校验结果：数据库回调状态值与预期状态值一致：回调成功'
+'------------------------------------------------------------------------------------------'
+'注：作品文件（file）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+('确权接口传入参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "hash": '
+ '"B2A61ABE483050714D20D19819424075020186421F2D22C249AA1044FFB4268B", '
+ '"opusName": "file10M", "fileExtension": "zip", "opusDescribe": '
+ '"荷花种类很多，分观赏和食用两大类。原产亚洲热带和温带地区，中国早在周朝就有栽培记载。", "applyType": "102", '
+ '"applyUserType": "102", "applyNationality": "JAPA", "applyName": "小潘潘", '
+ '"applyIDType": "102", "applyIDNumber": "2019070901", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "salt": '
+ '"37e763aa188fba8f9bc052d691cf33cdSJ2P5TW43R0ZLCR6V556", "file": '
+ '"../applay_file/file_47M.zip"}')
+'------------------------------------------------------------------------------------------'
+'下载接口请求地址=https://ipp.tsa.cn/v2/api/confirm/downloadOpusCertificate'
+("下载接口请求数据={'partnerID': '201907200200058182', 'partnerKey': "
+ "'SJ2P5TW43R0ZLCR6V556', 'serialNo': '345523379014471680', 'salt': "
+ "'c700e9e215cb3779bfe51d546c01832cSJ2P5TW43R0ZLCR6V556'}")
+("下载接口响应数据={'msg': '请求成功', 'salt': "
+ "'eee49e9e421da5539b4fb5ae47b1b155SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000'}")
+'注：下载接口响应数据中因文件流data参数过大，所以不写入测试报告，以防止测试报告过大'
+'------------------------------------------------------------------------------------------'
+'测试用例执行通过'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.17' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_hz_https_05</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.17')" >
+        pass</a>
+
+    <div id='div_pt1.17' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.17').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.17: '确权接口用例执行详情如下：'
+'确权接口执行测试用例编号：[BQ_big_05]'
+'确权接口测试目的：申请接口-申请成功- 回调成功(保证作品文件至少可以传50M文件)'
+'确权接口用例描述：http-作品文件小于50M(54M)-作品hash传入-作品文件传入-其它必填参数正确传入'
+'确权接口地址：https://ipp.tsa.cn/v2/api/confirm/opusConfirm'
+'确权接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'确权接口预期回调状态值={"callbackFlag":true}'
+'确权接口请求耗时：67.43668127059937'
+('确权接口响应结果={"msg":"请求成功","salt":"27f2392a4956cfdd826af4c6a8679e1aSJ2P5TW43R0ZLCR6V556","data":[{"timestampDate":"2019-08-12 '
+ '11:13:43","serialNo":"345525185442484224","timestamp":"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"}],"success":true,"resultCode":"0204000"}')
+下载接口请求响应时间：11.006632328033447
+'确权接口响应结果验证耗时：416.2920169830322'
+'因证书为异步生成，所以此用列需等待生成后进行下载，需循环验证，共验证&lt;2&gt;次,找到PDF证书'
+'确权接口请求数据与数据库存入值校验结果：数据库存储验证结果：一致（申请接口参数请求值与数据库存储值一致）'
+'确权接口预期回调接口值与数据库回调值校验结果：数据库回调状态值与预期状态值一致：回调成功'
+'------------------------------------------------------------------------------------------'
+'注：作品文件（file）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+('确权接口传入参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "hash": '
+ '"89749A823D12CD25F81F489A0E13EAAA33C208F29B97001A0CB5C30F81402F58", '
+ '"opusName": "file10M", "fileExtension": "zip", "opusDescribe": '
+ '"荷花种类很多，分观赏和食用两大类。原产亚洲热带和温带地区，中国早在周朝就有栽培记载。", "applyType": "102", '
+ '"applyUserType": "102", "applyNationality": "JAPA", "applyName": "小潘潘", '
+ '"applyIDType": "102", "applyIDNumber": "2019070901", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "salt": '
+ '"e883380fceebfb225caadf151397eb6eSJ2P5TW43R0ZLCR6V556", "file": '
+ '"../applay_file/50m.zip"}')
+'------------------------------------------------------------------------------------------'
+'下载接口请求地址=https://ipp.tsa.cn/v2/api/confirm/downloadOpusCertificate'
+("下载接口请求数据={'partnerID': '201907200200058182', 'partnerKey': "
+ "'SJ2P5TW43R0ZLCR6V556', 'serialNo': '345525185442484224', 'salt': "
+ "'8d5c67c08894a5e50a0eba5f81ef2ea4SJ2P5TW43R0ZLCR6V556'}")
+("下载接口响应数据={'msg': '请求成功', 'salt': "
+ "'163b5e8fcd4ff5ec0d29a5916c00ac75SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000'}")
+'注：下载接口响应数据中因文件流data参数过大，所以不写入测试报告，以防止测试报告过大'
+'------------------------------------------------------------------------------------------'
+'测试用例执行通过'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.18' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_hz_https_06</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.18')" >
+        pass</a>
+
+    <div id='div_pt1.18' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.18').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.18: '确权接口用例执行详情如下：'
+'确权接口执行测试用例编号：[BQ_big_06]'
+'确权接口测试目的：申请接口-申请成功- 回调成功（hash值不可逆不进行大小验证）'
+'确权接口用例描述：http-作品文件大于50M(67M)-作品hash传入-作品文件不传入,其它必填参数-正确传入'
+'确权接口地址：https://ipp.tsa.cn/v2/api/confirm/opusConfirm'
+'确权接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'确权接口预期回调状态值={"callbackFlag":true}'
+'确权接口请求耗时：0.26754045486450195'
+('确权接口响应结果={"msg":"请求成功","salt":"23a08627e1db188c4cbd84e4ad9f537dSJ2P5TW43R0ZLCR6V556","data":[{"timestampDate":"2019-08-12 '
+ '11:20:56","serialNo":"345527000506568704","timestamp":"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"}],"success":true,"resultCode":"0204000"}')
+下载接口请求响应时间：0.15623974800109863
+下载接口请求响应时间：0.19138383865356445
+下载接口请求响应时间：0.3663136959075928
+'确权接口响应结果验证耗时：0.971778154373169'
+'因证书为异步生成，所以此用列需等待生成后进行下载，需循环验证，共验证&lt;4&gt;次,找到PDF证书'
+'确权接口请求数据与数据库存入值校验结果：数据库存储验证结果：一致（申请接口参数请求值与数据库存储值一致）'
+'确权接口预期回调接口值与数据库回调值校验结果：数据库回调状态值与预期状态值一致：回调成功'
+'------------------------------------------------------------------------------------------'
+('确权接口传入参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "hash": '
+ '"3674ACF5F9933976C00783EE15A2835FC45328B1C57F072949903A0BABE2E6E4", '
+ '"opusName": "file10M", "opusDescribe": '
+ '"荷花种类很多，分观赏和食用两大类。原产亚洲热带和温带地区，中国早在周朝就有栽培记载。", "applyType": "102", '
+ '"applyUserType": "102", "applyNationality": "JAPA", "applyName": "小潘潘", '
+ '"applyIDType": "102", "applyIDNumber": "2019070901", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "salt": '
+ '"5ea32d85745ccebdd5e3e878f2f470baSJ2P5TW43R0ZLCR6V556"}')
+'------------------------------------------------------------------------------------------'
+'下载接口请求地址=https://ipp.tsa.cn/v2/api/confirm/downloadOpusCertificate'
+("下载接口请求数据={'partnerID': '201907200200058182', 'partnerKey': "
+ "'SJ2P5TW43R0ZLCR6V556', 'serialNo': '345527000506568704', 'salt': "
+ "'917a15ce32b128b3d7405b9e13fa949eSJ2P5TW43R0ZLCR6V556'}")
+("下载接口响应数据={'msg': '请求成功', 'salt': "
+ "'a1e5f81f313e03bcb46ee0bf050692a8SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000'}")
+'注：下载接口响应数据中因文件流data参数过大，所以不写入测试报告，以防止测试报告过大'
+'------------------------------------------------------------------------------------------'
+'测试用例执行通过'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.19' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_hz_https_07</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.19')" >
+        pass</a>
+
+    <div id='div_pt1.19' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.19').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.19: '确权接口用例执行详情如下：'
+'确权接口执行测试用例编号：[BQ_big_07]'
+'确权接口测试目的：申请接口-申请成功- 回调成功'
+'确权接口用例描述：http-作品文件等于50M(54M)-授权文件等于10M（11M）,其它必填参数-正确传入'
+'确权接口地址：https://ipp.tsa.cn/v2/api/confirm/opusConfirm'
+'确权接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'确权接口预期回调状态值={"callbackFlag":true}'
+'确权接口请求耗时：78.63800263404846'
+('确权接口响应结果={"msg":"请求成功","salt":"fb70ec1a691212e266e1aa0c496d8965SJ2P5TW43R0ZLCR6V556","data":[{"timestampDate":"2019-08-12 '
+ '11:22:05","serialNo":"345527290853068800","timestamp":"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"}],"success":true,"resultCode":"0204000"}')
+下载接口请求响应时间：10.479833126068115
+'确权接口响应结果验证耗时：552.1777174472809'
+'因证书为异步生成，所以此用列需等待生成后进行下载，需循环验证，共验证&lt;2&gt;次,找到PDF证书'
+'确权接口请求数据与数据库存入值校验结果：数据库存储验证结果：一致（申请接口参数请求值与数据库存储值一致）'
+'确权接口预期回调接口值与数据库回调值校验结果：数据库回调状态值与预期状态值一致：回调成功'
+'------------------------------------------------------------------------------------------'
+'注：作品文件（file）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+'注：授权协议（authProtocol）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+('确权接口传入参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "opusName": "file10M", "fileExtension": "zip", '
+ '"opusDescribe": "荷花种类很多，分观赏和食用两大类。原产亚洲热带和温带地区，中国早在周朝就有栽培记载。", "applyType": '
+ '"102", "applyUserType": "102", "applyNationality": "JAPA", "applyName": '
+ '"小潘潘", "applyIDType": "102", "applyIDNumber": "2019070901", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "salt": '
+ '"b58ef7bf3148e31be867483bab1abd9bSJ2P5TW43R0ZLCR6V556", "file": '
+ '"../applay_file/50m.zip", "authProtocol": "../applay_file/file_11.html"}')
+'------------------------------------------------------------------------------------------'
+'下载接口请求地址=https://ipp.tsa.cn/v2/api/confirm/downloadOpusCertificate'
+("下载接口请求数据={'partnerID': '201907200200058182', 'partnerKey': "
+ "'SJ2P5TW43R0ZLCR6V556', 'serialNo': '345527290853068800', 'salt': "
+ "'8eac2f82e6ef82d034c4bc8fbedeae08SJ2P5TW43R0ZLCR6V556'}")
+("下载接口响应数据={'msg': '请求成功', 'salt': "
+ "'ceae2f04d1cd04e9003e1ba72bb30829SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000'}")
+'注：下载接口响应数据中因文件流data参数过大，所以不写入测试报告，以防止测试报告过大'
+'------------------------------------------------------------------------------------------'
+'测试用例执行通过'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.20' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_hz_https_08</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.20')" >
+        pass</a>
+
+    <div id='div_pt1.20' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.20').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.20: '确权接口用例执行详情如下：'
+'确权接口执行测试用例编号：[BQ_big_08]'
+'确权接口测试目的：申请接口-申请成功- 回调成功'
+'确权接口用例描述：http-授权协议小于50M,作品文件小于10M-其它必填参数-正确传入'
+'确权接口地址：https://ipp.tsa.cn/v2/api/confirm/opusConfirm'
+'确权接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'确权接口预期回调状态值={"callbackFlag":true}'
+'确权接口请求耗时：74.98321056365967'
+('确权接口响应结果={"msg":"请求成功","salt":"d4b813862be1623640722eaa286183a9SJ2P5TW43R0ZLCR6V556","data":[{"timestampDate":"2019-08-12 '
+ '11:32:37","serialNo":"345529940000641024","timestamp":"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"}],"success":true,"resultCode":"0204000"}')
+下载接口请求响应时间：8.993422269821167
+'确权接口响应结果验证耗时：481.45027017593384'
+'因证书为异步生成，所以此用列需等待生成后进行下载，需循环验证，共验证&lt;2&gt;次,找到PDF证书'
+'确权接口请求数据与数据库存入值校验结果：数据库存储验证结果：一致（申请接口参数请求值与数据库存储值一致）'
+'确权接口预期回调接口值与数据库回调值校验结果：数据库回调状态值与预期状态值一致：回调成功'
+'------------------------------------------------------------------------------------------'
+'注：作品文件（file）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+'注：授权协议（authProtocol）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+('确权接口传入参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "opusName": "file10M", "fileExtension": "zip", '
+ '"opusDescribe": "荷花种类很多，分观赏和食用两大类。原产亚洲热带和温带地区，中国早在周朝就有栽培记载。", "applyType": '
+ '"102", "applyUserType": "102", "applyNationality": "JAPA", "applyName": '
+ '"小潘潘", "applyIDType": "102", "applyIDNumber": "2019070901", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "salt": '
+ '"8e5cced10b1cf2b42323b3f4af7b57a7SJ2P5TW43R0ZLCR6V556", "file": '
+ '"../applay_file/file_47M.zip", "authProtocol": "../applay_file/file_9.html"}')
+'------------------------------------------------------------------------------------------'
+'下载接口请求地址=https://ipp.tsa.cn/v2/api/confirm/downloadOpusCertificate'
+("下载接口请求数据={'partnerID': '201907200200058182', 'partnerKey': "
+ "'SJ2P5TW43R0ZLCR6V556', 'serialNo': '345529940000641024', 'salt': "
+ "'d9e6a52307f684693c35f52fb68178d0SJ2P5TW43R0ZLCR6V556'}")
+("下载接口响应数据={'msg': '请求成功', 'salt': "
+ "'2149387042d612d94894c9bf20311766SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000'}")
+'注：下载接口响应数据中因文件流data参数过大，所以不写入测试报告，以防止测试报告过大'
+'------------------------------------------------------------------------------------------'
+'测试用例执行通过'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.21' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_hz_https_09</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.21')" >
+        pass</a>
+
+    <div id='div_pt1.21' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.21').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.21: '确权接口用例执行详情如下：'
+'确权接口执行测试用例编号：[BQ_big_09]'
+'确权接口测试目的：申请接口-申请成功- 回调成功(保证授权文件至少可以传10M文件)'
+'确权接口用例描述：http-授权协议小于50M（47M）,作品文件等 于10M(11M)-其它必填参数-正确传入'
+'确权接口地址：https://ipp.tsa.cn/v2/api/confirm/opusConfirm'
+'确权接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'确权接口预期回调状态值={"callbackFlag":true}'
+'确权接口请求耗时：68.18705034255981'
+('确权接口响应结果={"msg":"请求成功","salt":"73d73929ca491202dd94b7093694a704SJ2P5TW43R0ZLCR6V556","data":[{"timestampDate":"2019-08-12 '
+ '11:41:52","serialNo":"345532268720164864","timestamp":"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"}],"success":true,"resultCode":"0204000"}')
+下载接口请求响应时间：8.95991587638855
+'确权接口响应结果验证耗时：481.8941264152527'
+'因证书为异步生成，所以此用列需等待生成后进行下载，需循环验证，共验证&lt;2&gt;次,找到PDF证书'
+'确权接口请求数据与数据库存入值校验结果：数据库存储验证结果：一致（申请接口参数请求值与数据库存储值一致）'
+'确权接口预期回调接口值与数据库回调值校验结果：数据库回调状态值与预期状态值一致：回调成功'
+'------------------------------------------------------------------------------------------'
+'注：作品文件（file）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+'注：授权协议（authProtocol）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+('确权接口传入参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "opusName": "file10M", "fileExtension": "zip", '
+ '"opusDescribe": "荷花种类很多，分观赏和食用两大类。原产亚洲热带和温带地区，中国早在周朝就有栽培记载。", "applyType": '
+ '"102", "applyUserType": "102", "applyNationality": "JAPA", "applyName": '
+ '"小潘潘", "applyIDType": "102", "applyIDNumber": "2019070901", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "salt": '
+ '"8e5cced10b1cf2b42323b3f4af7b57a7SJ2P5TW43R0ZLCR6V556", "file": '
+ '"../applay_file/file_47M.zip", "authProtocol": "../applay_file/file_9.html"}')
+'------------------------------------------------------------------------------------------'
+'下载接口请求地址=https://ipp.tsa.cn/v2/api/confirm/downloadOpusCertificate'
+("下载接口请求数据={'partnerID': '201907200200058182', 'partnerKey': "
+ "'SJ2P5TW43R0ZLCR6V556', 'serialNo': '345532268720164864', 'salt': "
+ "'0a2b4a5826e2f30913f89a55b0e61979SJ2P5TW43R0ZLCR6V556'}")
+("下载接口响应数据={'msg': '请求成功', 'salt': "
+ "'3d964d22088f5bf489baf7234491bc36SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000'}")
+'注：下载接口响应数据中因文件流data参数过大，所以不写入测试报告，以防止测试报告过大'
+'------------------------------------------------------------------------------------------'
+'测试用例执行通过'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.22' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_hz_https_10</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.22')" >
+        pass</a>
+
+    <div id='div_pt1.22' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.22').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.22: '确权接口用例执行详情如下：'
+'确权接口执行测试用例编号：[BQ_big_10]'
+'确权接口测试目的：申请接口-申请失败'
+'确权接口用例描述：http-作品文件大于50M（67M）-作品hash不传入-作品文件传入,其它必填参数-正确传入'
+'确权接口地址：https://ipp.tsa.cn/v2/api/confirm/opusConfirm'
+'确权接口预期接口返回值={"msg":"file参数不合法","success":false,"resultCode":"0202001"}'
+'确权接口预期回调状态值={"callbackFlag":None}'
+'确权接口请求耗时：75.97485637664795'
+'确权接口响应结果={"msg":"file参数不合法","salt":"145f5e06ddb78bf320cdde42742bc9fdSJ2P5TW43R0ZLCR6V556","success":false,"resultCode":"0202001"}'
+'确权接口响应结果验证耗时：4.935264587402344e-05'
+'------------------------------------------------------------------------------------------'
+'注：作品文件（file）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+'注：授权协议（authProtocol）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+('确权接口传入参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "opusName": "file10M", "fileExtension": "html", '
+ '"opusDescribe": "荷花种类很多，分观赏和食用两大类。原产亚洲热带和温带地区，中国早在周朝就有栽培记载。", "applyType": '
+ '"102", "applyUserType": "102", "applyNationality": "JAPA", "applyName": '
+ '"小潘潘", "applyIDType": "102", "applyIDNumber": "2019070901", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "salt": '
+ '"f0e44ea9e69659f3c346b823a17eef5aSJ2P5TW43R0ZLCR6V556", "file": '
+ '"../applay_file/file_67M.html", "authProtocol": '
+ '"../applay_file/file_11.html"}')
+'------------------------------------------------------------------------------------------'
+'------------------------------------------------------------------------------------------'
+'测试用例执行通过'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.23' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_hz_https_11</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.23')" >
+        pass</a>
+
+    <div id='div_pt1.23' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.23').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.23: '确权接口用例执行详情如下：'
+'确权接口执行测试用例编号：[BQ_big_11]'
+'确权接口测试目的：申请接口-申请失败'
+'确权接口用例描述：http-作品文件大于50M（67M）-授权协议小于10M（9M）-其它必填参数-正确传入'
+'确权接口地址：https://ipp.tsa.cn/v2/api/confirm/opusConfirm'
+'确权接口预期接口返回值={"msg":"file参数不合法","success":false,"resultCode":"0202001"}'
+'确权接口预期回调状态值={"callbackFlag":None}'
+'确权接口请求耗时：74.28382182121277'
+'确权接口响应结果={"msg":"file参数不合法","salt":"145f5e06ddb78bf320cdde42742bc9fdSJ2P5TW43R0ZLCR6V556","success":false,"resultCode":"0202001"}'
+'确权接口响应结果验证耗时：4.863739013671875e-05'
+'------------------------------------------------------------------------------------------'
+'注：作品文件（file）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+'注：授权协议（authProtocol）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+('确权接口传入参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "opusName": "file10M", "fileExtension": "html", '
+ '"opusDescribe": "荷花种类很多，分观赏和食用两大类。原产亚洲热带和温带地区，中国早在周朝就有栽培记载。", "applyType": '
+ '"102", "applyUserType": "102", "applyNationality": "JAPA", "applyName": '
+ '"小潘潘", "applyIDType": "102", "applyIDNumber": "2019070901", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "salt": '
+ '"29dccd39291e9ce41d90095f124ae8c0SJ2P5TW43R0ZLCR6V556", "file": '
+ '"../applay_file/file_67M.html", "authProtocol": '
+ '"../applay_file/file_9.html"}')
+'------------------------------------------------------------------------------------------'
+'------------------------------------------------------------------------------------------'
+'测试用例执行通过'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.24' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_hz_https_12</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.24')" >
+        pass</a>
+
+    <div id='div_pt1.24' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.24').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.24: '确权接口用例执行详情如下：'
+'确权接口执行测试用例编号：[BQ_big_12]'
+'确权接口测试目的：申请接口-申请失败'
+'确权接口用例描述：http-作品文件小于50M（47M）-授权协议大于10M(47M)-其它必填参数-正确传入（成功）'
+'确权接口地址：https://ipp.tsa.cn/v2/api/confirm/opusConfirm'
+'确权接口预期接口返回值={"msg":"authProtocol参数不合法","success":false,"resultCode":"0202001"}'
+'确权接口预期回调状态值={"callbackFlag":None}'
+'确权接口请求耗时：94.5836672782898'
+'确权接口响应结果={"msg":"authProtocol参数不合法","salt":"7b37ddd62b07e4998777c59f936e9006SJ2P5TW43R0ZLCR6V556","success":false,"resultCode":"0202001"}'
+'确权接口响应结果验证耗时：5.078315734863281e-05'
+'------------------------------------------------------------------------------------------'
+'注：作品文件（file）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+'注：授权协议（authProtocol）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+('确权接口传入参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "hash": '
+ '"B2A61ABE483050714D20D19819424075020186421F2D22C249AA1044FFB4268B", '
+ '"opusName": "file10M", "fileExtension": "zip", "opusDescribe": '
+ '"荷花种类很多，分观赏和食用两大类。原产亚洲热带和温带地区，中国早在周朝就有栽培记载。", "applyType": "102", '
+ '"applyUserType": "102", "applyNationality": "JAPA", "applyName": "小潘潘", '
+ '"applyIDType": "102", "applyIDNumber": "2019070901", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "salt": '
+ '"fbb291ff111354542c74e4dc86394690SJ2P5TW43R0ZLCR6V556", "file": '
+ '"../applay_file/file_47M.zip", "authProtocol": '
+ '"../applay_file/file_47M.zip"}')
+'------------------------------------------------------------------------------------------'
+'------------------------------------------------------------------------------------------'
+'测试用例执行通过'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='total_row'>
+    <td>Total</td>
+    <td>24</td>
+    <td>24</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+
+</body>
+</html>

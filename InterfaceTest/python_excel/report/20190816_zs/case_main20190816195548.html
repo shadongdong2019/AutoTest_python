@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>版权服务2.0生产环境接口测试报告（https）</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+<style type="text/css" media="screen">
+body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
+table       { font-size: 100%; }
+pre         { }
+
+/* -- heading ---------------------------------------------------------------------- */
+h1 {
+	font-size: 16pt;
+	color: gray;
+}
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+
+.heading .attribute {
+    margin-top: 1ex;
+    margin-bottom: 0;
+}
+
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+
+/* -- css div popup ------------------------------------------------------------------------ */
+a.popup_link {
+}
+
+a.popup_link:hover {
+    color: red;
+}
+
+.popup_window {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    padding: 10px;
+    background-color: #E6E6D6;
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 8pt;
+    width: 500px;
+}
+
+}
+/* -- report ------------------------------------------------------------------------ */
+#show_detail_line {
+    margin-top: 3ex;
+    margin-bottom: 1ex;
+}
+#result_table {
+    width: 80%;
+    border-collapse: collapse;
+    border: 1px solid #777;
+}
+#header_row {
+    font-weight: bold;
+    color: white;
+    background-color: #777;
+}
+#result_table td {
+    border: 1px solid #777;
+    padding: 2px;
+}
+#total_row  { font-weight: bold; }
+.passClass  { background-color: #6c6; }
+.failClass  { background-color: #c60; }
+.errorClass { background-color: #c00; }
+.passCase   { color: #6c6; }
+.failCase   { color: #c60; font-weight: bold; }
+.errorCase  { color: #c00; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+
+
+/* -- ending ---------------------------------------------------------------------- */
+#ending {
+}
+
+</style>
+
+</head>
+<body>
+<script language="javascript" type="text/javascript"><!--
+output_list = Array();
+
+/* level - 0:Summary; 1:Failed; 2:All */
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level < 1) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level > 1) {
+                tr.className = '';
+            }
+            else {
+                tr.className = 'hiddenRow';
+            }
+        }
+    }
+}
+
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        tid0 = 't' + cid.substr(1) + '.' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        if (toHide) {
+            document.getElementById('div_'+tid).style.display = 'none'
+            document.getElementById(tid).className = 'hiddenRow';
+        }
+        else {
+            document.getElementById(tid).className = '';
+        }
+    }
+}
+
+
+function showTestDetail(div_id){
+    var details_div = document.getElementById(div_id)
+    var displayState = details_div.style.display
+    // alert(displayState)
+    if (displayState != 'block' ) {
+        displayState = 'block'
+        details_div.style.display = 'block'
+    }
+    else {
+        details_div.style.display = 'none'
+    }
+}
+
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+
+/* obsoleted by detail in <div>
+function showOutput(id, name) {
+    var w = window.open("", //url
+                    name,
+                    "resizable,scrollbars,status,width=800,height=450");
+    d = w.document;
+    d.write("<pre>");
+    d.write(html_escape(output_list[id]));
+    d.write("\n");
+    d.write("<a href='javascript:window.close()'>close</a>\n");
+    d.write("</pre>\n");
+    d.close();
+}
+*/
+--></script>
+
+<div class='heading'>
+<h1>版权服务2.0生产环境接口测试报告（https）</h1>
+<p class='attribute'><strong>Start Time:</strong> 2019-08-16 19:55:48</p>
+<p class='attribute'><strong>Duration:</strong> 0:00:08.585283</p>
+<p class='attribute'><strong>Status:</strong> Failure 1</p>
+
+<p class='description'>确权接口-主流程测试用例-主要验证所有参数合法参数确权成功及必填参数非法数据确权失败</p>
+</div>
+
+
+
+<p id='show_detail_line'>Show
+<a href='javascript:showCase(0)'>Summary</a>
+<a href='javascript:showCase(1)'>Failed</a>
+<a href='javascript:showCase(2)'>All</a>
+</p>
+<table id='result_table'>
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row'>
+    <td>Test Group/Test case</td>
+    <td>Count</td>
+    <td>Pass</td>
+    <td>Fail</td>
+    <td>Error</td>
+    <td>View</td>
+</tr>
+
+<tr class='failClass'>
+    <td>CaseRun</td>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c1',1)">Detail</a></td>
+</tr>
+
+<tr id='ft1.1' class='none'>
+    <td class='failCase'><div class='testcase'>test_apply_https_1</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.1')" >
+        fail</a>
+
+    <div id='div_ft1.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.1: '确权接口用例执行详情如下：'
+'确权接口执行测试用例编号：[BQ_S_005]'
+'确权接口测试目的：申请接口-申请成功- 回调成功'
+'确权接口用例描述：http-所有必填参数-全部正确传入（作品hash值与作品文件一致），且选填参数-部分正确传入（3）-用户接口校验码按服务器顺序进行hash传入'
+'确权接口地址：https://ipp.tsa.cn/v2/api/confirm/opusConfirm'
+'确权接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'确权接口预期回调状态值={"callbackFlag":true}'
+'确权接口请求耗时：0.2970702648162842'
+('确权接口响应结果={"msg":"请求成功","salt":"17b61f14ae3a071a61cc97e0d612bf0dSJ2P5TW43R0ZLCR6V556","data":[{"timestampDate":"2019-08-16 '
+ '19:55:51","serialNo":"359829699394023424","timestamp":"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"}],"success":true,"resultCode":"0204000"}')
+下载接口请求响应时间：1.0050177574157715
+'确权接口响应结果验证耗时：4.960738182067871'
+'确权接口请求数据与数据库存入值校验结果：数据库存储验证结果：一致（申请接口参数请求值与数据库存储值一致）'
+'确权接口预期回调接口值与数据库回调值校验结果：回调结果与预期不一致：回调失败,预期回调结果callbackFlag=True，实际数据库存储callbackFlag=False'
+'------------------------------------------------------------------------------------------'
+'注：作品文件（file）值过大会影响测试报告打开速度，测试报告仅显示不用例中的文件地址'
+('确权接口传入参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "hash": '
+ '"CF1BE883E1B8EA5E3C949268EB1D1C5EEE7E54FC2CEB8655B6A5901745042AB2", '
+ '"opusName": "《大卫·科波菲尔》", "fileExtension": "json", "opusDescribe": '
+ '"《大卫·科波菲尔》通过主人公大卫一生的悲欢离合，多层次地揭示了当时社会的真实面貌，突出地表现了金钱对婚姻、家庭和社会的腐蚀作用。小说中一系列悲剧的形成都是金钱导致的。摩德斯通骗娶大卫的母亲是觊觎她的财产；艾米丽的私奔是经受不起金钱的诱惑；。", '
+ '"applyType": "102", "applyUserType": "101", "applyNationality": "ATA", '
+ '"applyName": "皮志云", "applyIDType": "111", "applyIDNumber": '
+ '"210203197503102721", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "authSell": "1", '
+ '"authLimit": "写明授权协议中的相关限制。", "authRemark": "授权协议中需备注内容。", "authUserType": '
+ '"102", "authUserNationality": "EN", "authUserName": "小明", "authUserIDType": '
+ '"102", "authUserIDNumber": "511502199103223189", "authUserPhone": '
+ '"13012341002", "authUserMail": "pizhiyun@tsa.cn", "authUserAddress": '
+ '"13681523799", "remark1": "一用于需求方传输非标准字段。", "remark2": "二用于需求方传输非标准字段。", '
+ '"remark3": "三用于需求方传输非标准字段。", "encodeFmt": "base64", "salt": '
+ '"abc805f9b930c0dad313bbc328eeb8b2SJ2P5TW43R0ZLCR6V556", "file": '
+ '"../applay_file/file_4kb.json"}')
+'------------------------------------------------------------------------------------------'
+'下载接口请求地址=https://ipp.tsa.cn/v2/api/confirm/downloadOpusCertificate'
+("下载接口请求数据={'partnerID': '201907200200058182', 'partnerKey': "
+ "'SJ2P5TW43R0ZLCR6V556', 'serialNo': '359829699394023424', 'salt': "
+ "'994ad23b80e5b13448bc7eb94fcb3057SJ2P5TW43R0ZLCR6V556'}")
+("下载接口响应数据={'msg': '请求成功', 'salt': "
+ "'2af9b684cee933a817ffc4e5e9c2782eSJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000'}")
+'注：下载接口响应数据中因文件流data参数过大，所以不写入测试报告，以防止测试报告过大'
+'------------------------------------------------------------------------------------------'
+Traceback (most recent call last):
+  File "/home/ma/.local/lib/python3.6/site-packages/ddt.py", line 145, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/ma/PycharmProjects/InterfaceTest/python_excel/unittest_run/case_main.py", line 331, in test_apply_https
+    self.assertTrue(is_pass, "测试用例执行未通过")
+AssertionError: False is not true : 测试用例执行未通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='total_row'>
+    <td>Total</td>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>&nbsp;</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+
+</body>
+</html>
