@@ -8,7 +8,7 @@ class OperationJson:
             if filename:
                 self.filename = filename
             else:
-                self.filename = '../data_file/user.json'
+                self.filename = ''
             self.json_data = self.read_data()
         except Exception as e:
             log.error("操作JSON类初始化异常，异常原因：{}".format(e))

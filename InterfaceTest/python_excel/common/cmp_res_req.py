@@ -1,8 +1,8 @@
 import json
 
 from jsonpath import jsonpath
-from python_excel.common.interface_run import InterfaceRun
-from python_excel.get_data.tsa_param_dic import TsaParamDict
+from InterfaceTest.python_excel.common.interface_run import InterfaceRun
+from InterfaceTest.python_excel.get_data.tsa_param_dic import TsaParamDict
 import logging
 from copy import  deepcopy
 import time
@@ -13,7 +13,7 @@ class CmpReqRes:
     '''
     def __init__(self):
         self.inter_run = InterfaceRun()
-        self.tsa = TsaParamDict("../data_file/case_data.xlsx",1)
+        self.tsa = TsaParamDict("",1)
 
     def cmp_req_res(self,serialNo=None,req=None,space_name="",expCallbackFlag=None):
         '''

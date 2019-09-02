@@ -1,4 +1,4 @@
-from python_excel.common.interface_run import InterfaceRun
+from InterfaceTest.python_excel.common.interface_run import InterfaceRun
 import hashlib
 interf = InterfaceRun()
 url = "http://47.93.11.109:8088/service/CfcaCertAPI"

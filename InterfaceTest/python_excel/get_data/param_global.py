@@ -1,16 +1,137 @@
+import logging
+log = logging.getLogger("__file__")
 class ParamGlobal:
-    def __init__(self):
-        pass
+    '''
+    获取参数名相关从息
+    第一列：参数中文名
+    第二列：参数英文名（代码中显示）
+    第三列：参数值长度
+    第四列：参数值类型
+    第五列：参数是否在请求接口中传入-no表示不在请求接口中传入，yes-表示需要在请求接口中传入
+    '''
+    def __init__(self,param_name_list):
+        self.param_name_list = param_name_list
 
-    def get_param_en_name_list(self):
-        en_list =['partnerID', 'partnerKey', 'hash', 'file', 'opusName','fileExtension', 'opusDescribe', 'applyType', 'applyUserType', 'applyNationality', 'applyName', 'applyIDType', 'applyIDNumber', 'salt', 'callbackUrl', 'hashAlgorithm', 'fileSzieFlag', 'fileType', 'opusState', 'opusPartnerID', 'opusLabel', 'opusStore', 'opusType', 'opusCreativeType', 'opusCreativeNature', 'applyPhone', 'applyMail', 'applyAddress', 'applyEmergencyName', 'applyEmergencyPhone', 'authType', 'authValidiy', 'authProtocol', 'authTime', 'authBusiness', 'authPlatform', 'authPlatformID', 'authPrice', 'authAllowType', 'authUse', 'authCountry', 'authSell', 'authLimit', 'authRemark', 'authUserType', 'authUserNationality', 'authUserName', 'authUserIDType', 'authUserIDNumber', 'authUserPhone', 'authUserMail', 'authUserAddress', 'remark1', 'remark2', 'remark3', 'encodeFmt']
-        return en_list
+    def deal_param_name_tuple(self,param_name_list):
+        '''
+        获取参数名的中文名/英文名/
+        :param param_name_list:
+        :return:
+        '''
+        param_zh_name_list = []
+        param_en_name_list = []
+        param_len_dict = {}
+        param_value_type = {}
+        no_param_list = []
+        yes_param_list = []
+        try:
+            if param_name_list:
+                self.param_name_list = param_name_list
+            for param_name in self.param_name_list:
+                p_zh_name = str(param_name).split("-")[0]
+                p_en_name = str(param_name).split("-")[1]
+                p_len = str(param_name).split("-")[2]
+                p_type = str(param_name).split("-")[3]
+                is_request_param = str(param_name).split("-")[4]
+                param_zh_name_list.append(p_zh_name)
+                param_en_name_list.append(p_en_name)
+                param_len_dict[p_en_name] = p_len
+                param_value_type[p_en_name] = p_type
+                if is_request_param.lower()=="yes":
+                    yes_param_list.append(is_request_param)
+                else:
+                    no_param_list.append(is_request_param)
+        except Exception as e :
+            log.error("处理接口请求参数名出现异常，异常原因：{}".format(e))
+        return param_zh_name_list,param_en_name_list,param_len_dict,param_value_type,no_param_list,yes_param_list
+
+    def get_param_zh_name_list(self,param_name_list):
+        '''
+        获取参数中文名列表
+        :param param_name_list: 参数名列表（未进行分隔处理）
+        :return: 中文名参数列表
+        '''
+        param_zh_list = []
+        try:
+            if param_name_list:
+                self.param_name_list = param_name_list
+            param_zh_list = self.deal_param_name_tuple(self.param_name_list)[0]
+        except Exception as e:
+            log.error("获取参数中文名出现异常，异常原因：{}".format(e))
+        return param_zh_list
+
+    def get_param_en_name_list(self,param_name_list):
+        '''
+        获取参数英文名列表
+        :param param_name_list: 参数名列表（未进行分隔处理）
+        :return: 英文名参数列表
+        '''
+        param_en_list = []
+        try:
+            if param_name_list:
+                self.param_name_list = param_name_list
+            param_en_list = self.deal_param_name_tuple(self.param_name_list)[1]
+        except Exception as e:
+            log.error("获取参数英文名出现异常，异常原因：{}".format(e))
+        return param_en_list
 
 
-    def get_param_zh_name_list(self):
-        zh_list = ['合作伙伴ID', '合作伙伴密钥', '作品hash值', '作品文件', '作品名称', '作品描述', '申请类型', '申请人类型', '申请人国籍', '申请人', '申请人证件类型', '申请人证件号码',
-     '用户接口效验码', '回调地址', '作品hsah算法', '作品大小标识', '作品文件类型', '作品状态', '作品编号', '作品标签', '版权类型（对应版权库）', '作品类型', '创作类型', '创作性质',
-     '申请人联系电话', '申请人邮箱', '申请人联系地址', '申请人紧急联系人', '申请人紧急联系电话', '授权类型', '授权有效期', '授权协议（电子件）', '授权时间', '授权方式', '授权平台',
-     '授权平台ID', '协议价格', '授权许可类型', '授权用途', '授权使用地域', '可否转售', '授权限制', '授权协议备注', '被授权人类型', '被授权人国籍', '被授权人', '被授权人证件类型',
-     '被授权人证件号码', '被授权人联系电话', '被授权人联系邮箱', '被授权人联系电话', '备注1', '备注2', '备注3', '通讯编码格式']
-        return zh_list
+    def get_param_len_dict(self,param_name_list):
+        '''
+        获取参数最大长度字典
+        :param param_name_list: 参数名列表（未进行分隔处理）
+        :return: 字典
+        '''
+        param_len_dict = {}
+        try:
+            if param_name_list:
+                self.param_name_list = param_name_list
+            param_len_dict = self.deal_param_name_tuple(self.param_name_list)[2]
+        except Exception as e:
+            log.error("获取参数最大长度出现异常，异常原因：{}".format(e))
+        return param_len_dict
+
+    def get_param_type_dict(self,param_name_list):
+        '''
+        获取参数类型 字典
+        :param param_name_list: 参数名列表（未进行分隔处理）
+        :return: 字典
+        '''
+        param_type_dict = {}
+        try:
+            if param_name_list:
+                self.param_name_list = param_name_list
+            param_type_dict = self.deal_param_name_tuple(self.param_name_list)[3]
+        except Exception as e:
+            log.error("获取参数最大长度出现异常，异常原因：{}".format(e))
+        return param_type_dict
+
+    def get_param_no_request_list(self,param_name_list):
+        '''
+        获取不在接口请求中传入的参数列表
+        :param param_name_list: 参数名列表（未进行分隔处理）
+        :return: 列表
+        '''
+        param_no_req = []
+        try:
+            if param_name_list:
+                self.param_name_list = param_name_list
+            param_no_req = self.deal_param_name_tuple(self.param_name_list)[4]
+        except Exception as e:
+            log.error("获取参数最大长度出现异常，异常原因：{}".format(e))
+        return param_no_req
+
+    def get_param_yes_request_list(self,param_name_list):
+        '''
+        获取需要在接口请求中传入的参数列表
+        :param param_name_list: 参数名列表（未进行分隔处理）
+        :return: 列表
+        '''
+        param_yes_req = []
+        try:
+            if param_name_list:
+                self.param_name_list = param_name_list
+            param_yes_req = self.deal_param_name_tuple(self.param_name_list)[5]
+        except Exception as e:
+            log.error("获取参数最大长度出现异常，异常原因：{}".format(e))
+        return param_yes_req

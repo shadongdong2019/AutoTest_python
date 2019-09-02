@@ -14,7 +14,7 @@ LOGGING={
     "disable_existing_loggers": False,
     "formatters": {
         "simple": {
-            'format': '%(asctime)s [%(levelname)s] [%(name)s:%(lineno)d] [%(funcName)s ]- %(message)s'
+            'format': '%(asctime)s [%(levelname)s] [%(pathname)s] [%(funcName)s ][%(name)s:%(lineno)d]- %(message)s'
         },
         'standard': {
             'format': '%(asctime)s [%(threadName)s:%(thread)d] [%(name)s:%(lineno)d] [%(levelname)s]- %(message)s'
