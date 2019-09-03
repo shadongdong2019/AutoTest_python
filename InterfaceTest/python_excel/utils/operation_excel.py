@@ -3,14 +3,15 @@ from xlutils.copy import  copy
 import logging
 log = logging.getLogger("__file__")
 class OperationExcel:
-    def __init__(self,filename=None,sheetid=1):
+    def __init__(self,filename=None,sheetid=0):
         try:
             if filename:
                 self.filename = filename
             else:
                 self.filename = ''
-            self.sheetid = sheetid
+            self.sheetid = int(sheetid)
             self.sheet_obj = self.get_sheet(self.filename,self.sheetid)
+            self.rows = self.sheet_obj.nrows
         except Exception as e:
             log.error("操作EXCEL表类初始化异常，异常原因：{}".format(e))
 
@@ -106,26 +107,28 @@ class OperationExcel:
             log.error("操作EXCEL表类获取值对应的行号出现异常，异常原因：{}".format(e))
             return None
 
-    def get_row_col_list(self,start=0,rows=None):
+    def get_row_col_list(self,start=0,rows=0):
         '''
         获取指定行内容
         :param start:开始行
         :param rows:结束行，如默认表示所有行
         :return:行列表
         '''
+        row_col_list = []
         try:
-            if rows:
+            if rows !=0 and rows>start:
                 self.rows=rows
             else:
-                self.rows = self.get_sheet_rows()
-            row_col_list = []
-            for row in range(start,self.rows):
+                self.rows = self.sheet_obj.nrows
+
+            for row in range(int(start),int(self.rows)):
                 col_list = self.get_sheet().row_values(row)
                 row_col_list.append(col_list)
             return row_col_list
         except Exception as e :
             log.error("操作EXCEL表类获取值对应的行号出现异常，异常原因：{}".format(e))
-            return None
+            row_col_list = None
+        return row_col_list
 
 
 

@@ -14,20 +14,20 @@ import os
 
 log = logging.getLogger(__file__)
 
-class TsaParamDict:
+class CommonParamDict:
     def __init__(self,**kargs):
         try:
             self.kargs = kargs
             #实例化操作Excel表格类
-            self.op_excel = OperationExcel(kargs.get("case_filepath",None),kargs.get("case_sheeid",0))
+            self.op_excel = OperationExcel(self.kargs.get("case_filepath",None),self.kargs.get("case_sheetid",0))
             #获取参数名所在行返回参数名列表
-            self.param_name_list = self.op_excel.get_row_col_list(kargs.get("case_param_name_start",0), kargs.get("case_param_name_start",1))
+            self.param_name_list = self.op_excel.get_row_col_list(self.kargs.get("case_param_name_start",0), self.kargs.get("case_param_name_end",0))
             #实例参数名处理类-根据上面的参数名列表
             self.param = ParamGlobal(self.param_name_list)
             # 获取参数英文名列表
             self.name_list = self.param.get_param_en_name_list()
             #获取参数值列表（仅获取从开始行到结束行的数所在，如果都为None表示所有记录）
-            self.name_value_list = self.op_excel.get_row_col_list(kargs.get("case_start_rownum",1),kargs.get("case_end_rownum",None))
+            self.name_value_list = self.op_excel.get_row_col_list(self.kargs.get("case_start_rownum",1),self.kargs.get("case_end_rownum",None))
             # 获取不在接口请求中传入的参数列表
             self.param_no_req = self.param.get_param_no_request_list()
 
@@ -60,7 +60,7 @@ class TsaParamDict:
         name_value_row_list = None
         try:
             name_value_row_list = []
-            for i in range(1,len(self.name_value_list)):
+            for i in range(0,len(self.name_value_list)):
                 name_value_row_list.append(dict(zip(self.name_list,self.name_value_list[i])))
         except Exception as e:
             log.error("接口参数处理类处理参数名与参数值方法异常，异常原因：{}".format(e))
@@ -158,12 +158,10 @@ class TsaParamDict:
         no_param = self.param_no_req
         try:
             case_list= self.get_param_name_value()
-            if end == 0:
-                end = len(case_list)
+            case_remove = []
             if len(case_list)>0:
-                case_remove = []
                 count = 0
-                for param_dict in case_list[start:end]:
+                for param_dict in case_list:
                     if str(param_dict.get("IsRun")).lower() != "yes":
                         case_remove.append(param_dict)
                         continue
@@ -173,23 +171,15 @@ class TsaParamDict:
                             del param_dict[key]
                         if str(key_value).upper() == 'N':
                             param_dict[key] = ""
-                        if (key == "file"   or key == "authProtocol" )and key_value != "" :
-                            param_dict[key] = self.encry(key_value) #根据获取的key_value进行上传前数据处理
+                    salt = self.get_salt(param_dict)
+                    param_dict["salt"] = salt
 
-                    if param_dict["CaseID"] == "BQ_salt_error":
-                        pass
-                    elif flag == 0 and req_type != "download":
-                        salt = self.get_salt(param_dict)
-                        param_dict["salt"] = salt
-                    elif req_type == "download" and count<22:
-                        salt = self.get_salt(param_dict,req_type="download")
-                        param_dict["salt"] = salt
                     count += 1
             if len(case_remove)>0:
                 for case in  case_remove:
                     case_list.remove(case)
 
-            return case_list[start:end]
+            return case_list
         except Exception as e :
             log.error("接口参数处理类处理后的参数数据方法异常，异常原因：{}".format(e))
             return None
@@ -260,47 +250,17 @@ class TsaParamDict:
                 test_param_400_list.append(case_1)
         return test_param_400_list
 
-    def get_salt(self,case_dict=None,name_space="",req_type=''):
+    def get_salt(self,case_dict=None):
         xn_case = []
-        # for i in case_dict.keys():
-        #     print("key<{}>值为<{}>".format(i,case_dict[i]))
-        # print(case_dict)
-        if req_type=="download":
-            hash_order = self.hash_order_download
-        else:
-            hash_order =self.hash_order
-        if name_space:
-            case_dict[name_space]=""
+        hash_order =eval(self.kargs.get("hash_orders",None))
         value_order_list = []
         for param_name in hash_order:
           xn_case.append(case_dict.get(param_name,""))
           if param_name in case_dict.keys():
               value_order_list.append(case_dict[param_name])
-              # print(value_order_list)
-          # else:
-          #     value_order_list.append("")
 
         partnerKey = case_dict.get("partnerKey") if case_dict.get("partnerKey")  else ""
-        #
-        # print(value_order_list)
-        # print(len(value_order_list))
         salt = self.make_salt(value_order_list,partnerKey)
-        # print(xn_case[54])
-        # xn_case[54]=salt
-        # print(xn_case)
-        # path = "../data_file/"
-        # if not os.path.exists(path):
-        #     os.makedirs(path)
-        # # 打开一个csv文件，模式为写，如果没有该文件，则创建一个
-        # with open(path+"151_case.csv", 'a') as csvfile:
-        #     # 定义一个写变量
-        #     writeCSV = csv.writer(csvfile)
-        #     writeCSV.writerow(xn_case)
-
-        # print("*************************************")
-        # print(','.join(value_order_list))
-        # print("*************************************")
-        #case_dict["userInterfaceValidity"] = userInterfaceValidity
         return salt
 
 
@@ -309,7 +269,6 @@ class TsaParamDict:
 
     def make_salt(self,value_list=None,partnerKey=""):
         # 待加密信息
-        #print(value_list)
         deal_value_list = []
         for value in value_list:
             try:
@@ -317,33 +276,15 @@ class TsaParamDict:
             except Exception as e :
                 value_str = value
             deal_value_list.append(value_str)
-        #print(deal_value_list)
-
-        # print(deal_value_list)
         value_str = "".join(deal_value_list)
-        # print(value_str)
 
         # 创建md5对象
         m = hashlib.md5()
-
-        # Tips
-        # 此处必须encode
-        # 若写法为m.update(str)  报错为： Unicode-objects must be encoded before hashing
-        # 因为python3里默认的str是unicode
-        # 或者 b = bytes(str, encoding='utf-8')，作用相同，都是encode为bytes
         b = value_str.encode(encoding='utf-8')
         m.update(b)
         value_str_md5 = m.hexdigest()
         salt = value_str_md5+partnerKey
-
-        # print('MD5加密前为 ：' + value_str)
-        # print('MD5加密后为 ：' + value_str_md5)
-        # print('salt ：' + salt)
-        #
         return salt
-        # 另一种写法：b‘’前缀代表的就是bytes --此方法仅针对于英文加密，中文加密此方法报错
-        # str_md5 = hashlib.md5(b'this is a md5 test.').hexdigest()
-        # print('MD5加密后为 ：' + str_md5)
 
     def case_deal_param(self,case_dict):
         pass

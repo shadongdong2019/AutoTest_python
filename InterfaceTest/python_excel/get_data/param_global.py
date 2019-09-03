@@ -27,7 +27,7 @@ class ParamGlobal:
         try:
             if param_name_list:
                 self.param_name_list = param_name_list
-            for param_name in self.param_name_list:
+            for param_name in self.param_name_list[0]:
                 p_zh_name = str(param_name).split("-")[0]
                 p_en_name = str(param_name).split("-")[1]
                 p_len = str(param_name).split("-")[2]
@@ -38,14 +38,14 @@ class ParamGlobal:
                 param_len_dict[p_en_name] = p_len
                 param_value_type[p_en_name] = p_type
                 if is_request_param.lower()=="yes":
-                    yes_param_list.append(is_request_param)
+                    yes_param_list.append(p_en_name)
                 else:
-                    no_param_list.append(is_request_param)
+                    no_param_list.append(p_en_name)
         except Exception as e :
             log.error("处理接口请求参数名出现异常，异常原因：{}".format(e))
         return param_zh_name_list,param_en_name_list,param_len_dict,param_value_type,no_param_list,yes_param_list
 
-    def get_param_zh_name_list(self,param_name_list):
+    def get_param_zh_name_list(self,param_name_list=None):
         '''
         获取参数中文名列表
         :param param_name_list: 参数名列表（未进行分隔处理）
@@ -60,7 +60,7 @@ class ParamGlobal:
             log.error("获取参数中文名出现异常，异常原因：{}".format(e))
         return param_zh_list
 
-    def get_param_en_name_list(self,param_name_list):
+    def get_param_en_name_list(self,param_name_list=None):
         '''
         获取参数英文名列表
         :param param_name_list: 参数名列表（未进行分隔处理）
@@ -76,7 +76,7 @@ class ParamGlobal:
         return param_en_list
 
 
-    def get_param_len_dict(self,param_name_list):
+    def get_param_len_dict(self,param_name_list=None):
         '''
         获取参数最大长度字典
         :param param_name_list: 参数名列表（未进行分隔处理）
@@ -91,7 +91,7 @@ class ParamGlobal:
             log.error("获取参数最大长度出现异常，异常原因：{}".format(e))
         return param_len_dict
 
-    def get_param_type_dict(self,param_name_list):
+    def get_param_type_dict(self,param_name_list=None):
         '''
         获取参数类型 字典
         :param param_name_list: 参数名列表（未进行分隔处理）
@@ -106,7 +106,7 @@ class ParamGlobal:
             log.error("获取参数最大长度出现异常，异常原因：{}".format(e))
         return param_type_dict
 
-    def get_param_no_request_list(self,param_name_list):
+    def get_param_no_request_list(self,param_name_list=None):
         '''
         获取不在接口请求中传入的参数列表
         :param param_name_list: 参数名列表（未进行分隔处理）
@@ -121,7 +121,7 @@ class ParamGlobal:
             log.error("获取参数最大长度出现异常，异常原因：{}".format(e))
         return param_no_req
 
-    def get_param_yes_request_list(self,param_name_list):
+    def get_param_yes_request_list(self,param_name_list=None):
         '''
         获取需要在接口请求中传入的参数列表
         :param param_name_list: 参数名列表（未进行分隔处理）
