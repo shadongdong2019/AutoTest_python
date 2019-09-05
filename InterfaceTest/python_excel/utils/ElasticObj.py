@@ -7,19 +7,22 @@ from datetime import datetime
 from elasticsearch import Elasticsearch
 from elasticsearch.helpers import bulk
 
+
+
 class ElasticObj:
-    def __init__(self, index_name,index_type,ip ="127.0.0.1"):
+    def __init__(self, **kwargs):
         '''
 
         :param index_name: 索引名称
         :param index_type: 索引类型
         '''
-        self.index_name =index_name
-        self.index_type = index_type
+        self.index_name ="monitor" #kwargs.get("index_name","")
+        self.index_type ="monitor" #kwargs.get("index_type","")
+        self.ip = kwargs.get("ip","")
         # 无用户名密码状态
         #self.es = Elasticsearch([ip])
         #用户名密码状态
-        self.es = Elasticsearch([ip],http_auth=('elastic', 'password'),port=9200)
+        self.es = Elasticsearch(["10.31.153.119:9300"])
 
     def create_index(self,index_name="ott",index_type="ott_type"):
         '''
@@ -197,28 +200,43 @@ class ElasticObj:
 
     def Get_Data_By_Body(self):
         # doc = {'query': {'match_all': {}}}
-        doc = {
-            "query": {
-                "match": {
-                    "keyword": "电视"
+        # doc = {
+        #     "query": {
+        #         "match": {
+        #             "keyword": "电视"
+        #         }
+        #     }
+        # }
+
+        doc ={
+                "query": {
+                    "match": {
+                        "serialNo": 366633883330162688
+                    }
                 }
             }
-        }
-        _searched = self.es.search(index=self.index_name, doc_type=self.index_type, body=doc)
+
+        _searched = self.es.search(index=self.index_name, body=doc)
 
         for hit in _searched['hits']['hits']:
             # print hit['_source']
             print(hit['_source']['date'], hit['_source']['source'], hit['_source']['link'], hit['_source']['keyword'], \
             hit['_source']['title'])
 
+    def sigle_filed_query(self):
+        es = Elasticsearch(
+            ['10.31.153.119:9300']
+        )
+        print(es.cat.indices())
 
 
 
-obj =ElasticObj("monitor","monitor",ip ="39.107.66.190")
+obj =ElasticObj()
 #obj = ElasticObj("ott1", "ott_type1")
 
 # obj.create_index()
-obj.Index_Data()
+#obj.Get_Data_By_Body()
+obj.sigle_filed_query()
 # obj.bulk_Index_Data()
 # obj.IndexData()
 # obj.Delete_Index_Data(1)

@@ -11,7 +11,9 @@ class CmpReqRes:
     '''
     对比响应结果后存入的数据与请求数据是否一致
     '''
-    def __init__(self):
+    def __init__(self,**kwargs):
+        self.kwargs = kwargs
+        self.option_dict = self.kwargs.get("option_dict", {}) #获取配置文件字典
         self.inter_run = InterfaceRun()
         self.tsa = TsaParamDict("",1)
 
@@ -22,6 +24,11 @@ class CmpReqRes:
         :param res: 实际响应结果
         :return:True-代表测试通过，False-代表测试未通过
         '''
+        # 是否需要验证数据库存入的数据
+        is_verify_database =self.kwargs.get("is_verify_database","False")
+
+        # 是否需要验证回调状态数据
+        is_verify_callbackurl = self.kwargs.get("is_verify_callbackurl", "False")
 
         expect = kwargs.get("expect",None)
         res = kwargs.get("res",None)
@@ -31,19 +38,27 @@ class CmpReqRes:
         database_verify_res = {}
         serialNo = None
         verify_res = {} #本方法返回验证结果字典
+        expect_res_verify = False
+        database_verify_res["database_flag"] = False
+        database_verify_res["callbackurl_flag"] = False
         try:
             if '"success":true' in expect and res.json().get("success") == True:
                 verify_data = {
                     "serialNo":serialNo,
                     "req":req,
                     "expCallbackFlag":expCallbackFlag,
-                    "no_verify_data_list":no_verify_data_list
+                    "no_verify_data_list":no_verify_data_list,
+                    "is_verify_database":is_verify_database,
+                    "is_verify_callbackurl":is_verify_callbackurl
                 }
-                #验证数据库中的值是否正确
-                database_verify_res = self.verify_database(**verify_data)
+                if  is_verify_database or  is_verify_callbackurl:
+                    #验证数据库中的值是否正确
+                    database_verify_res = self.verify_database(**verify_data)
+            expect_res_verify = self.expect_res_ispass(expect,res)
         except Exception as e:
             log.error("测试用例预期结果与实际结果对比方法出现异常，异常原因：{}".format(e))
             flag = None
+        verify_res["expect_res_verify"]=expect_res_verify
         verify_res.update(database_verify_res)
         return verify_res
 
@@ -56,12 +71,18 @@ class CmpReqRes:
         :return:True-代表一致，False-代表不一致
         '''
 
+        # 是否需要验证数据库存入的数据
+        is_verify_database = kwargs.get("is_verify_database", False)
+
+        # 是否需要验证回调状态数据
+        is_verify_callbackurl = kwargs.get("is_verify_callbackurl", False)
         database_str_hd = None
         database_str = None
+        database_flag = False
         expCallbackFlag = kwargs.get("expCallbackFlag", None)
-        url = kwargs.get("verify_url", None)
+        url = self.kwargs.get("verify_url", None)
         req = kwargs.get("req", None)
-        no_verify_data_list = eval(kwargs.get("no_verify_data_list", None))
+        no_verify_data_list = kwargs.get("no_verify_data_list", None)
         try:
             expCF_dict = json.loads(expCallbackFlag)
             expCF_value = expCF_dict.get("callbackFlag")
@@ -70,37 +91,41 @@ class CmpReqRes:
         try:
             json_obj = self.inter_run.main_request("get", url).json()
             res = jsonpath(json_obj, "$.._source")[0]
-            error_str = ""
-            flag = False
             req_keys = req.keys()
-            for key in req_keys:
-                if req.get(key) == str(res.get(key)) and req.get(key) not in no_verify_data_list:
-                    flag = True
-                else:
-                    error_str = "请求参数<{0}={1}>,数据库存储参数<{0}={2}>".format(key, req.get(key), str(res.get(key)))
-                    flag = False
-                    break
 
-            if flag:
-                database_str = "数据库存储验证结果：一致（申请接口参数请求值与数据库存储值一致）"
+            callbackurl_flag = False
+            if is_verify_database:
+                for key in req_keys:
+                    if req.get(key) == str(res.get(key)) and req.get(key) not in no_verify_data_list:
+                        database_flag = True
+                        database_str = "数据库存储验证结果：一致（申请接口参数请求值与数据库存储值一致）"
+                    else:
+                        error_str = "请求参数<{0}={1}>,数据库存储参数<{0}={2}>".format(key, req.get(key), str(res.get(key)))
+                        database_str = "数据库存储验证结果：不一致（申请接口参数请求值与数据库存储值不一致,具体不一致原因：{}）".format(error_str)
+                        database_flag = False
+                        break
+            else:
+                database_flag = False
+
+            if is_verify_callbackurl:
                 if expCF_value != None:
                     if expCF_value == res.get("callbackFlag"):
-                        flag = True
+                        callbackurl_flag = True
                         database_str_hd = "数据库回调状态值与预期状态值一致：回调成功"
                     else:
-                        flag = False
+                        callbackurl_flag = False
                         database_str_hd = "回调结果与预期不一致：回调失败,预期回调结果callbackFlag={}，实际数据库存储callbackFlag={}".format(
                             expCF_value, res.get("callbackFlag"))
                 else:
-                    flag = True
+                    callbackurl_flag = True
             else:
-                database_str = "数据库存储验证结果：不一致（申请接口参数请求值与数据库存储值不一致,具体不一致原因：{}）".format(error_str)
+                callbackurl_flag = False
         except Exception as e:
             log.error("测试用例请求参数与存储结果对比出现异常，异常原因：{}".format(e))
-            flag = False
 
         database_verify_res = {
-            "database_flag": flag,
+            "database_flag": database_flag,
+            "callbackurl_flag":callbackurl_flag,
             "database_str": database_str,
             "database_str_hd": database_str_hd
         }
@@ -126,7 +151,7 @@ class CmpReqRes:
         else:
             return False,serialNo
 
-    def deal_dict(self,expect,res):
+    def expect_res_ispass(self,expect,res):
         try:
             expect_dict = json.loads(expect)
         except Exception as e:

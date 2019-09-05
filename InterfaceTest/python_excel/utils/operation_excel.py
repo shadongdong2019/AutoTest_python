@@ -3,7 +3,10 @@ from xlutils.copy import  copy
 import logging
 log = logging.getLogger("__file__")
 class OperationExcel:
-    def __init__(self,filename=None,sheetid=0):
+    def __init__(self,**kwargs):
+        self.kwargs = kwargs
+        filename = self.kwargs.get("case_filepath", '')
+        sheetid = self.kwargs.get("case_sheetid", 0)
         try:
             if filename:
                 self.filename = filename
@@ -107,17 +110,19 @@ class OperationExcel:
             log.error("操作EXCEL表类获取值对应的行号出现异常，异常原因：{}".format(e))
             return None
 
-    def get_row_col_list(self,start=0,rows=0):
+    def get_row_col_list(self,**kwargs):
         '''
         获取指定行内容
         :param start:开始行
         :param rows:结束行，如默认表示所有行
         :return:行列表
         '''
+        start = self.kwargs.get("case_start_rownum",1)
+        end   = self.kwargs.get("case_end_rownum",0)
         row_col_list = []
         try:
-            if rows !=0 and rows>start:
-                self.rows=rows
+            if end !=0 and end>start:
+                self.rows=end
             else:
                 self.rows = self.sheet_obj.nrows
 
@@ -130,6 +135,30 @@ class OperationExcel:
             row_col_list = None
         return row_col_list
 
+    def get_row_col_list_param_name(self,**kwargs):
+        '''
+        获取指定行内容
+        :param start:开始行
+        :param rows:结束行，如默认表示所有行
+        :return:行列表
+        '''
+        start = self.kwargs.get("case_param_name_start",1)
+        end   = self.kwargs.get("case_param_name_end",0)
+        row_col_list = []
+        try:
+            if end !=0 and end>start:
+                self.rows=end
+            else:
+                self.rows = self.sheet_obj.nrows
+
+            for row in range(int(start),int(self.rows)):
+                col_list = self.get_sheet().row_values(row)
+                row_col_list.append(col_list)
+            return row_col_list
+        except Exception as e :
+            log.error("操作EXCEL表类获取值对应的行号出现异常，异常原因：{}".format(e))
+            row_col_list = None
+        return row_col_list
 
 
 if __name__ == '__main__':

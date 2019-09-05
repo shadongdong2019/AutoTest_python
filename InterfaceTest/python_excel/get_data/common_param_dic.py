@@ -1,12 +1,7 @@
 import base64
-import csv
 import datetime
-import random
-import string
 
 from InterfaceTest.python_excel.utils.operation_excel import OperationExcel
-from copy import  deepcopy
-from InterfaceTest.python_excel.utils.operation_json import OperationJson
 from InterfaceTest.python_excel.get_data.param_global import ParamGlobal
 import logging
 import hashlib
@@ -19,20 +14,69 @@ class CommonParamDict:
         try:
             self.kargs = kargs
             #实例化操作Excel表格类
-            self.op_excel = OperationExcel(self.kargs.get("case_filepath",None),self.kargs.get("case_sheetid",0))
+            self.op_excel = OperationExcel(**self.kargs)
             #获取参数名所在行返回参数名列表
-            self.param_name_list = self.op_excel.get_row_col_list(self.kargs.get("case_param_name_start",0), self.kargs.get("case_param_name_end",0))
+            self.param_name_list = self.op_excel.get_row_col_list_param_name(**self.kargs)
             #实例参数名处理类-根据上面的参数名列表
             self.param = ParamGlobal(self.param_name_list)
             # 获取参数英文名列表
             self.name_list = self.param.get_param_en_name_list()
-            #获取参数值列表（仅获取从开始行到结束行的数所在，如果都为None表示所有记录）
-            self.name_value_list = self.op_excel.get_row_col_list(self.kargs.get("case_start_rownum",1),self.kargs.get("case_end_rownum",None))
+            #获取参数值列表（仅获取从开始行到结束行的数所在，如果都为0表示所有记录）
+            self.name_value_list = self.op_excel.get_row_col_list(**self.kargs)
             # 获取不在接口请求中传入的参数列表
             self.param_no_req = self.param.get_param_no_request_list()
 
         except Exception as e:
             log.error("接口参数处理类初始化异常，异常原因：{}".format(e))
+
+    def deal_param(self,**kwargs):
+        '''
+        处理后的参数数据即
+        参数值不填代表传参此参数不填
+        参数值为N代表参数不传
+        参数值为NN表示参数为空
+        :return:
+        '''
+
+        if kwargs:
+            self.kargs = kwargs  #获取配置文件字段，如是方法中未传，直接使用初始化方法中传入的
+
+        no_param = self.param_no_req #获取不在请求里进行传入的参数列表
+        file_stream_list = self.kargs.get("file_stream_list",[]) #获取配置文件里参数为文件类型需要转文件流的参数列表
+
+        try:
+            case_list= self.get_param_name_value()
+            case_remove = []
+            if len(case_list)>0:
+                count = 0
+                for param_dict in case_list:
+                    if str(param_dict.get("IsRun")).lower() != "yes":
+                        case_remove.append(param_dict)
+                        continue
+                    for key in list(param_dict.keys()):
+                        salt_N = False
+                        key_value = param_dict.get(key)
+                        if not key_value and key not in no_param :
+                            del param_dict[key]
+                        if str(key_value).upper() == 'N': #参数值为N表示此参数不传
+                            if key == "salt":
+                                salt_N = True
+                            param_dict.pop(key)
+                        elif str(key_value).upper() == 'NN': #参数值为NN表示此参数为空
+                            param_dict[key] = ""
+                        elif key in file_stream_list and key_value != "":
+                            param_dict[key] = self.encry(key_value)  # 根据获取的key_value进行上传前数据处理
+                    if not param_dict.get("salt",None) and not salt_N:
+                        salt = self.get_salt(param_dict)
+                        param_dict["salt"] = salt
+                    count += 1
+            if len(case_remove)>0:
+                for case in  case_remove:
+                    case_list.remove(case)
+            return case_list
+        except Exception as e :
+            log.error("接口参数处理类处理后的参数数据方法异常，异常原因：{}".format(e))
+            return None
 
     def get_param_name(self):
         '''
@@ -66,193 +110,59 @@ class CommonParamDict:
             log.error("接口参数处理类处理参数名与参数值方法异常，异常原因：{}".format(e))
         return name_value_row_list
 
-    def deal_download_param(self,req_type=''):
+
+    def encry(self,file_path):
         '''
-        处理后的参数数据即
-        参数值不填代表传参此参数不填
-        参数值为N代表传参数名，但参数值为“”
-        参数值为F-文件名代表传的参数是文件类型
-        :return:
+        把文件转为文件流
+        :param file_path:文件全路径（路径+文件名）
+        :return:b64encode编码后的文件流
         '''
-        no_param = ["IsRun","CaseID","TestTarget","CaseDesc","ExpectValue","callbackFlag","res_serialNo","result","fileB","authProtocolB","is_apply","res_download","is_download","is_pass"]
-        keys = ["IsRun","CaseID","TestTarget","CaseDesc","ExpectValue","partnerID","partnerKey","res_serialNo","res_download","is_download","is_pass"]
-        case_list_new = []
-        case_dict ={}
+        file_stream = ""
         try:
-            case_list= self.get_param_name_value()
-            if len(case_list)>0:
-                case_remove = []
-                count = 0
-                for param_dict in case_list:
-                    case_dict_copy = deepcopy(case_dict)
-                    if str(param_dict.get("IsRun")).lower() != "yes" or str(param_dict.get("is_apply")).lower() != "pass":
-                        case_remove.append(param_dict)
-                        continue
-                    for key in keys:
-
-                        key_value = param_dict.get(key)
-                        if key == "TestTarget":
-                            case_dict_copy[key] = "下载成功"
-                        elif key == "CaseDesc":
-                            case_dict_copy[key] = "必填参数（4个）正确传入-下载成功"
-                        elif key == "ExpectValue":
-                            case_dict_copy[key] = '{"success":true,"resultCode":"0204000"}'
-                        elif key == "res_serialNo":
-                            case_dict_copy["serialNo"] = key_value
-                        else:
-                            case_dict_copy[key] = key_value
-
-                    case_list_new.append(case_dict)
-                    count += 1
-                    break
-            return case_list_new
-        except Exception as e :
-            log.error("接口参数处理类处理后下载接口参数数据方法异常，异常原因：{}".format(e))
-            return None
-
-
-    def deal_param_01(self,flag=0,req_type=''):
-        '''
-        处理后的参数数据即
-        参数值不填代表传参此参数不填
-        参数值为N代表传参数名，但参数值为“”
-        参数值为F-文件名代表传的参数是文件类型
-        :return:
-        '''
-        no_param = ["IsRun", "CaseID", "TestTarget", "CaseDesc", "ExpectValue", "callbackFlag", "res_serialNo",
-                    "result", "fileB", "authProtocolB", "is_apply", "res_download", "is_download", "is_pass"]
-        need_param = ["IsRun", "CaseID", "TestTarget", "CaseDesc", "ExpectValue", "partnerID", "partnerKey", "res_serialNo",
-                "res_download", "is_download", "is_pass"]
-        try:
-            case_list= self.get_param_name_value()
-            if len(case_list)>0:
-                case_remove = []
-                count = 0
-                for param_dict in case_list:
-                    if str(param_dict.get("IsRun")).lower() != "yes" or str(param_dict.get("is_apply")).lower() != "pass":
-                        case_remove.append(param_dict)
-                        continue
-                    count += 1
-            if len(case_remove)>0:
-                for case in  case_remove:
-                    case_list.remove(case)
-
-            return case_list
-        except Exception as e :
-            log.error("接口参数处理类处理后的参数数据方法异常，异常原因：{}".format(e))
-            return None
-
-
-
-    def deal_param(self,**kwargs):
-        '''
-        处理后的参数数据即
-        参数值不填代表传参此参数不填
-        参数值为N代表传参数名，但参数值为“”
-        参数值为F-文件名代表传的参数是文件类型
-        :return:
-        '''
-        if kwargs:
-            self.kargs = kwargs
-
-        no_param = self.param_no_req
-        try:
-            case_list= self.get_param_name_value()
-            case_remove = []
-            if len(case_list)>0:
-                count = 0
-                for param_dict in case_list:
-                    if str(param_dict.get("IsRun")).lower() != "yes":
-                        case_remove.append(param_dict)
-                        continue
-                    for key in list(param_dict.keys()):
-                        key_value = param_dict.get(key)
-                        if not key_value and key not in no_param :
-                            del param_dict[key]
-                        if str(key_value).upper() == 'N':
-                            param_dict[key] = ""
-                    salt = self.get_salt(param_dict)
-                    param_dict["salt"] = salt
-
-                    count += 1
-            if len(case_remove)>0:
-                for case in  case_remove:
-                    case_list.remove(case)
-
-            return case_list
-        except Exception as e :
-            log.error("接口参数处理类处理后的参数数据方法异常，异常原因：{}".format(e))
-            return None
-
-    def encry(self,cnf_org):
-        try:
-            with open(cnf_org,'rb') as f:  # 以二进制读取图片
+            with open(file_path,'rb') as f:  # 以二进制读取图片
                 data = f.read()
                 encodestr = base64.b64encode(data) # 得到 byte 编码的数据
                 #print(str(encodestr,'utf-8')) # 重新编码数据
-                return str(encodestr,'utf-8')
+                file_stream = str(encodestr,'utf-8')
         except Exception as e:
-            log.error("接口参数处理类处理文件方法异常，异常原因：{}".format(e))
-            return None
+            log.error("接口参数处理类将文件转为文件流方法异常，异常原因：{}".format(e))
+        return file_stream
 
-    def decry(self,cnf_org,serialNo,file_type="pdf",download_file=None):
-
-        bq_pdf = base64.b64decode(cnf_org)
-        data_str =datetime.datetime.now().strftime('%Y%m%d')
-        rand_str = ''.join(random.sample((string.ascii_letters + string.digits),5))
-        pdf_name = "{}_{}_{}.{}".format(serialNo,data_str,rand_str,file_type)
-        if not download_file:
-            path = '../download/0729_hz/'
-        else:
-            path = '../download/{}/'.format(download_file)
-        if not os.path.exists(path):
-            os.makedirs(path)
-        file_name = path+"{}".format(pdf_name)
-        file = open(file_name, "wb")
-        file.write(bq_pdf)
-        file.close()
-
-    def deal_enum_param(self,caseid=0,param=None,start=0,end=0):
+    def decry(self,**kwargs):
+        '''
+        将文件流转为指定格式的文件
+        :return:True or False ,True表示存储成功，False表示失败
+        '''
+        is_download = False
         try:
-            if param:
-                param_list = param
-            else:
-                param_list = self.op_json.get_keys_list()
-            if end == 0:
-                end=len(param_list)
-            emun_case_list = []
-            count = 0
-            for param_key in param_list[start:end]:
-                emun_json = self.op_json.get_data_for_key(param_key)
-                if len(emun_json)>0:
-                    case_1 = deepcopy(self.deal_param()[caseid])  # 拷贝测试用例第二条
-                    for key in list(emun_json.keys()):
-                        case_1[param_key] = key
-                        case_1["case_target"] = "申请成功-枚举类型数据正确性验证-00{}".format(count+1)
-                        case_1["case_desc"] = '枚举类型参数<{}>-合法参数值<{}>-其它参数正确填写-申请成功'.format(param_key,key)
-                        emun_case_list.append(case_1)
-                        count+=1
-
-            return emun_case_list
+            file_stream = kwargs.get("file_stream","") #获取文件流
+            file_flag = kwargs.get("file_stream","") #获取文件标识，用于显示在文件名最前面，如serialNo码
+            file_type = kwargs.get("file_type","pdf") #获取文件后缀类型 如：jpg/pdf
+            download_path = kwargs.get("download_path","../download/") #获取下载文件存入路径
+            file_str = base64.b64decode(file_stream) #把文件流进行base64解码
+            data_str =datetime.datetime.now().strftime('%Y%m%d') #将当前时间转为字符串
+            #rand_str = ''.join(random.sample((string.ascii_letters + string.digits),5)) #5位随机数（数字+字母）
+            file_name = "{}_{}_{}.{}".format(file_flag,data_str,file_type) #生成文件名：文件标识+当前时间字符串+文件后缀
+            if not os.path.exists(download_path): #判断文件存储路径是否存在
+                os.makedirs(download_path) #如果不存在就在创建对应路径
+            file_name = download_path+"{}".format(file_name) #存储路径+文件全称
+            file = open(file_name, "wb") #以二进制读的方式打开文件
+            file.write(file_str)#写入文件流解码后的内容
+            file.close() #关闭文件
+            is_download = True
         except Exception as e :
-            log.error("接口参数处理类处理枚举字段方法异常，异常原因：{}".format(e))
-            return None
+            log.error("下载并存储文件出现异常，异常原类：{}".format(e))
+        return is_download
 
-    def test_param_400(self,caseid):
-        en_name_list = self.param.get_param_en_name_list()
-        count = 0
-        test_param_400_list= []
-        for name in en_name_list:
-            count+=1
-            if count>13:
-                case_1 = deepcopy(self.deal_param()[caseid])  # 拷贝测试用例第一条
-                case_1[name] = "101"
-                test_param_400_list.append(case_1)
-        return test_param_400_list
 
     def get_salt(self,case_dict=None):
+        '''
+        获取哈希加盐处理后的salt值
+        :param case_dict: 用例字典
+        :return: salt值
+        '''
         xn_case = []
-        hash_order =eval(self.kargs.get("hash_orders",None))
+        hash_order =self.kargs.get("hash_orders",None)
         value_order_list = []
         for param_name in hash_order:
           xn_case.append(case_dict.get(param_name,""))
@@ -264,25 +174,33 @@ class CommonParamDict:
         return salt
 
 
-
-
-
     def make_salt(self,value_list=None,partnerKey=""):
-        # 待加密信息
-        deal_value_list = []
+        '''
+        针对参数值列表进行salt加盐处理
+        :param value_list: 按传入顺序处理后的参数值列表
+        :param partnerKey: partnerKey值
+        :return:
+        '''
+        deal_value_list = [] #进行处理后的参数值列表
         for value in value_list:
             try:
                 value_str=str(value)
             except Exception as e :
                 value_str = value
             deal_value_list.append(value_str)
-        value_str = "".join(deal_value_list)
+        value_str = "".join(deal_value_list) #将列表转为字符串，待加密信息
 
-        # 创建md5对象
-        m = hashlib.md5()
-        b = value_str.encode(encoding='utf-8')
-        m.update(b)
-        value_str_md5 = m.hexdigest()
+
+        m = hashlib.md5()# 创建md5对象
+
+        # 此处必须encode
+        # 若写法为m.update(str)  报错为： Unicode-objects must be encoded before hashing
+        # 因为python3里默认的str是unicode
+        # 或者 b = bytes(str, encoding='utf-8')，作用相同，都是encode为bytes
+        b = value_str.encode(encoding='utf-8') #将字符串进行utf-8编码
+
+        m.update(b) #进行md5加密
+        value_str_md5 = m.hexdigest()#md5加密后的值为32位-hexdigest()默认是32位(bytes)，16位值调用对象的digest()
         salt = value_str_md5+partnerKey
         return salt
 
@@ -299,6 +217,5 @@ class CommonParamDict:
         return s
 
 if __name__ == "__main__":
-    tsapd = TsaParamDict()
-    tsapd.deal_param()
+    pass
 

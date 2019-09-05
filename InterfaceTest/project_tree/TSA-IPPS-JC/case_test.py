@@ -8,6 +8,8 @@ from InterfaceTest.python_excel import log
 import os
 import unittest
 import ddt
+
+from InterfaceTest.python_excel.common.CaseIsPass import CaseIsPass
 from InterfaceTest.python_excel.common.interface_run import InterfaceRun
 from InterfaceTest.python_excel.common.deal_response_data import DealResData
 from InterfaceTest.python_excel.get_data.tsa_param_dic import TsaParamDict
@@ -48,10 +50,11 @@ class CaseRun(unittest.TestCase):
     def setUp(self):
         self.interface_run = InterfaceRun()
         self.deal_res_data = DealResData()
-        self.op_excel = OperationExcel(filename,sheetid_http)
+        self.op_excel = OperationExcel(**option_dict)
         self.method_req = "post"
         self.tsa_param = TsaParamDict()
-        self.crr = CmpReqRes()
+        self.crr = CmpReqRes(**option_dict)
+        self.cp = CaseIsPass(**option_dict)
     def tearDown(self):
         pass
 
@@ -62,6 +65,7 @@ class CaseRun(unittest.TestCase):
         :param data_dict:
         :return:
         '''
+        pp = pprint.PrettyPrinter(indent=4)
         #获取请求地址：
         url = option_dict["url"]
         #获取请求接口不传入参数列表
@@ -71,12 +75,14 @@ class CaseRun(unittest.TestCase):
         req_data_dict = deepcopy(data_dict)
         for param  in no_request_list:
             no_request_dict[param] = req_data_dict.pop(param)
+        req_s_time = time.time()
         ori_res = self.interface_run.main_request(self.method_req, url, req_data_dict)
+        req_e_time = time.time()
+        hs = req_e_time -req_s_time
         try:
             res = ori_res.json()
         except Exception as e:
             res = ori_res.text
-        pp = pprint.PrettyPrinter(indent=4)
         pp.pprint("监测接口用例执行详情如下：")
         pp.pprint("监测接口执行测试用例编号：[{}]".format(no_request_dict["CaseID"]))
         pp.pprint("监测接口测试目的：{}".format(no_request_dict["TestTarget"]))
@@ -85,9 +91,12 @@ class CaseRun(unittest.TestCase):
         pp.pprint("监测接口预期接口返回值={}".format(no_request_dict["ExpectValue"]))
         pp.pprint("监测接口预期回调状态值={}".format(no_request_dict["ExpCallbackFlag"]))
         pp.pprint("监测接口响应结果={}".format(res))
+        pp.pprint("监测接口响应耗时：{}".format(hs))
 
 
-        kargs = {"expect":no_request_dict["ExpectValue"],
+        kargs = {
+                 "option_dict":option_dict,
+                 "expect":no_request_dict["ExpectValue"],
                  "res":ori_res,
                  "req":req_data_dict,
                  "partnerID":req_data_dict.get("partnerID"),
@@ -101,11 +110,11 @@ class CaseRun(unittest.TestCase):
         end =time.time()
         hs = end -start
         pp.pprint("监测接口响应结果验证耗时：{}".format(hs))
-        pp.pprint("数据库数据验证结果：{}".format(verify_res.get("database_str")))
-        if verify_res.get("database_str",None):
-            pp.pprint("数据库回调结果标识验证结果：{}".format(verify_res.get("database_str")))
+
+        is_pass = self.cp.case_is_pass(**verify_res)
         pp.pprint("请求参数={}".format(json.dumps(req_data_dict, ensure_ascii=False)))
-        self.assertTrue(verify_res.get("flag",None),"测试用例执行未通过")
+
+        self.assertTrue(is_pass,"测试用例执行未通过")
 
 if __name__ == "__main__":
     reportpath = option_dict["report_path"]

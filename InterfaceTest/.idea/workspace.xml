@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bef09d81-c4de-40f6-98c7-1c0866798c9e" name="Default Changelist" comment="" />
+    <list default="true" id="bef09d81-c4de-40f6-98c7-1c0866798c9e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/python_excel/common/CaseIsPass.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python_excel/utils/MongodbObj.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/case_file/BQ_JC_QZ_CASE.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/case_file/BQ_JC_QZ_CASE.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/case_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/case_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/config/caseRun.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/config/caseRun.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_excel/common/cmp_res_req.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_excel/common/cmp_res_req.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_excel/test_run/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_excel/test_run/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_excel/utils/ElasticObj.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_excel/utils/ElasticObj.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,13 +62,13 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../SeleniumTest" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1OUocZittQrNkegU2036fP5WKOI" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/python_excel/data_file" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
@@ -599,6 +610,7 @@
       <workItem from="1566287598774" duration="605000" />
       <workItem from="1566960954192" duration="1363000" />
       <workItem from="1567157121540" duration="577000" />
+      <workItem from="1567588253298" duration="21000" />
     </task>
     <servers />
   </component>

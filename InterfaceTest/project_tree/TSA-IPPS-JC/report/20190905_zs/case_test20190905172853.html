@@ -189,9 +189,9 @@ function showOutput(id, name) {
 
 <div class='heading'>
 <h1>版权服务2.0生产环境接口测试报告（https）</h1>
-<p class='attribute'><strong>Start Time:</strong> 2019-09-03 18:00:45</p>
-<p class='attribute'><strong>Duration:</strong> 0:00:01.090307</p>
-<p class='attribute'><strong>Status:</strong> Failure 1</p>
+<p class='attribute'><strong>Start Time:</strong> 2019-09-05 17:28:53</p>
+<p class='attribute'><strong>Duration:</strong> 0:00:01.099926</p>
+<p class='attribute'><strong>Status:</strong> Pass 1</p>
 
 <p class='description'>监测接口-主流程测试用例-主要验证所有参数合法参数监测成功及必填参数非法数据监测失败</p>
 </div>
@@ -221,65 +221,55 @@ function showOutput(id, name) {
     <td>View</td>
 </tr>
 
-<tr class='failClass'>
+<tr class='passClass'>
     <td>CaseRun</td>
     <td>1</td>
-    <td>0</td>
     <td>1</td>
+    <td>0</td>
     <td>0</td>
     <td><a href="javascript:showClassDetail('c1',1)">Detail</a></td>
 </tr>
 
-<tr id='ft1.1' class='none'>
-    <td class='failCase'><div class='testcase'>test_apply_http_1</div></td>
+<tr id='pt1.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_1</div></td>
     <td colspan='5' align='center'>
 
     <!--css div popup start-->
-    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.1')" >
-        fail</a>
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
+        pass</a>
 
-    <div id='div_ft1.1' class="popup_window">
+    <div id='div_pt1.1' class="popup_window">
         <div style='text-align: right; color:red;cursor:pointer'>
-        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.1').style.display = 'none' " >
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.1').style.display = 'none' " >
            [x]</a>
         </div>
         <pre>
         
-ft1.1: '监测接口用例执行详情如下：'
+pt1.1: '监测接口用例执行详情如下：'
 '监测接口执行测试用例编号：[BQ_JC_001]'
 '监测接口测试目的：请求成功'
-'监测接口用例描述：所有必填参数正确传入'
+'监测接口用例描述：所有必传参数正确传入'
 '监测接口地址：http://39.107.66.190:9990/v2/api/monitor/opusMonitor'
 '监测接口预期接口返回值={"success":true,"resultCode":"0204000"}'
-'监测接口预期回调状态值={"callbackFlag":true}'
-("监测接口响应结果={'msg': '请求成功', 'salt': 'c39d756c50c07195ff11fc3e861d568bnull', "
- "'data': [{'useNumber': 0, 'is_result': '1', 'createTime': 1567504833664, "
- "'partnerKey': 'SJ2P5TW43R0ZLCR6V556', 'callbackFlag': False, 'updateTime': "
- "1567504833664, 'id': 366323666394558464, 'partnerID': '201907200200058182', "
- "'uni_id': '366323571771060224', 'serialNo': 366323571771060224}, "
- "{'useNumber': 0, 'is_result': '0', 'createTime': 1567504812795, "
- "'partnerKey': 'SJ2P5TW43R0ZLCR6V556', 'result_id': '1223285019', 'rs_from': "
- "'vcg_editor', 'callbackFlag': False, 'updateTime': 1567504812795, 'id': "
- "366323578863628288, 'partnerID': '201907200200058182', 'uni_id': "
- "'366323571771060224', 'serialNo': 366323571771060224}, {'useNumber': 0, "
- "'fMsg': 'Success', 'createTime': 1567504812174, 'partnerKey': "
- "'SJ2P5TW43R0ZLCR6V556', 'callbackFlag': False, 'updateTime': 1567504812174, "
- "'id': 366323576258965504, 'partnerID': '201907200200058182', 'uni_id': "
- "'366323571771060224', 'fCode': '200', 'serialNo': 366323571771060224}], "
- "'success': True, 'resultCode': 0}")
-'监测接口响应结果验证耗时：1.0016443729400635'
-'数据库数据验证结果：None'
-('请求参数={"partnerID": "201907200200058182", "partnerKey": '
- '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366323571771060224", "pageNumber": "1", '
- '"pageSize": "20", "callbackUrl": '
+'监测接口预期回调状态值={"callbackFlag":false}'
+("监测接口响应结果={'msg': '请求成功', 'salt': "
+ "'3dbdd17bf2e805951f29907a1220d9fcYLZ3XCEE4J21N0YHQNEW', 'data': "
+ "[{'client_time': '0000-00-00 00:00:00', 'is_result': '487544620', "
+ "'company_zt': '你好衡阳网', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567675652779, 'type': '1', 'uni_id': '367040108605747200', "
+ "'url': 'http://www.hyqss.cn/2019/january/48E0DD7E.html', 'pushType': "
+ "'quanwang', 'serialNo': '367040108605747200', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '衡阳日报社', 'id': 367040133691879424, "
+ "'partnerID': '201907200200055052', 'pic_url': "
+ "'http://img.hyqss.cn/upload/2019/01/small_news_1123937723_15464327400981n.jpg'}], "
+ "'success': True, 'resultCode': '0204000'}")
+'监测接口响应耗时：0.07466864585876465'
+'监测接口响应结果验证耗时：1.0013985633850098'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "serialNo": "367040108605747200", "pageNumber": '
+ '"500", "pageSize": "50", "callbackUrl": '
  '"http://39.107.66.190:9999/v2/api/confirm/callback", "salt": '
- '"d64b0466c4116443fd5a78ad78e1d536SJ2P5TW43R0ZLCR6V556"}')
-Traceback (most recent call last):
-  File "/home/ma/.local/lib/python3.6/site-packages/ddt.py", line 145, in wrapper
-    return func(self, *args, **kwargs)
-  File "/home/ma/PycharmProjects/AutoTest_python/InterfaceTest/project_tree/TSA-IPPS-JC/case_test.py", line 108, in test_apply_http
-    self.assertTrue(verify_res.get("flag",None),"测试用例执行未通过")
-AssertionError: None is not true : 测试用例执行未通过
+ '"fca80fc659720b591767de3eff1202efYLZ3XCEE4J21N0YHQNEW"}')
 
 
         </pre>
@@ -292,8 +282,8 @@ AssertionError: None is not true : 测试用例执行未通过
 <tr id='total_row'>
     <td>Total</td>
     <td>1</td>
-    <td>0</td>
     <td>1</td>
+    <td>0</td>
     <td>0</td>
     <td>&nbsp;</td>
 </tr>

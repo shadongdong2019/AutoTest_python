@@ -52,7 +52,10 @@ class OperationCFG:
 
             # 第一个参数指定要读取的段名，第二个是要读取的选项名
             for option in option_args[0]:
-                section_dict[option]=config.get(self.section, option) #获取section中option的值，返回为string类型
+                try:
+                    section_dict[option]=eval(config.get(self.section, option)) #获取section中option的值，返回为string类型
+                except Exception as e :
+                    section_dict[option] = config.get(self.section, option)  # 获取section中option的值，返回为string类型
         except Exception as e :
             log.error("读取配置文件段section内容出现异常，异常原因：{}".format(e))
         return section_dict
