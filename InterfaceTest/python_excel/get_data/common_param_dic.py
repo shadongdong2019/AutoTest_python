@@ -25,6 +25,8 @@ class CommonParamDict:
             self.name_value_list = self.op_excel.get_row_col_list(**self.kargs)
             # 获取不在接口请求中传入的参数列表
             self.param_no_req = self.param.get_param_no_request_list()
+            # 获取文件类型参数列表
+            self.param_file = self.param.get_param_file_list()
 
         except Exception as e:
             log.error("接口参数处理类初始化异常，异常原因：{}".format(e))
@@ -43,6 +45,7 @@ class CommonParamDict:
 
         no_param = self.param_no_req #获取不在请求里进行传入的参数列表
         file_stream_list = self.kargs.get("file_stream_list",[]) #获取配置文件里参数为文件类型需要转文件流的参数列表
+        param_file = self.param_file
 
         try:
             case_list= self.get_param_name_value()
@@ -64,7 +67,7 @@ class CommonParamDict:
                             param_dict.pop(key)
                         elif str(key_value).upper() == 'NN': #参数值为NN表示此参数为空
                             param_dict[key] = ""
-                        elif key in file_stream_list and key_value != "":
+                        elif ((key in param_file) or (key in file_stream_list)) and key_value != "":
                             param_dict[key] = self.encry(key_value)  # 根据获取的key_value进行上传前数据处理
                     if not param_dict.get("salt",None) and not salt_N:
                         salt = self.get_salt(param_dict)

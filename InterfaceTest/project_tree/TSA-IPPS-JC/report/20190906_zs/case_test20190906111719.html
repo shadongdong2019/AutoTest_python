@@ -1,0 +1,696 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>版权服务2.0生产环境接口测试报告（https）</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+<style type="text/css" media="screen">
+body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
+table       { font-size: 100%; }
+pre         { }
+
+/* -- heading ---------------------------------------------------------------------- */
+h1 {
+	font-size: 16pt;
+	color: gray;
+}
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+
+.heading .attribute {
+    margin-top: 1ex;
+    margin-bottom: 0;
+}
+
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+
+/* -- css div popup ------------------------------------------------------------------------ */
+a.popup_link {
+}
+
+a.popup_link:hover {
+    color: red;
+}
+
+.popup_window {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    padding: 10px;
+    background-color: #E6E6D6;
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 8pt;
+    width: 500px;
+}
+
+}
+/* -- report ------------------------------------------------------------------------ */
+#show_detail_line {
+    margin-top: 3ex;
+    margin-bottom: 1ex;
+}
+#result_table {
+    width: 80%;
+    border-collapse: collapse;
+    border: 1px solid #777;
+}
+#header_row {
+    font-weight: bold;
+    color: white;
+    background-color: #777;
+}
+#result_table td {
+    border: 1px solid #777;
+    padding: 2px;
+}
+#total_row  { font-weight: bold; }
+.passClass  { background-color: #6c6; }
+.failClass  { background-color: #c60; }
+.errorClass { background-color: #c00; }
+.passCase   { color: #6c6; }
+.failCase   { color: #c60; font-weight: bold; }
+.errorCase  { color: #c00; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+
+
+/* -- ending ---------------------------------------------------------------------- */
+#ending {
+}
+
+</style>
+
+</head>
+<body>
+<script language="javascript" type="text/javascript"><!--
+output_list = Array();
+
+/* level - 0:Summary; 1:Failed; 2:All */
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level < 1) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level > 1) {
+                tr.className = '';
+            }
+            else {
+                tr.className = 'hiddenRow';
+            }
+        }
+    }
+}
+
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        tid0 = 't' + cid.substr(1) + '.' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        if (toHide) {
+            document.getElementById('div_'+tid).style.display = 'none'
+            document.getElementById(tid).className = 'hiddenRow';
+        }
+        else {
+            document.getElementById(tid).className = '';
+        }
+    }
+}
+
+
+function showTestDetail(div_id){
+    var details_div = document.getElementById(div_id)
+    var displayState = details_div.style.display
+    // alert(displayState)
+    if (displayState != 'block' ) {
+        displayState = 'block'
+        details_div.style.display = 'block'
+    }
+    else {
+        details_div.style.display = 'none'
+    }
+}
+
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+
+/* obsoleted by detail in <div>
+function showOutput(id, name) {
+    var w = window.open("", //url
+                    name,
+                    "resizable,scrollbars,status,width=800,height=450");
+    d = w.document;
+    d.write("<pre>");
+    d.write(html_escape(output_list[id]));
+    d.write("\n");
+    d.write("<a href='javascript:window.close()'>close</a>\n");
+    d.write("</pre>\n");
+    d.close();
+}
+*/
+--></script>
+
+<div class='heading'>
+<h1>版权服务2.0生产环境接口测试报告（https）</h1>
+<p class='attribute'><strong>Start Time:</strong> 2019-09-06 11:17:19</p>
+<p class='attribute'><strong>Duration:</strong> 0:00:01.190209</p>
+<p class='attribute'><strong>Status:</strong> Pass 1</p>
+
+<p class='description'>监测接口-主流程测试用例-主要验证所有参数合法参数监测成功及必填参数非法数据监测失败</p>
+</div>
+
+
+
+<p id='show_detail_line'>Show
+<a href='javascript:showCase(0)'>Summary</a>
+<a href='javascript:showCase(1)'>Failed</a>
+<a href='javascript:showCase(2)'>All</a>
+</p>
+<table id='result_table'>
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row'>
+    <td>Test Group/Test case</td>
+    <td>Count</td>
+    <td>Pass</td>
+    <td>Fail</td>
+    <td>Error</td>
+    <td>View</td>
+</tr>
+
+<tr class='passClass'>
+    <td>CaseRun</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c1',1)">Detail</a></td>
+</tr>
+
+<tr id='pt1.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_1</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
+        pass</a>
+
+    <div id='div_pt1.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.1: '监测接口用例执行详情如下：'
+'监测接口执行测试用例编号：[BQ_JC_001]'
+'监测接口测试目的：请求成功'
+'监测接口用例描述：所有必传参数正确传入'
+'监测接口地址：http://39.107.66.190:9990/v2/api/monitor/opusMonitor'
+'监测接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'监测接口预期回调状态值={"callbackFlag":false}'
+("监测接口响应结果={'msg': '请求成功', 'salt': "
+ "'bc82f428abaab00a97426ddf7e385d69YLZ3XCEE4J21N0YHQNEW', 'data': "
+ "[{'client_time': '2019-01-02 00:00:00', 'is_result': '668508052', "
+ "'company_zt': '国际在线', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738952787, 'type': '1', 'uni_id': '367305604961939456', "
+ "'url': 'http://chinaplus.cri.cn/opinion/opedblog/23/20190102/230949.html', "
+ "'pushType': 'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '国广国际在线网络(北京)有限公司', "
+ "'id': 367305633168633856, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://img1.zhytuku.meldingcloud.com/images/zhycms_chinaplus/20190102/3034cd76-8ada-4a17-9430-4cd2f0dec8be.jpg?x-oss-process=image/resize,w_650'}, "
+ "{'client_time': '2019-01-02 00:00:00', 'is_result': '668508052', "
+ "'company_zt': '国际在线', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738952763, 'type': '1', 'uni_id': '367305604961939456', "
+ "'url': 'http://chinaplus.cri.cn/news/china/9/20190102/230947.html', "
+ "'pushType': 'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '国广国际在线网络(北京)有限公司', "
+ "'id': 367305633067970560, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://img1.zhytuku.meldingcloud.com/images/zhycms_chinaplus/20190102/e6297887-a7b3-4169-b199-86f2baeabd2b.jpg?x-oss-process=image/resize,w_650'}, "
+ "{'client_time': '2019-01-02 00:00:00', 'is_result': '668508052', "
+ "'company_zt': '国际在线', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738952910, 'type': '1', 'uni_id': '367305604961939456', "
+ "'url': 'http://chinaplus.cri.cn/news/china/9/20190102/230947.html', "
+ "'pushType': 'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '国广国际在线网络(北京)有限公司', "
+ "'id': 367305633684533248, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://img1.zhytuku.meldingcloud.com/images/zhycms_chinaplus/20190102/e6297887-a7b3-4169-b199-86f2baeabd2b.jpg?x-oss-process=image/resize,w_650'}, "
+ "{'client_time': '2019-01-02 00:00:00', 'is_result': '30931650', "
+ "'company_zt': '荆楚网', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738953486, 'type': '4', 'uni_id': '367305604961939456', "
+ "'url': 'http://m.cnhubei.com/guonei/p/10035446.html', 'pushType': "
+ "'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '湖北荆楚网络科技股份有限公司', 'id': "
+ "367305636100452352, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://www.xinhuanet.com/photo/2019-01/02/1123936685_15463959426851n.jpg'}, "
+ "{'client_time': '0000-00-00 00:00:00', 'is_result': '30931650', "
+ "'company_zt': '中新网移动端', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738953735, 'type': '1', 'uni_id': '367305604961939456', "
+ "'url': 'http://www.chinanews.com/tp/hd2011/2019/01-02/860137.shtml', "
+ "'pushType': 'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '中国新闻社', 'id': "
+ "367305637144834048, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://i2.chinanews.com/simg/hd/2019/01/02/0c1e23a2b6f9426691f0837647f57ede.jpg'}, "
+ "{'client_time': '0000-00-00 00:00:00', 'is_result': '487544620', "
+ "'company_zt': '你好衡阳网', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738952427, 'type': '1', 'uni_id': '367305604961939456', "
+ "'url': 'http://www.hyqss.cn/2019/january/48E0DD7E.html', 'pushType': "
+ "'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '衡阳日报社', 'id': 367305631658684416, "
+ "'partnerID': '201907200200055052', 'pic_url': "
+ "'http://img.hyqss.cn/upload/2019/01/small_news_1123937723_15464327400981n.jpg'}, "
+ "{'client_time': '0000-00-00 00:00:00', 'is_result': '487544620', "
+ "'company_zt': '你好衡阳网', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738953176, 'type': '1', 'uni_id': '367305604961939456', "
+ "'url': 'http://www.hyqss.cn/2019/january/48E0DD7E.html', 'pushType': "
+ "'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '衡阳日报社', 'id': 367305634800218112, "
+ "'partnerID': '201907200200055052', 'pic_url': "
+ "'http://img.hyqss.cn/upload/2019/01/small_news_1123937723_15464327400981n.jpg'}, "
+ "{'client_time': '2019-01-02 00:00:00', 'is_result': '30931650', "
+ "'company_zt': '经济日报', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738953331, 'type': '1', 'uni_id': '367305604961939456', "
+ "'url': 'http://www.jingjiribao.cn/static/detail.jsp?id=160041', 'pushType': "
+ "'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '经济日报社', 'id': 367305635450335232, "
+ "'partnerID': '201907200200055052', 'pic_url': "
+ "'https://jjrb.oss-cn-hangzhou.aliyuncs.com/2019/1/2/dngd6tjds6s.jpg'}, "
+ "{'client_time': '2019-01-02 00:00:00', 'is_result': '668508052', "
+ "'company_zt': '国际在线', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738954845, 'type': '1', 'uni_id': '367305604961939456', "
+ "'url': 'http://chinaplus.cri.cn/news/china/9/20190102/230947.html', "
+ "'pushType': 'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '国广国际在线网络(北京)有限公司', "
+ "'id': 367305641800511488, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://img1.zhytuku.meldingcloud.com/images/zhycms_chinaplus/20190102/e6297887-a7b3-4169-b199-86f2baeabd2b.jpg?x-oss-process=image/resize,w_650'}, "
+ "{'client_time': '2019-01-02 00:00:00', 'is_result': '30931650', "
+ "'company_zt': '无锡博报移动端', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738953807, 'type': '4', 'uni_id': '367305604961939456', "
+ "'url': "
+ "'http://wxbb-api.wifiwx.com/folder617/folder564/2019-01-02/391781.html?_hgOutLink=news/newsDetail&amp;id=391781', "
+ "'pushType': 'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '无锡广播电视台新闻中心', 'id': "
+ "367305637446823936, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://img.wifiwx.com/material/news/img/2019/01/20190102212922QrGh.jpeg?9vfS'}, "
+ "{'client_time': '2019-01-02 00:00:00', 'is_result': '30931650', "
+ "'company_zt': '龙岗网', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738953919, 'type': '4', 'uni_id': '367305604961939456', "
+ "'url': 'https://cmsuiv3.aheading.com/Article/ArticleRead/3411402', "
+ "'pushType': 'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '深圳侨报文化传播有限公司', 'id': "
+ "367305637916585984, 'partnerID': '201907200200055052', 'pic_url': "
+ "'https://cmsuiv3.aheading.com/UploadFile/2660/2019/01-02/e827125d-a1ed-42df-9c50-8265c3c3cede.jpg'}, "
+ "{'client_time': '2019-01-02 00:00:00', 'is_result': '30931650', "
+ "'company_zt': '阳光报', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738953780, 'type': '1', 'uni_id': '367305604961939456', "
+ "'url': 'http://www.iygw.cn/html/2019/shizheng_0102/41276.html', 'pushType': "
+ "'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '陕西阳光报社有限责任公司', 'id': "
+ "367305637333577728, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://www.xinhuanet.com/politics/2019-01/02/1123937723_15464097197311n.jpg'}, "
+ "{'client_time': '2019-01-02 00:00:00', 'is_result': '30931650', "
+ "'company_zt': '荆楚网', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738954248, 'type': '4', 'uni_id': '367305604961939456', "
+ "'url': 'http://m.cnhubei.com/guonei/p/10036364.html', 'pushType': "
+ "'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '湖北荆楚网络科技股份有限公司', 'id': "
+ "367305639296512000, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://www.xinhuanet.com/politics/2019-01/02/1123937723_15464097197311n.jpg'}, "
+ "{'client_time': '2019-01-02 00:00:00', 'is_result': '30931650', "
+ "'company_zt': '荆楚网', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738954225, 'type': '4', 'uni_id': '367305604961939456', "
+ "'url': 'http://m.cnhubei.com/guonei/p/10035446.html', 'pushType': "
+ "'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '湖北荆楚网络科技股份有限公司', 'id': "
+ "367305639200043008, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://www.xinhuanet.com/photo/2019-01/02/1123936685_15463959426851n.jpg'}, "
+ "{'client_time': '2019-01-03 00:00:00', 'is_result': '549858190', "
+ "'company_zt': '凯迪网络', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738954692, 'type': '1', 'uni_id': '367305604961939456', "
+ "'url': 'http://club.kdnet.net/dispbbs.asp?id=13126058&amp;boardid=44', "
+ "'pushType': 'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '海南智媒云图科技股份有限公司', "
+ "'id': 367305641158782976, 'partnerID': '201907200200055052', 'pic_url': "
+ "'https://inews.gtimg.com/newsapp_bt/0/7103323328/1000'}, {'client_time': "
+ "'2019-01-02 00:00:00', 'is_result': '30931650', 'company_zt': '中新网移动端', "
+ "'dataType': 'second', 'callbackFlag': False, 'updateTime': 1567738954440, "
+ "'type': '1', 'uni_id': '367305604961939456', 'url': "
+ "'http://www.chinanews.com/gn/2019/01-02/8717847.shtml', 'pushType': "
+ "'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '中国新闻社', 'id': 367305640101818368, "
+ "'partnerID': '201907200200055052', 'pic_url': "
+ "'http://i2.chinanews.com/simg/cmshd/2019/01/02/b949779e7d4749cd8708be25ea4954e1.jpg'}, "
+ "{'client_time': '2019-01-03 00:00:00', 'is_result': '1123255466', "
+ "'company_zt': '西部决策', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738954803, 'type': '1', 'uni_id': '367305604961939456', "
+ "'url': 'http://www.xibujuece.com/toutiao/35971.html', 'pushType': "
+ "'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '西部大开发杂志社', 'id': "
+ "367305641624350720, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://www.xibujuece.com/uploads/allimg/190103/65-1Z103095144H1.jpg'}, "
+ "{'client_time': '2019-01-02 00:00:00', 'is_result': '30931650', "
+ "'company_zt': '无锡博报移动端', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738955490, 'type': '4', 'uni_id': '367305604961939456', "
+ "'url': "
+ "'http://wxbb-api.wifiwx.com/folder617/folder632/2019-01-02/391783.html?_hgOutLink=news/newsDetail&amp;id=391783', "
+ "'pushType': 'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '无锡广播电视台新闻中心', 'id': "
+ "367305644505837568, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://img.wifiwx.com/material/news/img/2019/01/20190102212922QrGh.jpeg?9vfS'}, "
+ "{'client_time': '2019-01-02 00:00:00', 'is_result': '30931650', "
+ "'company_zt': '云南电视台', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738955549, 'type': '', 'uni_id': '367305604961939456', "
+ "'url': "
+ "'http://ynapp.yntv.cn/webapp-yrt/content/details.do?onBack=onBack&amp;refType=10&amp;id=1080368759561719808&amp;columnCode=YNSJTSYXSD', "
+ "'pushType': 'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '云南广播电视台', 'id': "
+ "367305644753301504, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://static.yntv.cn//upload/Contenttype/ueditor/image/20190102/1546413336248409.jpg'}, "
+ "{'client_time': '2019-01-03 13:01:18', 'is_result': '645541365', "
+ "'company_zt': '人民日报', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738955662, 'type': '4', 'uni_id': '367305604961939456', "
+ "'url': "
+ "'http://app.peopleapp.com/Api/600/DetailApi/shareArticle?type=0&amp;article_id=3420815', "
+ "'pushType': 'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '人民日报社', 'id': "
+ "367305645227257856, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://fwimage.cnfanews.com/websiteimg/2019/20190103/29002057/2744541546491698.jpg'}, "
+ "{'client_time': '2017-01-02 00:00:00', 'is_result': '30931650', "
+ "'company_zt': '海都网/海峡网', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738955013, 'type': '4', 'uni_id': '367305604961939456', "
+ "'url': "
+ "'http://img.fjdaily.com/data/fjrbwap/2019/01/02/cms_3025206260433920.html', "
+ "'pushType': 'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '海都网/海峡网(请修正)', 'id': "
+ "367305642505154560, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://img.fjdaily.com//data/userfiles/20190102/32831546413994621.jpg'}, "
+ "{'client_time': '2019-01-02 00:00:00', 'is_result': '30931650', "
+ "'company_zt': '荆楚网', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738955055, 'type': '4', 'uni_id': '367305604961939456', "
+ "'url': 'http://m.cnhubei.com/guonei/p/10036364.html', 'pushType': "
+ "'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '湖北荆楚网络科技股份有限公司', 'id': "
+ "367305642681315328, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://www.xinhuanet.com/politics/2019-01/02/1123937723_15464097197311n.jpg'}, "
+ "{'client_time': '0000-00-00 00:00:00', 'is_result': '30931650', "
+ "'company_zt': '中新网移动端', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738955275, 'type': '1', 'uni_id': '367305604961939456', "
+ "'url': 'http://www.chinanews.com/tp/hd2011/2019/01-02/860137.shtml', "
+ "'pushType': 'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '中国新闻社', 'id': "
+ "367305643604062208, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://i2.chinanews.com/simg/hd/2019/01/02/0c1e23a2b6f9426691f0837647f57ede.jpg'}, "
+ "{'client_time': '2019-01-02 00:00:00', 'is_result': '30931650', "
+ "'company_zt': '中新网移动端', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738955252, 'type': '1', 'uni_id': '367305604961939456', "
+ "'url': 'http://www.chinanews.com/gn/2019/01-02/8717847.shtml', 'pushType': "
+ "'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '中国新闻社', 'id': 367305643507593216, "
+ "'partnerID': '201907200200055052', 'pic_url': "
+ "'http://i2.chinanews.com/simg/cmshd/2019/01/02/b949779e7d4749cd8708be25ea4954e1.jpg'}, "
+ "{'client_time': '0000-00-00 00:00:00', 'is_result': '30931650', "
+ "'company_zt': '人民网', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738955132, 'type': '', 'uni_id': '367305604961939456', "
+ "'url': 'http://tw.people.com.cn/n1/2019/0121/c14657-30580235.html', "
+ "'pushType': 'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '人民网股份有限公司-2', 'id': "
+ "367305643004276736, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://tw.people.com.cn/NMediaFile/2019/0102/MAIN201901021122000283661360658.jpg'}, "
+ "{'client_time': '2019-01-02 00:00:00', 'is_result': '30931650', "
+ "'company_zt': '经济日报', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738954946, 'type': '1', 'uni_id': '367305604961939456', "
+ "'url': 'http://www.jingjiribao.cn/static/detail.jsp?id=160050', 'pushType': "
+ "'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '经济日报社', 'id': 367305642224136192, "
+ "'partnerID': '201907200200055052', 'pic_url': "
+ "'https://static.jingjiribao.cn/2019/1/2/20190102141211_3941.JPEG'}, "
+ "{'client_time': '2019-01-03 00:00:00', 'is_result': '357048125', "
+ "'company_zt': '龙岗网', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738957614, 'type': '4', 'uni_id': '367305604961939456', "
+ "'url': 'https://cmsuiv3.aheading.com/Article/ArticleRead/3411894', "
+ "'pushType': 'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '深圳侨报文化传播有限公司', 'id': "
+ "367305653414539264, 'partnerID': '201907200200055052', 'pic_url': "
+ "'https://cmsuiv3.aheading.com/UploadFile/8908/2019/01-03/image/6368210140102912825835671.jpg'}, "
+ "{'client_time': '2019-01-02 00:00:00', 'is_result': '30931650', "
+ "'company_zt': '荆楚网', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738956003, 'type': '4', 'uni_id': '367305604961939456', "
+ "'url': 'http://m.cnhubei.com/guonei/p/10035446.html', 'pushType': "
+ "'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '湖北荆楚网络科技股份有限公司', 'id': "
+ "367305646657515520, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://www.xinhuanet.com/photo/2019-01/02/1123936685_15463959426851n.jpg'}, "
+ "{'client_time': '0000-00-00 00:00:00', 'is_result': '30931650', "
+ "'company_zt': '中新网移动端', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738956228, 'type': '1', 'uni_id': '367305604961939456', "
+ "'url': 'http://www.chinanews.com/tp/hd2011/2019/01-02/860137.shtml', "
+ "'pushType': 'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '中国新闻社', 'id': "
+ "367305647601233920, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://i2.chinanews.com/simg/hd/2019/01/02/0c1e23a2b6f9426691f0837647f57ede.jpg'}, "
+ "{'client_time': '0000-00-00 00:00:00', 'is_result': '30931650', "
+ "'company_zt': '人民网', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738956096, 'type': '', 'uni_id': '367305604961939456', "
+ "'url': 'http://tw.people.com.cn/n1/2019/0121/c14657-30580235.html', "
+ "'pushType': 'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '人民网股份有限公司-2', 'id': "
+ "367305647047585792, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://tw.people.com.cn/NMediaFile/2019/0102/MAIN201901021122000283661360658.jpg'}, "
+ "{'client_time': '0000-00-00 00:00:00', 'is_result': '30931650', "
+ "'company_zt': '人民网', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738957175, 'type': '', 'uni_id': '367305604961939456', "
+ "'url': 'http://tw.people.com.cn/n1/2019/0122/c14657-30583684.html', "
+ "'pushType': 'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '人民网股份有限公司-2', 'id': "
+ "367305651573239808, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://tw.people.com.cn/NMediaFile/2019/0102/MAIN201901021122000283661360658.jpg'}, "
+ "{'client_time': '0000-00-00 00:00:00', 'is_result': '30931650', "
+ "'company_zt': '人民网', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738957208, 'type': '', 'uni_id': '367305604961939456', "
+ "'url': 'http://tw.people.com.cn/n1/2019/0128/c14657-30593314.html', "
+ "'pushType': 'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '人民网股份有限公司-2', 'id': "
+ "367305651711651840, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://tw.people.com.cn/NMediaFile/2019/0102/MAIN201901021122000283661360658.jpg'}, "
+ "{'client_time': '2019-01-02 00:00:00', 'is_result': '30931650', "
+ "'company_zt': '经济日报', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738956932, 'type': '1', 'uni_id': '367305604961939456', "
+ "'url': 'http://www.jingjiribao.cn/static/detail.jsp?id=160041', 'pushType': "
+ "'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '经济日报社', 'id': 367305650554023936, "
+ "'partnerID': '201907200200055052', 'pic_url': "
+ "'https://jjrb.oss-cn-hangzhou.aliyuncs.com/2019/1/2/dngd6tjds6s.jpg'}, "
+ "{'client_time': '2019-01-02 00:00:00', 'is_result': '30931650', "
+ "'company_zt': '经济日报', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738955909, 'type': '1', 'uni_id': '367305604961939456', "
+ "'url': 'http://www.jingjiribao.cn/static/detail.jsp?id=160050', 'pushType': "
+ "'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '经济日报社', 'id': 367305646263250944, "
+ "'partnerID': '201907200200055052', 'pic_url': "
+ "'https://static.jingjiribao.cn/2019/1/2/20190102141211_3941.JPEG'}, "
+ "{'client_time': '2019-01-02 00:00:00', 'is_result': '668508052', "
+ "'company_zt': '国际在线', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738953277, 'type': '1', 'uni_id': '367305604961939456', "
+ "'url': 'http://chinaplus.cri.cn/opinion/opedblog/23/20190102/230949.html', "
+ "'pushType': 'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '国广国际在线网络(北京)有限公司', "
+ "'id': 367305635223842816, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://img1.zhytuku.meldingcloud.com/images/zhycms_chinaplus/20190102/3034cd76-8ada-4a17-9430-4cd2f0dec8be.jpg?x-oss-process=image/resize,w_650'}, "
+ "{'client_time': '2019-02-28 00:00:00', 'is_result': '684500393', "
+ "'company_zt': '国际在线', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738953302, 'type': '1', 'uni_id': '367305604961939456', "
+ "'url': 'http://chinaplus.cri.cn/news/china/9/20190228/254677.html', "
+ "'pushType': 'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '国广国际在线网络(北京)有限公司', "
+ "'id': 367305635328700416, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://img0.zhytuku.meldingcloud.com/images/zhycms_chinaplus/20190228/659e792a-e299-4798-a922-a4c3ad812eca.jpg?x-oss-process=image/resize,w_650'}, "
+ "{'client_time': '2019-01-02 00:00:00', 'is_result': '668508052', "
+ "'company_zt': '国际在线', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738953255, 'type': '1', 'uni_id': '367305604961939456', "
+ "'url': 'http://chinaplus.cri.cn/news/china/9/20190102/230947.html', "
+ "'pushType': 'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '国广国际在线网络(北京)有限公司', "
+ "'id': 367305635131568128, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://img1.zhytuku.meldingcloud.com/images/zhycms_chinaplus/20190102/e6297887-a7b3-4169-b199-86f2baeabd2b.jpg?x-oss-process=image/resize,w_650'}, "
+ "{'client_time': '0000-00-00 00:00:00', 'is_result': '30931650', "
+ "'company_zt': '人民网', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738953599, 'type': '', 'uni_id': '367305604961939456', "
+ "'url': 'http://tw.people.com.cn/n1/2019/0122/c14657-30583684.html', "
+ "'pushType': 'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '人民网股份有限公司-2', 'id': "
+ "367305636574408704, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://tw.people.com.cn/NMediaFile/2019/0102/MAIN201901021122000283661360658.jpg'}, "
+ "{'client_time': '2019-01-03 00:00:00', 'is_result': '1123255466', "
+ "'company_zt': '西部决策', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738952572, 'type': '1', 'uni_id': '367305604961939456', "
+ "'url': 'http://www.xibujuece.com/toutiao/35971.html', 'pushType': "
+ "'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '西部大开发杂志社', 'id': "
+ "367305632266858496, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://www.xibujuece.com/uploads/allimg/190103/65-1Z103095144H1.jpg'}, "
+ "{'client_time': '2019-01-03 00:00:00', 'is_result': '1123255466', "
+ "'company_zt': '西部决策', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738952714, 'type': '1', 'uni_id': '367305604961939456', "
+ "'url': 'http://www.xibujuece.com/toutiao/35971.html', 'pushType': "
+ "'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '西部大开发杂志社', 'id': "
+ "367305632862449664, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://www.xibujuece.com/uploads/allimg/190103/65-1Z103095144H1.jpg'}, "
+ "{'client_time': '0000-00-00 00:00:00', 'is_result': '487544620', "
+ "'company_zt': '你好衡阳网', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738952477, 'type': '1', 'uni_id': '367305604961939456', "
+ "'url': 'http://www.hyqss.cn/2019/january/48E0DD7E.html', 'pushType': "
+ "'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '衡阳日报社', 'id': 367305631868399616, "
+ "'partnerID': '201907200200055052', 'pic_url': "
+ "'http://img.hyqss.cn/upload/2019/01/small_news_1123937723_15464327400981n.jpg'}, "
+ "{'client_time': '0000-00-00 00:00:00', 'is_result': '487544620', "
+ "'company_zt': '你好衡阳网', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738952544, 'type': '1', 'uni_id': '367305604961939456', "
+ "'url': 'http://www.hyqss.cn/2019/january/48E0DD7E.html', 'pushType': "
+ "'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '衡阳日报社', 'id': 367305632149417984, "
+ "'partnerID': '201907200200055052', 'pic_url': "
+ "'http://img.hyqss.cn/upload/2019/01/small_news_1123937723_15464327400981n.jpg'}, "
+ "{'client_time': '2019-01-02 00:00:00', 'is_result': '668508052', "
+ "'company_zt': '国际在线', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738954032, 'type': '1', 'uni_id': '367305604961939456', "
+ "'url': 'http://chinaplus.cri.cn/news/china/9/20190102/230947.html', "
+ "'pushType': 'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '国广国际在线网络(北京)有限公司', "
+ "'id': 367305638390542336, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://img1.zhytuku.meldingcloud.com/images/zhycms_chinaplus/20190102/e6297887-a7b3-4169-b199-86f2baeabd2b.jpg?x-oss-process=image/resize,w_650'}, "
+ "{'client_time': '2019-01-02 00:00:00', 'is_result': '30931650', "
+ "'company_zt': '无锡博报移动端', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738953828, 'type': '4', 'uni_id': '367305604961939456', "
+ "'url': "
+ "'http://wxbb-api.wifiwx.com/folder617/folder632/2019-01-02/391783.html?_hgOutLink=news/newsDetail&amp;id=391783', "
+ "'pushType': 'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '无锡广播电视台新闻中心', 'id': "
+ "367305637534904320, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://img.wifiwx.com/material/news/img/2019/01/20190102212922QrGh.jpeg?9vfS'}, "
+ "{'client_time': '2019-01-02 00:00:00', 'is_result': '30931650', "
+ "'company_zt': '云南电视台', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738953873, 'type': '', 'uni_id': '367305604961939456', "
+ "'url': "
+ "'http://ynapp.yntv.cn/webapp-yrt/content/details.do?onBack=onBack&amp;refType=10&amp;id=1080368759561719808&amp;columnCode=YNSJTSYXSD', "
+ "'pushType': 'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '云南广播电视台', 'id': "
+ "367305637723648000, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://static.yntv.cn//upload/Contenttype/ueditor/image/20190102/1546413336248409.jpg'}, "
+ "{'client_time': '2019-01-02 00:00:00', 'is_result': '30931650', "
+ "'company_zt': '云南电视台', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738953852, 'type': '', 'uni_id': '367305604961939456', "
+ "'url': "
+ "'http://ynapp.yntv.cn/webapp-yrt/content/details.do?onBack=onBack&amp;refType=10&amp;id=1080368759561719808&amp;columnCode=YNSJTSYXSD', "
+ "'pushType': 'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '云南广播电视台', 'id': "
+ "367305637635567616, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://static.yntv.cn/upload/Contenttype/ueditor/image/20190102/1546413336248409.jpg'}, "
+ "{'client_time': '2017-01-02 00:00:00', 'is_result': '30931650', "
+ "'company_zt': '海都网/海峡网', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738954194, 'type': '4', 'uni_id': '367305604961939456', "
+ "'url': "
+ "'http://img.fjdaily.com/data/fjrbwap/2019/01/02/cms_3025206260433920.html', "
+ "'pushType': 'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '海都网/海峡网(请修正)', 'id': "
+ "367305639070019584, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://img.fjdaily.com//data/userfiles/20190102/32831546413994621.jpg'}, "
+ "{'client_time': '2019-01-02 00:00:00', 'is_result': '30931650', "
+ "'company_zt': '中新网移动端', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738953713, 'type': '1', 'uni_id': '367305604961939456', "
+ "'url': 'http://www.chinanews.com/gn/2019/01-02/8717847.shtml', 'pushType': "
+ "'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '中国新闻社', 'id': 367305637052559360, "
+ "'partnerID': '201907200200055052', 'pic_url': "
+ "'http://i2.chinanews.com/simg/cmshd/2019/01/02/b949779e7d4749cd8708be25ea4954e1.jpg'}, "
+ "{'client_time': '2019-01-03 00:00:00', 'is_result': '1123255466', "
+ "'company_zt': '西部决策', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738953986, 'type': '1', 'uni_id': '367305604961939456', "
+ "'url': 'http://www.xibujuece.com/toutiao/35971.html', 'pushType': "
+ "'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '西部大开发杂志社', 'id': "
+ "367305638197604352, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://www.xibujuece.com/uploads/allimg/190103/65-1Z103095144H1.jpg'}, "
+ "{'client_time': '0000-00-00 00:00:00', 'is_result': '487544620', "
+ "'company_zt': '你好衡阳网', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567738953956, 'type': '1', 'uni_id': '367305604961939456', "
+ "'url': 'http://www.hyqss.cn/2019/january/48E0DD7E.html', 'pushType': "
+ "'quanwang', 'serialNo': '367305604961939456', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '衡阳日报社', 'id': 367305638071775232, "
+ "'partnerID': '201907200200055052', 'pic_url': "
+ "'http://img.hyqss.cn/upload/2019/01/small_news_1123937723_15464327400981n.jpg'}], "
+ "'success': True, 'resultCode': '0204000'}")
+'监测接口响应耗时：0.10004615783691406'
+'监测接口响应结果验证耗时：1.0028839111328125'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "serialNo": "367305604961939456", "pageNumber": '
+ '"500", "pageSize": "50", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "salt": '
+ '"c3a396bed5018b66349ac28cac0e0bb0YLZ3XCEE4J21N0YHQNEW"}')
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='total_row'>
+    <td>Total</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+
+</body>
+</html>

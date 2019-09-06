@@ -26,6 +26,7 @@ import time
 import logging
 from InterfaceTest.python_excel.utils.operation_cfg import OperationCFG
 from InterfaceTest.python_excel.get_data.common_param_dic import CommonParamDict
+from InterfaceTest.python_excel.get_data.dependCase import DependCase
 mylog = logging.getLogger(__file__)
 ope_cfg = OperationCFG("/home/ma/PycharmProjects/AutoTest_python/InterfaceTest/project_tree/TSA-IPPS-JC/config/caseRun.cfg","my_case_file")
 option_dict = ope_cfg.get_config_dict()
@@ -66,13 +67,19 @@ class CaseRun(unittest.TestCase):
         :return:
         '''
         pp = pprint.PrettyPrinter(indent=4)
-        #获取请求地址：
-        url = option_dict["url"]
+
         #获取请求接口不传入参数列表
         no_request_list = cpd.param.get_param_no_request_list()
         #深拷贝参数字典
         no_request_dict = {}
         req_data_dict = deepcopy(data_dict)
+        if str(req_data_dict.get("IsDepend","")).lower() == "yes": #是否需要先执行依赖测试用例
+            dep_case = DependCase(**req_data_dict)
+
+        if req_data_dict.get("Requrl", None):
+            url = req_data_dict.pop("Requrl")
+        else:
+            url = option_dict["Requrl"]
         for param  in no_request_list:
             no_request_dict[param] = req_data_dict.pop(param)
         req_s_time = time.time()
@@ -83,15 +90,15 @@ class CaseRun(unittest.TestCase):
             res = ori_res.json()
         except Exception as e:
             res = ori_res.text
-        pp.pprint("监测接口用例执行详情如下：")
-        pp.pprint("监测接口执行测试用例编号：[{}]".format(no_request_dict["CaseID"]))
-        pp.pprint("监测接口测试目的：{}".format(no_request_dict["TestTarget"]))
-        pp.pprint("监测接口用例描述：{}".format(no_request_dict["CaseDesc"]))
-        pp.pprint("监测接口地址：{}".format(url))
-        pp.pprint("监测接口预期接口返回值={}".format(no_request_dict["ExpectValue"]))
-        pp.pprint("监测接口预期回调状态值={}".format(no_request_dict["ExpCallbackFlag"]))
-        pp.pprint("监测接口响应结果={}".format(res))
-        pp.pprint("监测接口响应耗时：{}".format(hs))
+        pp.pprint("{}接口用例执行详情如下：".format(option_dict.get("interface_name","")))
+        pp.pprint("{}接口执行测试用例编号：[{}]".format(option_dict.get("interface_name",""),no_request_dict["CaseID"]))
+        pp.pprint("{}接口测试目的：{}".format(option_dict.get("interface_name",""),no_request_dict["TestTarget"]))
+        pp.pprint("{}接口用例描述：{}".format(option_dict.get("interface_name",""),no_request_dict["CaseDesc"]))
+        pp.pprint("{}接口地址：{}".format(option_dict.get("interface_name",""),url))
+        pp.pprint("{}接口预期接口返回值={}".format(option_dict.get("interface_name",""),no_request_dict["ExpectValue"]))
+        pp.pprint("{}接口预期回调状态值={}".format(option_dict.get("interface_name",""),no_request_dict["ExpCallbackFlag"]))
+        pp.pprint("{}接口响应结果={}".format(option_dict.get("interface_name",""),res))
+        pp.pprint("{}接口响应耗时：{}".format(option_dict.get("interface_name",""),hs))
 
 
         kargs = {
@@ -109,7 +116,7 @@ class CaseRun(unittest.TestCase):
         verify_res = self.crr.verify_is_pass(**kargs)
         end =time.time()
         hs = end -start
-        pp.pprint("监测接口响应结果验证耗时：{}".format(hs))
+        pp.pprint("{}接口响应结果验证耗时：{}".format(option_dict.get("interface_name",""),hs))
 
         is_pass = self.cp.case_is_pass(**verify_res)
         pp.pprint("请求参数={}".format(json.dumps(req_data_dict, ensure_ascii=False)))
@@ -132,6 +139,6 @@ if __name__ == "__main__":
     fp = open(report_path,'wb')
     suite = unittest.TestLoader().loadTestsFromTestCase(CaseRun)
     title = '版权服务2.0生产环境接口测试报告（https）'
-    description = "监测接口-主流程测试用例-主要验证所有参数合法参数监测成功及必填参数非法数据监测失败"
+    description = "{0}接口-主流程测试用例-主要验证所有参数合法参数{0}成功及必填参数非法数据{0}失败".format(option_dict.get("interface_name",""))
     runner = HTMLTestRunner.HTMLTestRunner(stream=fp,title=title,description=description,verbosity=2)
     runner.run(suite)

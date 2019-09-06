@@ -1,0 +1,722 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>版权服务2.0生产环境接口测试报告（https）</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+<style type="text/css" media="screen">
+body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
+table       { font-size: 100%; }
+pre         { }
+
+/* -- heading ---------------------------------------------------------------------- */
+h1 {
+	font-size: 16pt;
+	color: gray;
+}
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+
+.heading .attribute {
+    margin-top: 1ex;
+    margin-bottom: 0;
+}
+
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+
+/* -- css div popup ------------------------------------------------------------------------ */
+a.popup_link {
+}
+
+a.popup_link:hover {
+    color: red;
+}
+
+.popup_window {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    padding: 10px;
+    background-color: #E6E6D6;
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 8pt;
+    width: 500px;
+}
+
+}
+/* -- report ------------------------------------------------------------------------ */
+#show_detail_line {
+    margin-top: 3ex;
+    margin-bottom: 1ex;
+}
+#result_table {
+    width: 80%;
+    border-collapse: collapse;
+    border: 1px solid #777;
+}
+#header_row {
+    font-weight: bold;
+    color: white;
+    background-color: #777;
+}
+#result_table td {
+    border: 1px solid #777;
+    padding: 2px;
+}
+#total_row  { font-weight: bold; }
+.passClass  { background-color: #6c6; }
+.failClass  { background-color: #c60; }
+.errorClass { background-color: #c00; }
+.passCase   { color: #6c6; }
+.failCase   { color: #c60; font-weight: bold; }
+.errorCase  { color: #c00; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+
+
+/* -- ending ---------------------------------------------------------------------- */
+#ending {
+}
+
+</style>
+
+</head>
+<body>
+<script language="javascript" type="text/javascript"><!--
+output_list = Array();
+
+/* level - 0:Summary; 1:Failed; 2:All */
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level < 1) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level > 1) {
+                tr.className = '';
+            }
+            else {
+                tr.className = 'hiddenRow';
+            }
+        }
+    }
+}
+
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        tid0 = 't' + cid.substr(1) + '.' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        if (toHide) {
+            document.getElementById('div_'+tid).style.display = 'none'
+            document.getElementById(tid).className = 'hiddenRow';
+        }
+        else {
+            document.getElementById(tid).className = '';
+        }
+    }
+}
+
+
+function showTestDetail(div_id){
+    var details_div = document.getElementById(div_id)
+    var displayState = details_div.style.display
+    // alert(displayState)
+    if (displayState != 'block' ) {
+        displayState = 'block'
+        details_div.style.display = 'block'
+    }
+    else {
+        details_div.style.display = 'none'
+    }
+}
+
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+
+/* obsoleted by detail in <div>
+function showOutput(id, name) {
+    var w = window.open("", //url
+                    name,
+                    "resizable,scrollbars,status,width=800,height=450");
+    d = w.document;
+    d.write("<pre>");
+    d.write(html_escape(output_list[id]));
+    d.write("\n");
+    d.write("<a href='javascript:window.close()'>close</a>\n");
+    d.write("</pre>\n");
+    d.close();
+}
+*/
+--></script>
+
+<div class='heading'>
+<h1>版权服务2.0生产环境接口测试报告（https）</h1>
+<p class='attribute'><strong>Start Time:</strong> 2019-09-06 12:38:02</p>
+<p class='attribute'><strong>Duration:</strong> 0:00:01.183799</p>
+<p class='attribute'><strong>Status:</strong> Pass 1</p>
+
+<p class='description'>监测接口-主流程测试用例-主要验证所有参数合法参数监测成功及必填参数非法数据监测失败</p>
+</div>
+
+
+
+<p id='show_detail_line'>Show
+<a href='javascript:showCase(0)'>Summary</a>
+<a href='javascript:showCase(1)'>Failed</a>
+<a href='javascript:showCase(2)'>All</a>
+</p>
+<table id='result_table'>
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row'>
+    <td>Test Group/Test case</td>
+    <td>Count</td>
+    <td>Pass</td>
+    <td>Fail</td>
+    <td>Error</td>
+    <td>View</td>
+</tr>
+
+<tr class='passClass'>
+    <td>CaseRun</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c1',1)">Detail</a></td>
+</tr>
+
+<tr id='pt1.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_1</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
+        pass</a>
+
+    <div id='div_pt1.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.1: '监测接口用例执行详情如下：'
+'监测接口执行测试用例编号：[BQ_JC_001]'
+'监测接口测试目的：请求成功'
+'监测接口用例描述：所有必传参数正确传入'
+'监测接口地址：http://39.107.66.190:9990/v2/api/monitor/opusMonitor'
+'监测接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'监测接口预期回调状态值={"callbackFlag":false}'
+("监测接口响应结果={'msg': '请求成功', 'salt': "
+ "'4fdfbb2c786f72e48775f7d05e059ed4YLZ3XCEE4J21N0YHQNEW', 'data': "
+ "[{'client_time': '2017-12-15 00:00:00', 'is_result': '805966012', "
+ "'company_zt': '金征远出入境服务', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744556659, 'type': '2', 'uni_id': '367329081693581312', "
+ "'url': "
+ "'http://mp.weixin.qq.com/s?__biz=MjM5MjQ0Njc0MA==&amp;amp;mid=2653998375&amp;amp;idx=4&amp;amp;sn=14a414b82d40a01a3073e26668c41d7c&amp;amp;chksm=bd624d5c8a15c44a37a3c12e0097b21ed61c758cd6eb0d556f72a454aea7f52f318594c7c732&amp;amp;scene=27#wechat_redirect', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '北京金征远出入境服务有限公司', "
+ "'id': 367329137511378944, 'partnerID': '201907200200055052', 'pic_url': "
+ "'https://mmbiz.qpic.cn/mmbiz_jpg/Ir1eRm6EoKicdmGhlE3WhOjhabq1wiaVBpsxrxxa8bueWg1NRDGR1aRat1o7uS8ztPhLTksS1lcV5nG2fvvelTSA/0?wx_fmt=jpeg'}, "
+ "{'client_time': '2017-12-14 00:00:00', 'is_result': '805966012', "
+ "'company_zt': '金征远出入境服务', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744556637, 'type': '2', 'uni_id': '367329081693581312', "
+ "'url': "
+ "'http://mp.weixin.qq.com/s?__biz=MjM5MjQ0Njc0MA==&amp;amp;mid=2653998362&amp;amp;idx=5&amp;amp;sn=f59e8bc458479ecc476aedceecd629f1&amp;amp;chksm=bd624d618a15c4774b4131e448585eeace5d7f286fb35d94fb61eafddacc6336e9bc332b75a0&amp;amp;scene=27#wechat_redirect', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '北京金征远出入境服务有限公司', "
+ "'id': 367329137419104256, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://mmbiz.qpic.cn/mmbiz_jpg/Ir1eRm6EoKicdmGhlE3WhOjhabq1wiaVBpsxrxxa8bueWg1NRDGR1aRat1o7uS8ztPhLTksS1lcV5nG2fvvelTSA/0?wx_fmt=jpeg'}, "
+ "{'client_time': '2017-12-13 00:00:00', 'is_result': '805966012', "
+ "'company_zt': '金征远出入境服务', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744556828, 'type': '2', 'uni_id': '367329081693581312', "
+ "'url': "
+ "'http://mp.weixin.qq.com/s?__biz=MzI5MDAyMzEzMg==&amp;amp;mid=2652964110&amp;amp;idx=5&amp;amp;sn=8d4921a25dd9cc3db66dd84d1dcaf934&amp;amp;chksm=f7f396bdc0841fabe811b4230e5a9e1290465c623207b82ae9a448a724847d5edbfb39e733ee&amp;amp;scene=27#wechat_redirect', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '北京金征远出入境服务有限公司', "
+ "'id': 367329138220216320, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://mmbiz.qpic.cn/mmbiz_jpg/Ir1eRm6EoKicdmGhlE3WhOjhabq1wiaVBpsxrxxa8bueWg1NRDGR1aRat1o7uS8ztPhLTksS1lcV5nG2fvvelTSA/0?wx_fmt=jpeg'}, "
+ "{'client_time': '2017-12-04 00:00:00', 'is_result': '805966012', "
+ "'company_zt': '金征远出入境服务', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744556719, 'type': '2', 'uni_id': '367329081693581312', "
+ "'url': "
+ "'http://mp.weixin.qq.com/s?__biz=MzI5MDAyMzEzMg==&amp;amp;mid=2652964048&amp;amp;idx=1&amp;amp;sn=c8c88d81cd24d6f9157a9a29d90b926b&amp;amp;chksm=f7f39763c0841e756124e1c486f0e051739e26dcba85cfe9ec3061a529f0380937bfad42e8cf&amp;amp;scene=27#wechat_redirect', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '北京金征远出入境服务有限公司', "
+ "'id': 367329137763037184, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://mmbiz.qpic.cn/mmbiz_jpg/Ir1eRm6EoK9tGib2UIIDNhywm2RWCqbWv71drp0XRySo1vS6uL1uGpKNa9gl4Iia6cnX0myYEz7vuPZiblms4eZMQ/0?wx_fmt=jpeg'}, "
+ "{'client_time': '2013-11-16 00:00:00', 'is_result': '210199418', "
+ "'company_zt': '东大正保', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744557175, 'type': '3', 'uni_id': '367329081693581312', "
+ "'url': 'http://weibo.com/1198390942/AiXTUBBZ9', 'pushType': 'quanwang', "
+ "'serialNo': '367329081693581312', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '北京东大正保科技有限公司', 'id': "
+ "367329139675639808, 'partnerID': '201907200200055052', 'pic_url': "
+ "'https://ww1.sinaimg.cn/orj360/476dfe9ejw1eammqn6zo2j20a005kmxs.jpg'}, "
+ "{'client_time': '2013-11-19 00:00:00', 'is_result': '210199418', "
+ "'company_zt': '东大正保', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744557222, 'type': '3', 'uni_id': '367329081693581312', "
+ "'url': 'http://weibo.com/1198390942/AjmfCtn6x', 'pushType': 'quanwang', "
+ "'serialNo': '367329081693581312', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '北京东大正保科技有限公司', 'id': "
+ "367329139872772096, 'partnerID': '201907200200055052', 'pic_url': "
+ "'https://ww2.sinaimg.cn/orj360/476dfe9ejw1eapm8n7p8pj20a005kmxs.jpg'}, "
+ "{'client_time': '2018-01-04 00:00:00', 'is_result': '829725716', "
+ "'company_zt': '金征远出入境服务', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744557315, 'type': '2', 'uni_id': '367329081693581312', "
+ "'url': "
+ "'http://mp.weixin.qq.com/s?__biz=MjM5MjQ0Njc0MA==&amp;amp;mid=2653998572&amp;amp;idx=1&amp;amp;sn=0c49254e0450fdb5598437df273f35e6&amp;amp;chksm=bd624d978a15c481cc0c100548b3ebb9dcffa6f18438a87d3dacf4f8ddf67a5d6ae5861451e2&amp;amp;scene=27#wechat_redirect', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '北京金征远出入境服务有限公司', "
+ "'id': 367329140262842368, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://mmbiz.qpic.cn/mmbiz_png/Ir1eRm6EoK9XdNdOgxcbMLY8bzoMeodeGBMJR9oqYcm7jY4aicRrZZkqH3sh2eib6lgzZ103vHLibaclyWEGiaMPeg/0?wx_fmt=png'}, "
+ "{'client_time': '2017-05-26 00:00:00', 'is_result': '942413542', "
+ "'company_zt': '龙文教育', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744557907, 'type': '2', 'uni_id': '367329081693581312', "
+ "'url': "
+ "'http://mp.weixin.qq.com/s?__biz=MjM5NjYwNDYwMg==&amp;amp;mid=2649694614&amp;amp;idx=2&amp;amp;sn=556252bfe8d37bf11fa36bf64b431365&amp;amp;chksm=befd3e43898ab75599dc9dc2dcdb3f55218d348a0b096f1b1a79d7d33a43a690341291249f9c&amp;amp;scene=27#wechat_redirect', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '北京龙文环球教育科技有限公司', "
+ "'id': 367329142745870336, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://mmbiz.qpic.cn/mmbiz_png/F3Uia2Ez6ygdNJOQzg42ErZt2mGibCMWJic3SibEEAp1gBKmD37HcEEbx99pM5neSoz3euIDCDic8C7QZHyhBaoutpw/640?wx_fmt=png'}, "
+ "{'client_time': '2017-07-19 00:00:00', 'is_result': '930178051', "
+ "'company_zt': '永安期货', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744557844, 'type': '2', 'uni_id': '367329081693581312', "
+ "'url': "
+ "'http://mp.weixin.qq.com/s?__biz=MzA4NTQzNzMxNw==&amp;amp;mid=2650778768&amp;amp;idx=4&amp;amp;sn=b88b7a8a69ba6ba4dc8f2ad662627c01&amp;amp;chksm=87dcf27ab0ab7b6c9c49ae69cc49dd0a742a4252aaa21a2a22cca4b2e6cde88cdd6c61ffeb0f&amp;amp;scene=27#wechat_redirect', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '永安期货股份有限公司', 'id': "
+ "367329142481629184, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://mmbiz.qpic.cn/mmbiz_png/YjQnfLDBfLorvvruPnqy4VNqvRTgq7iaPFbcIJTb5ibnkEA4I0E93NAvWB5rRNqRAuU6G4Mw2lKebsKBibyvKZZSA/0?wx_fmt=png'}, "
+ "{'client_time': '2018-05-23 00:00:00', 'is_result': '257662604', "
+ "'company_zt': '厦门网', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744557242, 'type': '2', 'uni_id': '367329081693581312', "
+ "'url': "
+ "'http://mp.weixin.qq.com/s?__biz=MzA4ODYxNzAxMA==&amp;amp;mid=2651348692&amp;amp;idx=3&amp;amp;sn=9f60a29ec3a4f1d052997147089a6092&amp;amp;chksm=8bdb8789bcac0e9f710184955bc731d8559cb3745e4f900a745fb7f3f5615dcc8b0f19a2964b&amp;amp;scene=27#wechat_redirect', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '厦门网', 'id': "
+ "367329139956658176, 'partnerID': '201907200200055052', 'pic_url': "
+ "'https://mmbiz.qpic.cn/mmbiz_png/XG2mavKxFD9sO00Pia7eeibHO4yUUn0eoOsDHZeMmXic7lthxfnlfh7LiaicVXnOW0YfK5tuKw3Ba5nuwBmzobibPRibQ/640?wx_fmt=png'}, "
+ "{'client_time': '2018-11-15 20:07:14', 'is_result': '593225366', "
+ "'company_zt': '穿衣搭配/读点历史/美腿瘦腿/美景中国', 'dataType': 'second', 'callbackFlag': "
+ "False, 'updateTime': 1567744557949, 'type': '4', 'uni_id': "
+ "'367329081693581312', 'url': "
+ "'https://static.nfapp.southcn.com/content/201811/15/c1666941.html', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '北京一点网聚信息技术有限公司', "
+ "'id': 367329142922031104, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://fwimage.cnfanews.com/websiteimg/2018/20181115/29027634/0kaeo1ketn.jpg'}, "
+ "{'client_time': '2018-09-02 10:49:07', 'is_result': '573872145', "
+ "'company_zt': '穿衣搭配/读点历史/美腿瘦腿/美景中国', 'dataType': 'second', 'callbackFlag': "
+ "False, 'updateTime': 1567744557675, 'type': '4', 'uni_id': "
+ "'367329081693581312', 'url': "
+ "'https://static.nfapp.southcn.com/content/201809/02/c1453264.html', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '北京一点网聚信息技术有限公司', "
+ "'id': 367329141772791808, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://fwimage.cnfanews.com/websiteimg/2018/20180902/29028325/0jwqi1lbvi.jpg'}, "
+ "{'client_time': '2018-12-07 15:22:58', 'is_result': '532923838', "
+ "'company_zt': '南方Plus移动端', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744557634, 'type': '4', 'uni_id': '367329081693581312', "
+ "'url': 'https://static.nfapp.southcn.com/content/201812/07/c1735364.html', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '南方报业传媒集团', 'id': "
+ "367329141600825344, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://fwimage.cnfanews.com/websiteimg/2018/20181207/29000459/b51f1e73-e281-43f0-b16d-ce19cc6f0f70.jpg'}, "
+ "{'client_time': '2018-09-20 16:09:06', 'is_result': '430442965', "
+ "'company_zt': 'ZAKER移动端', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744557820, 'type': '4', 'uni_id': '367329081693581312', "
+ "'url': "
+ "'http://app.myzaker.com/news/article.php?pk=5ba3673077ac64743d149ed2', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '广州坚和网络科技有限公司', 'id': "
+ "367329142380965888, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://fwimage.cnfanews.com/websiteimg/2018/20180920/29028326/5ba3673077ac64743d149eda_640.jpg'}, "
+ "{'client_time': '2019-03-13 20:41:30', 'is_result': '1214779566', "
+ "'company_zt': '今日头条', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744557522, 'type': '4', 'uni_id': '367329081693581312', "
+ "'url': 'https://www.toutiao.com/i6667854653792715268', 'pushType': "
+ "'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '北京字节跳动科技有限公司', 'id': "
+ "367329141131063296, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://fwimage.cnfanews.com/websiteimg/2019/20190313/29002952/1527691335249855350480f.jpg'}, "
+ "{'client_time': '2018-09-02 10:40:30', 'is_result': '593225366', "
+ "'company_zt': '穿衣搭配/读点历史/美腿瘦腿/美景中国', 'dataType': 'second', 'callbackFlag': "
+ "False, 'updateTime': 1567744557995, 'type': '4', 'uni_id': "
+ "'367329081693581312', 'url': "
+ "'https://static.nfapp.southcn.com/content/201809/02/c1453262.html', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '北京一点网聚信息技术有限公司', "
+ "'id': 367329143114969088, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://fwimage.cnfanews.com/websiteimg/2018/20180902/29028325/0jwqhwrrk7.jpg'}, "
+ "{'client_time': '2016-02-17 00:00:00', 'is_result': '303905420', "
+ "'company_zt': '新浪网', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744558098, 'type': '1', 'uni_id': '367329081693581312', "
+ "'url': 'http://slide.mil.news.sina.com.cn/h/slide_8_260_40604.html', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '新浪网', 'id': "
+ "367329143546982400, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://www.sinaimg.cn/dy/slidenews/8_img/2016_07/260_161852_657697.jpg'}, "
+ "{'client_time': '2017-06-23 00:00:00', 'is_result': '694311630', "
+ "'company_zt': '车质网', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744558216, 'type': '1', 'uni_id': '367329081693581312', "
+ "'url': 'http://www.12365auto.com/news/20170623/290849.shtml', 'pushType': "
+ "'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '北京车质网信息技术有限公司', 'id': "
+ "367329144041910272, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://img.12365auto.com/a/201706/23/201706230900503021_sst.jpg'}, "
+ "{'client_time': '2017-07-12 00:00:00', 'is_result': '211828871', "
+ "'company_zt': '海伦堡地产', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744558262, 'type': '2', 'uni_id': '367329081693581312', "
+ "'url': "
+ "'http://mp.weixin.qq.com/s?__biz=MzA5NzA5NzUxMA==&amp;amp;mid=2652419314&amp;amp;idx=2&amp;amp;sn=bd41efe17c32763239affd1310d262a0&amp;amp;chksm=8b4a16bbbc3d9fad94a8d3e61189528e7674334803f034ee234f51bac8b4e0609a60f3e4484c&amp;amp;scene=27#wechat_redirect', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '海伦堡控股集团有限公司', 'id': "
+ "367329144234848256, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://mmbiz.qpic.cn/mmbiz_jpg/CNvYhpricxTCvV6EhCYNuriatFldSShkGaLHuZpQWicTOaNP1oC5F0ICVfxzdyaxicLLjwjMichSPU2UC99vROBVuNw/640?wx_fmt=jpeg'}, "
+ "{'client_time': '2018-12-08 18:06:28', 'is_result': '515909232', "
+ "'company_zt': '南方Plus移动端', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744558285, 'type': '4', 'uni_id': '367329081693581312', "
+ "'url': 'https://static.nfapp.southcn.com/content/201812/08/c1738731.html', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '南方报业传媒集团', 'id': "
+ "367329144331317248, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://fwimage.cnfanews.com/websiteimg/2018/20181208/29000459/5cb62b80-9c39-4dd1-aac4-67cf13453c10.jpg'}, "
+ "{'client_time': '2018-12-18 17:08:35', 'is_result': '53514497', "
+ "'company_zt': '南方Plus移动端', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744558534, 'type': '4', 'uni_id': '367329081693581312', "
+ "'url': 'https://static.nfapp.southcn.com/content/201812/18/c1768885.html', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '南方报业传媒集团', 'id': "
+ "367329145375698944, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://fwimage.cnfanews.com/websiteimg/2018/20181218/29000459/735f6adf-0034-4f55-ad8d-df4090f69d1f.jpg'}, "
+ "{'client_time': '2018-08-25 00:00:00', 'is_result': '676451673', "
+ "'company_zt': '育学园', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744558612, 'type': '2', 'uni_id': '367329081693581312', "
+ "'url': "
+ "'http://mp.weixin.qq.com/s?__biz=MzAxNzI0NDU1OQ==&amp;mid=2651659906&amp;idx=1&amp;sn=0408cfb06dff31bc18f960bc11c59411&amp;chksm=80113662b766bf74fae4ad552af421394b5a502876843fe4a12fee9f98e22bd8beb5a96f971d&amp;scene=27#wechat_redirect', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '北京崔玉涛儿童健康管理中心有限公司', "
+ "'id': 367329145702854656, 'partnerID': '201907200200055052', 'pic_url': "
+ "'https://mmbiz.qpic.cn/mmbiz_jpg/CILiaiboBldmZJjUsAGRoPoQEmCDAZ92bic8jRugxJN8mvyCpC3o6eILKgibuVuPS4nSN4oE9LB0ibQrMp5OibUxicRdQ/640?wx_fmt=jpeg'}, "
+ "{'client_time': '2017-12-04 00:00:00', 'is_result': '805966012', "
+ "'company_zt': '金征远出入境服务', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744556478, 'type': '2', 'uni_id': '367329081693581312', "
+ "'url': "
+ "'http://mp.weixin.qq.com/s?__biz=MjM5MjQ0Njc0MA==&amp;amp;mid=2653998262&amp;amp;idx=1&amp;amp;sn=a35c2e9bf21343eb7aaa315f12bdb5be&amp;amp;chksm=bd624ccd8a15c5db7db7774bb562e889b00c8424000912fa2f1952823a41fd406116a2dd755b&amp;amp;scene=27#wechat_redirect', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '北京金征远出入境服务有限公司', "
+ "'id': 367329136752209920, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://mmbiz.qpic.cn/mmbiz_jpg/Ir1eRm6EoK9tGib2UIIDNhywm2RWCqbWv71drp0XRySo1vS6uL1uGpKNa9gl4Iia6cnX0myYEz7vuPZiblms4eZMQ/0?wx_fmt=jpeg'}, "
+ "{'client_time': '2017-12-11 00:00:00', 'is_result': '805966012', "
+ "'company_zt': '金征远出入境服务', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744556556, 'type': '2', 'uni_id': '367329081693581312', "
+ "'url': "
+ "'http://mp.weixin.qq.com/s?__biz=MjM5MjQ0Njc0MA==&amp;amp;mid=2653998331&amp;amp;idx=5&amp;amp;sn=30556e9437aa2e45ca534238b6b232a5&amp;amp;chksm=bd624c808a15c59613f19823ed0fbbc5d3afa9ae82658e86766ccadd8a480a01dd3341b10190&amp;amp;scene=27#wechat_redirect', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '北京金征远出入境服务有限公司', "
+ "'id': 367329137079365632, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://mmbiz.qpic.cn/mmbiz_jpg/Ir1eRm6EoKicdmGhlE3WhOjhabq1wiaVBpsxrxxa8bueWg1NRDGR1aRat1o7uS8ztPhLTksS1lcV5nG2fvvelTSA/0?wx_fmt=jpeg'}, "
+ "{'client_time': '2017-11-29 00:00:00', 'is_result': '805966012', "
+ "'company_zt': '金征远出入境服务', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744556450, 'type': '2', 'uni_id': '367329081693581312', "
+ "'url': "
+ "'http://mp.weixin.qq.com/s?__biz=MjM5MjQ0Njc0MA==&amp;amp;mid=2653998210&amp;amp;idx=1&amp;amp;sn=3bc932e109bd50ad03c8d5d911ef6d3b&amp;amp;chksm=bd624cf98a15c5efa88ceb9d1e4719b418c13adb44ec39acf385335a22dc54c3889ebbd7ee09&amp;amp;scene=27#wechat_redirect', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '北京金征远出入境服务有限公司', "
+ "'id': 367329136634769408, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://mmbiz.qpic.cn/mmbiz_jpg/Ir1eRm6EoK8WttlKusjTibNfuAgnwN7ibaMAOFRQW8pscRKdcVINB2Hy1KQM8aFDHsLAVjhSB0o1ia3Vpyu5hXDTA/0?wx_fmt=jpeg'}, "
+ "{'client_time': '2018-08-04 15:08:40', 'is_result': '308664035', "
+ "'company_zt': '央广网', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744556421, 'type': '1', 'uni_id': '367329081693581312', "
+ "'url': "
+ "'http://www.cnr.cn/newscenter/native/gd/20180804/t20180804_524323311.shtml', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '央广新媒体文化传媒(北京)有限公司', "
+ "'id': 367329136513134592, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://fwimage.cnfanews.com/websiteimg/2018/20180804/12749/a6589119f273c5f5a59e40679568b6de.png'}, "
+ "{'client_time': '2018-02-07 22:38:21', 'is_result': '513631196', "
+ "'company_zt': 'UC头条移动端', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744556366, 'type': '4', 'uni_id': '367329081693581312', "
+ "'url': "
+ "'http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=2644460638973312605', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '优视科技有限公司', 'id': "
+ "367329136282447872, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://fwimage.cnfanews.com/websiteimg/2018/20180207/29000893/14484080389095641463.jpg'}, "
+ "{'client_time': '2017-11-29 00:00:00', 'is_result': '805966012', "
+ "'company_zt': '金征远出入境服务', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744556689, 'type': '2', 'uni_id': '367329081693581312', "
+ "'url': "
+ "'http://mp.weixin.qq.com/s?__biz=MzI5MDAyMzEzMg==&amp;amp;mid=2652964016&amp;amp;idx=1&amp;amp;sn=0811bfbf9acd78b3708d1d0b609c16d0&amp;amp;chksm=f7f39703c0841e15f5d0bbdf1fae3434c642e4077bc77145b9ae7f435f628d81a017341d7573&amp;amp;scene=27#wechat_redirect', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '北京金征远出入境服务有限公司', "
+ "'id': 367329137637208064, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://mmbiz.qpic.cn/mmbiz_jpg/Ir1eRm6EoK8WttlKusjTibNfuAgnwN7ibaMAOFRQW8pscRKdcVINB2Hy1KQM8aFDHsLAVjhSB0o1ia3Vpyu5hXDTA/0?wx_fmt=jpeg'}, "
+ "{'client_time': '2017-12-11 00:00:00', 'is_result': '805966012', "
+ "'company_zt': '金征远出入境服务', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744556784, 'type': '2', 'uni_id': '367329081693581312', "
+ "'url': "
+ "'http://mp.weixin.qq.com/s?__biz=MzI5MDAyMzEzMg==&amp;amp;mid=2652964095&amp;amp;idx=5&amp;amp;sn=0f553334a5bd643c82180c8974d43d22&amp;amp;chksm=f7f3974cc0841e5a15047fc69342be4614d55e9a485eb1dc735d59c1cb9808f524d1dce49cf6&amp;amp;scene=27#wechat_redirect', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '北京金征远出入境服务有限公司', "
+ "'id': 367329138035666944, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://mmbiz.qpic.cn/mmbiz_jpg/Ir1eRm6EoKicdmGhlE3WhOjhabq1wiaVBpsxrxxa8bueWg1NRDGR1aRat1o7uS8ztPhLTksS1lcV5nG2fvvelTSA/0?wx_fmt=jpeg'}, "
+ "{'client_time': '2017-12-01 00:00:00', 'is_result': '829725716', "
+ "'company_zt': '金征远出入境服务', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744557345, 'type': '2', 'uni_id': '367329081693581312', "
+ "'url': "
+ "'http://mp.weixin.qq.com/s?__biz=MzI1NjM4OTkxMg==&amp;amp;mid=2247483766&amp;amp;idx=1&amp;amp;sn=347edf3e492d5a7e1ee6919979cb4a7e&amp;amp;chksm=ea262701dd51ae175b41782cca874255988d6d698c022245d313c6e7163497c97bfb5017009a&amp;amp;scene=27#wechat_redirect', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '北京金征远出入境服务有限公司', "
+ "'id': 367329140388671488, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://mmbiz.qpic.cn/mmbiz_png/Ir1eRm6EoK9XdNdOgxcbMLY8bzoMeodeGBMJR9oqYcm7jY4aicRrZZkqH3sh2eib6lgzZ103vHLibaclyWEGiaMPeg/0?wx_fmt=png'}, "
+ "{'client_time': '2017-12-14 00:00:00', 'is_result': '805966012', "
+ "'company_zt': '金征远出入境服务', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744556850, 'type': '2', 'uni_id': '367329081693581312', "
+ "'url': "
+ "'http://mp.weixin.qq.com/s?__biz=MzI5MDAyMzEzMg==&amp;amp;mid=2652964117&amp;amp;idx=5&amp;amp;sn=4deac7646fa5eb2616ef6f0bbada53a5&amp;amp;chksm=f7f396a6c0841fb0b4d8ce40cb0d349acc082c3f189d9fe81d73a4119c6af9d2eff03dd4b402&amp;amp;scene=27#wechat_redirect', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '北京金征远出入境服务有限公司', "
+ "'id': 367329138312491008, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://mmbiz.qpic.cn/mmbiz_jpg/Ir1eRm6EoKicdmGhlE3WhOjhabq1wiaVBpsxrxxa8bueWg1NRDGR1aRat1o7uS8ztPhLTksS1lcV5nG2fvvelTSA/0?wx_fmt=jpeg'}, "
+ "{'client_time': '2017-12-12 00:00:00', 'is_result': '805966012', "
+ "'company_zt': '金征远出入境服务', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744556582, 'type': '2', 'uni_id': '367329081693581312', "
+ "'url': "
+ "'http://mp.weixin.qq.com/s?__biz=MjM5MjQ0Njc0MA==&amp;amp;mid=2653998338&amp;amp;idx=5&amp;amp;sn=419bfa62d9f2d13b05c65d1cb1ed5dfa&amp;amp;chksm=bd624d798a15c46f48150b38d805e79e2577c46243fb7523ad1655f03fbeeb93651413c78431&amp;amp;scene=27#wechat_redirect', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '北京金征远出入境服务有限公司', "
+ "'id': 367329137188417536, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://mmbiz.qpic.cn/mmbiz_jpg/Ir1eRm6EoKicdmGhlE3WhOjhabq1wiaVBpsxrxxa8bueWg1NRDGR1aRat1o7uS8ztPhLTksS1lcV5nG2fvvelTSA/0?wx_fmt=jpeg'}, "
+ "{'client_time': '2017-12-12 00:00:00', 'is_result': '805966012', "
+ "'company_zt': '金征远出入境服务', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744556806, 'type': '2', 'uni_id': '367329081693581312', "
+ "'url': "
+ "'http://mp.weixin.qq.com/s?__biz=MzI5MDAyMzEzMg==&amp;amp;mid=2652964102&amp;amp;idx=5&amp;amp;sn=a9f8bca09aae8ebc16954aa9efe4981c&amp;amp;chksm=f7f396b5c0841fa373cc29ed36d2406a70a0d703f3a1f7a26422b0ab301fd79964c87f86a84c&amp;amp;scene=27#wechat_redirect', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '北京金征远出入境服务有限公司', "
+ "'id': 367329138127941632, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://mmbiz.qpic.cn/mmbiz_jpg/Ir1eRm6EoKicdmGhlE3WhOjhabq1wiaVBpsxrxxa8bueWg1NRDGR1aRat1o7uS8ztPhLTksS1lcV5nG2fvvelTSA/0?wx_fmt=jpeg'}, "
+ "{'client_time': '2015-06-30 00:00:00', 'is_result': '1071864469', "
+ "'company_zt': '英盛网', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744557054, 'type': '2', 'uni_id': '367329081693581312', "
+ "'url': "
+ "'http://mp.weixin.qq.com/s?__biz=MzA3MTY4OTgxOA==&amp;amp;mid=222449391&amp;amp;idx=1&amp;amp;sn=4843696773aeee27810ee7ffea316e36&amp;amp;chksm=179f5dda20e8d4ccaaf1285a7cd1da876a3feeeca5a9e5014ac2438f26fa7c71fa38ff87c373&amp;amp;scene=27#wechat_redirect', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '深圳市英盛网络教育科技有限公司', "
+ "'id': 367329139168129024, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://mmbiz.qpic.cn/mmbiz/VibwfMzlFYqFSg7qsF9SpY0wMsLOibPm737IaQTx49XkSUVJd5JWu5UzgTib70e20SNV5EGSMFCe4kraPT74OFicnw/0?wx_fmt=jpeg'}, "
+ "{'client_time': '2014-11-25 00:00:00', 'is_result': '387188935', "
+ "'company_zt': '海都网/海峡网', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744556977, 'type': '2', 'uni_id': '367329081693581312', "
+ "'url': "
+ "'http://mp.weixin.qq.com/s?__biz=MjM5NzM2NTMwMQ==&amp;amp;mid=201250994&amp;amp;idx=2&amp;amp;sn=7cf840efca5599c11f4a3a7f8849780e&amp;amp;scene=27#wechat_redirect', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '海都网/海峡网(请修正)', 'id': "
+ "367329138845167616, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://mmbiz.qpic.cn/mmbiz/QZOI4tdt6xiazN0ctxDAQibBILGLcjfr54u7r6ibdMGUkh834Ufton3mxO2SHaDB6Y9w0kicW39WXRMskNfRcHqZfw/0'}, "
+ "{'client_time': '2018-02-10 00:00:00', 'is_result': '256996898', "
+ "'company_zt': '口袋购物', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744556896, 'type': '4', 'uni_id': '367329081693581312', "
+ "'url': 'https://weidian.com/p5/diary/pages/diary.php?id=15672057', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': "
+ "'北京口袋时尚科技有限公司／无线生活(杭州)信息科技有限公司', 'id': 367329138505428992, 'partnerID': "
+ "'201907200200055052', 'pic_url': "
+ "'https://si.geilicdn.com/bj-vshop-962305972-1518278630913-834430499_640_228.jpg?w=640&amp;amp;h=228'}, "
+ "{'client_time': '2017-01-16 00:00:00', 'is_result': '930207338', "
+ "'company_zt': '永安期货', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744557742, 'type': '2', 'uni_id': '367329081693581312', "
+ "'url': "
+ "'http://mp.weixin.qq.com/s?__biz=MzA4NTQzNzMxNw==&amp;amp;mid=2650776232&amp;amp;idx=3&amp;amp;sn=c3b56d34a1964e0308f513ea3bb8c9e4&amp;amp;chksm=87dcfc42b0ab75541c46a8a0c6d0d401fd19882b12d308978b8e4591d60b1b8bb50df35a1667&amp;amp;scene=27#wechat_redirect', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '永安期货股份有限公司', 'id': "
+ "367329142053810176, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://mmbiz.qpic.cn/mmbiz_png/YjQnfLDBfLpzG3cee2P3lSoibicdoFxVvFBol1iavvlx4WPxFxkib5L4PfOh5dbRzwjKU8zrRsV6HrFUwo3tlxxjvg/0?wx_fmt=png'}, "
+ "{'client_time': '2018-12-02 18:11:43', 'is_result': '91561045', "
+ "'company_zt': '凤凰新闻', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744557787, 'type': '4', 'uni_id': '367329081693581312', "
+ "'url': "
+ "'https://m.ifeng.com/vampire/shareNews?ch=qd_sdk_dl1&amp;fromType=vampire&amp;aid=sub_90962554', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '北京天盈九州网络技术有限公司-1', "
+ "'id': 367329142242553856, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://fwimage.cnfanews.com/websiteimg/2018/20181202/29004199/bd10144413a4de8a6c84c7ffbecd854f0e2660bb_size145_w2560_h852.jpg'}, "
+ "{'client_time': '2018-10-05 11:32:25', 'is_result': '581953567', "
+ "'company_zt': '穿衣搭配/读点历史/美腿瘦腿/美景中国', 'dataType': 'second', 'callbackFlag': "
+ "False, 'updateTime': 1567744557480, 'type': '4', 'uni_id': "
+ "'367329081693581312', 'url': "
+ "'https://static.nfapp.southcn.com/content/201810/05/c1547622.html', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '北京一点网聚信息技术有限公司', "
+ "'id': 367329140954902528, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://fwimage.cnfanews.com/websiteimg/2018/20181005/29028325/0kcjme43tw.jpg'}, "
+ "{'client_time': '2018-11-15 20:07:14', 'is_result': '593225366', "
+ "'company_zt': '穿衣搭配/读点历史/美腿瘦腿/美景中国', 'dataType': 'second', 'callbackFlag': "
+ "False, 'updateTime': 1567744557971, 'type': '4', 'uni_id': "
+ "'367329081693581312', 'url': 'https://www.yidianzixun.com/article/0KaEO129', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '北京一点网聚信息技术有限公司', "
+ "'id': 367329143014305792, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://fwimage.cnfanews.com/websiteimg/2018/20181115/29035794/0kaeo1ketn.jpg'}, "
+ "{'client_time': '2018-11-02 15:06:23', 'is_result': '53514497', "
+ "'company_zt': '南方Plus移动端', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744558315, 'type': '4', 'uni_id': '367329081693581312', "
+ "'url': 'https://static.nfapp.southcn.com/content/201811/02/c1626126.html', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '南方报业传媒集团', 'id': "
+ "367329144457146368, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://fwimage.cnfanews.com/websiteimg/2018/20181102/29000433/577bd76a-745b-443e-ab08-16a6afd077a5.jpg'}, "
+ "{'client_time': '2018-12-05 17:47:23', 'is_result': '53514497', "
+ "'company_zt': '南方Plus移动端', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744558444, 'type': '4', 'uni_id': '367329081693581312', "
+ "'url': 'https://static.nfapp.southcn.com/content/201812/05/c1728448.html', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '南方报业传媒集团', 'id': "
+ "367329144998211584, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://fwimage.cnfanews.com/websiteimg/2018/20181205/29000459/f580b7eb-3f3c-4228-b7f6-dada609ecb88.jpg'}, "
+ "{'client_time': '0000-00-00 00:00:00', 'is_result': '418589059', "
+ "'company_zt': '千图网', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744558632, 'type': '1', 'uni_id': '367329081693581312', "
+ "'url': 'http://www.58pic.com/newpic/19210485.html', 'pushType': 'quanwang', "
+ "'serialNo': '367329081693581312', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '千图网', 'id': 367329145786740736, "
+ "'partnerID': '201907200200055052', 'pic_url': "
+ "'http://pic.qiantucdn.com/58pic/19/21/04/5684e30dd354d_1024.jpg!/fw/1024/watermark/url/L2ltYWdlcy93YXRlcm1hcmsveGlhb3R1LnBuZw==/align/center'}, "
+ "{'client_time': '2019-03-10 21:59:38', 'is_result': '1214779566', "
+ "'company_zt': '今日头条', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744557501, 'type': '4', 'uni_id': '367329081693581312', "
+ "'url': 'https://www.toutiao.com/i6666761532149334535', 'pushType': "
+ "'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '北京字节跳动科技有限公司', 'id': "
+ "367329141042982912, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://fwimage.cnfanews.com/websiteimg/2019/20190311/29002952/1527691335249855350480f.jpg'}, "
+ "{'client_time': '2017-06-02 17:51:54', 'is_result': '444364048', "
+ "'company_zt': '腾讯', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744557589, 'type': '4', 'uni_id': '367329081693581312', "
+ "'url': 'https://kuaibao.qq.com/s/20170602B064UA00', 'pushType': 'quanwang', "
+ "'serialNo': '367329081693581312', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '深圳腾讯计算机系统有限公司', 'id': "
+ "367329141412081664, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://fwimage.cnfanews.com/websiteimg/2017/20170602/29004740/zk0bygv3cow.jpg'}, "
+ "{'client_time': '2017-06-23 08:46:56', 'is_result': '116770080', "
+ "'company_zt': '中国搜索网', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744558653, 'type': '1', 'uni_id': '367329081693581312', "
+ "'url': "
+ "'http://toutiao.chinaso.com/tb/detail/20170623/1000200033004241498178786187672853_1.html', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '中国搜索信息科技股份有限公司', "
+ "'id': 367329145874821120, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://fwimage.cnfanews.com/websiteimg/2017/20170623/49393/cgpbullmzocancvwaafyxxpir4s292.jpg'}, "
+ "{'client_time': '2016-07-27 00:00:00', 'is_result': '12294761', "
+ "'company_zt': '新蓝网V', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744558676, 'type': '1', 'uni_id': '367329081693581312', "
+ "'url': 'http://n.cztv.com/news/12154179.html', 'pushType': 'quanwang', "
+ "'serialNo': '367329081693581312', 'useNumber': 0, 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'company_name': '浙江新蓝网络传媒有限公司', 'id': "
+ "367329145971290112, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://img01.cztv.com/201607/27/d20d79cd2b8eb6d915736a175fa36565.jpg'}, "
+ "{'client_time': '2017-12-15 00:00:00', 'is_result': '805966012', "
+ "'company_zt': '金征远出入境服务', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744556871, 'type': '2', 'uni_id': '367329081693581312', "
+ "'url': "
+ "'http://mp.weixin.qq.com/s?__biz=MzI5MDAyMzEzMg==&amp;amp;mid=2652964135&amp;amp;idx=4&amp;amp;sn=3c271f16811d6f4edefde5bdae2b49d1&amp;amp;chksm=f7f39694c0841f827b849fb98158c92549e8a829b00bda4a1858918033fcd68455d177f81770&amp;amp;scene=27#wechat_redirect', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '北京金征远出入境服务有限公司', "
+ "'id': 367329138400571392, 'partnerID': '201907200200055052', 'pic_url': "
+ "'https://mmbiz.qpic.cn/mmbiz_jpg/Ir1eRm6EoKicdmGhlE3WhOjhabq1wiaVBpsxrxxa8bueWg1NRDGR1aRat1o7uS8ztPhLTksS1lcV5nG2fvvelTSA/0?wx_fmt=jpeg'}, "
+ "{'client_time': '2018-01-04 00:00:00', 'is_result': '829725716', "
+ "'company_zt': '金征远出入境服务', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744557399, 'type': '2', 'uni_id': '367329081693581312', "
+ "'url': "
+ "'http://mp.weixin.qq.com/s?__biz=MzI5MDAyMzEzMg==&amp;amp;mid=2652964271&amp;amp;idx=1&amp;amp;sn=35482ef0a9982fa18a7644af89b8a824&amp;amp;chksm=f7f3961cc0841f0a3cd281e0b9c5805ec969d9405b29cddd4cc93206066cb862bdc5e01202fc&amp;amp;scene=27#wechat_redirect', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '北京金征远出入境服务有限公司', "
+ "'id': 367329140615163904, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://mmbiz.qpic.cn/mmbiz_png/Ir1eRm6EoK9XdNdOgxcbMLY8bzoMeodeGBMJR9oqYcm7jY4aicRrZZkqH3sh2eib6lgzZ103vHLibaclyWEGiaMPeg/0?wx_fmt=png'}, "
+ "{'client_time': '2017-12-13 00:00:00', 'is_result': '805966012', "
+ "'company_zt': '金征远出入境服务', 'dataType': 'second', 'callbackFlag': False, "
+ "'updateTime': 1567744556611, 'type': '2', 'uni_id': '367329081693581312', "
+ "'url': "
+ "'http://mp.weixin.qq.com/s?__biz=MjM5MjQ0Njc0MA==&amp;amp;mid=2653998348&amp;amp;idx=5&amp;amp;sn=7d2ac28706d88ed3a7a966a0f5c813e8&amp;amp;chksm=bd624d778a15c461c817684b8324472f972c2ad17525b5756b87340d536473191d892fb1d03e&amp;amp;scene=27#wechat_redirect', "
+ "'pushType': 'quanwang', 'serialNo': '367329081693581312', 'useNumber': 0, "
+ "'partnerKey': 'YLZ3XCEE4J21N0YHQNEW', 'company_name': '北京金征远出入境服务有限公司', "
+ "'id': 367329137310052352, 'partnerID': '201907200200055052', 'pic_url': "
+ "'http://mmbiz.qpic.cn/mmbiz_jpg/Ir1eRm6EoKicdmGhlE3WhOjhabq1wiaVBpsxrxxa8bueWg1NRDGR1aRat1o7uS8ztPhLTksS1lcV5nG2fvvelTSA/0?wx_fmt=jpeg'}], "
+ "'success': True, 'resultCode': '0204000'}")
+'监测接口响应耗时：0.10030245780944824'
+'监测接口响应结果验证耗时：1.0035278797149658'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "serialNo": "367329081693581312", "pageNumber": '
+ '"500", "pageSize": "50", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "salt": '
+ '"1fafef4248e4dd692334b8b154af0b10YLZ3XCEE4J21N0YHQNEW"}')
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='total_row'>
+    <td>Total</td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+
+</body>
+</html>

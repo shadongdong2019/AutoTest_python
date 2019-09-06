@@ -22,7 +22,7 @@ class ElasticObj:
         # 无用户名密码状态
         #self.es = Elasticsearch([ip])
         #用户名密码状态
-        self.es = Elasticsearch(["10.31.153.119:9300"])
+        self.es = Elasticsearch(["39.107.66.190:9200"])
 
     def create_index(self,index_name="ott",index_type="ott_type"):
         '''
@@ -225,7 +225,7 @@ class ElasticObj:
 
     def sigle_filed_query(self):
         es = Elasticsearch(
-            ['10.31.153.119:9300']
+            ['39.107.66.190:9200']
         )
         print(es.cat.indices())
 
@@ -237,6 +237,7 @@ obj =ElasticObj()
 # obj.create_index()
 #obj.Get_Data_By_Body()
 obj.sigle_filed_query()
+obj.Get_Data_By_Body()
 # obj.bulk_Index_Data()
 # obj.IndexData()
 # obj.Delete_Index_Data(1)
