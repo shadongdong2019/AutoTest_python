@@ -123,8 +123,10 @@ class OperationExcel:
         try:
             if end !=0 and end>start:
                 self.rows=end
-            else:
+            elif end == -1:  # 等于-1表示获取全部记录
                 self.rows = self.sheet_obj.nrows
+            elif end == 0:  # 等于0表示仅获取一条记录
+                self.rows = start + 1
 
             for row in range(int(start),int(self.rows)):
                 col_list = self.get_sheet().row_values(row)
@@ -146,10 +148,12 @@ class OperationExcel:
         end   = self.kwargs.get("case_param_name_end",0)
         row_col_list = []
         try:
-            if end !=0 and end>start:
+            if end !=0 and end !=-1 and end>start:
                 self.rows=end
-            else:
+            elif end == -1: #等于-1表示获取全部记录
                 self.rows = self.sheet_obj.nrows
+            elif end == 0: #等于0表示仅获取一条记录
+                self.rows = start+1
 
             for row in range(int(start),int(self.rows)):
                 col_list = self.get_sheet().row_values(row)

@@ -53,7 +53,7 @@ class ParamGlobal:
                     b_param_list.append(p_en_name)
                 else:
                     nb_param_list.append(p_en_name)
-                if p_zh_name[0] == "F":
+                if p_type.lower() == "file":
                     param_file_list.append(p_en_name)
         except Exception as e :
             log.error("处理接口请求参数名出现异常，异常原因：{}".format(e))

@@ -56,12 +56,13 @@ class CommonParamDict:
                     if str(param_dict.get("IsRun")).lower() != "yes":
                         case_remove.append(param_dict)
                         continue
+                    salt_N = False
                     for key in list(param_dict.keys()):
-                        salt_N = False
+
                         key_value = param_dict.get(key)
                         if not key_value and key not in no_param :
                             del param_dict[key]
-                        if str(key_value).upper() == 'N': #参数值为N表示此参数不传
+                        if str(key_value).upper() == 'N' or str(key_value).upper() == 'NN': #参数值为N表示此参数不传
                             if key == "salt":
                                 salt_N = True
                             param_dict.pop(key)

@@ -57,4 +57,5 @@ def test_download():
 
 
 if __name__ == "__main__":
-    print("0"*52)
+    a=1
+    print(len("<class 'dict'>: { 'TestTarg': '请求成功', 'CaseDesc': '所有必传参数正确传入', 'ExpectValueForm': 'json', 'ExpectValue': '{\"success\":true,\"resultCode\":\"0204000\"}', 'ExpCallbackFlag': '{\"callbackFlag\":false}', 'partnerID': '201907200200055052',  'YLZ3XCEE4J21N', 'serialNo': '～！@#￥%……&×（）——+-={}·'「 '：“《》？;',./': `|、0'， 'pageSize': '50'。 'callbackUrl': 'http://39.107.66.190:9999/v2/api/confirm/callback', 'salt': 'zzzzzzz979199aac2530c24ea51b679dYLZ3XCEE4J21N0YHQNEW', 'resultForm': 'json', 'result': '', 'is_pass':"))

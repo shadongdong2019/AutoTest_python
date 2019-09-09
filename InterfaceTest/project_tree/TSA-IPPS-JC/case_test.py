@@ -75,6 +75,7 @@ class CaseRun(unittest.TestCase):
         req_data_dict = deepcopy(data_dict)
         if str(req_data_dict.get("IsDepend","")).lower() == "yes": #是否需要先执行依赖测试用例
             dep_case = DependCase(**req_data_dict)
+            dep_case.get_dep_data()
 
         if req_data_dict.get("Requrl", None):
             url = req_data_dict.pop("Requrl")
@@ -97,6 +98,10 @@ class CaseRun(unittest.TestCase):
         pp.pprint("{}接口地址：{}".format(option_dict.get("interface_name",""),url))
         pp.pprint("{}接口预期接口返回值={}".format(option_dict.get("interface_name",""),no_request_dict["ExpectValue"]))
         pp.pprint("{}接口预期回调状态值={}".format(option_dict.get("interface_name",""),no_request_dict["ExpCallbackFlag"]))
+        pp.pprint("******************************************************************************")
+        pp.pprint("请求参数={}".format(json.dumps(req_data_dict, ensure_ascii=False)))
+        pp.pprint("******************************************************************************")
+        pp.pprint("{}接口响应返回数据共<{}>条".format(option_dict.get("interface_name",""),len(res.get("data",""))))
         pp.pprint("{}接口响应结果={}".format(option_dict.get("interface_name",""),res))
         pp.pprint("{}接口响应耗时：{}".format(option_dict.get("interface_name",""),hs))
 
@@ -119,7 +124,6 @@ class CaseRun(unittest.TestCase):
         pp.pprint("{}接口响应结果验证耗时：{}".format(option_dict.get("interface_name",""),hs))
 
         is_pass = self.cp.case_is_pass(**verify_res)
-        pp.pprint("请求参数={}".format(json.dumps(req_data_dict, ensure_ascii=False)))
 
         self.assertTrue(is_pass,"测试用例执行未通过")
 

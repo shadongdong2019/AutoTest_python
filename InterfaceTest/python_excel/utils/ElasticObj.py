@@ -1,10 +1,11 @@
 #coding:utf8
+import json
 import os
 import time
 from os import walk
 import csv
 from datetime import datetime
-from elasticsearch import Elasticsearch
+from elasticsearch import Elasticsearch, RequestsHttpConnection
 from elasticsearch.helpers import bulk
 
 
@@ -229,15 +230,75 @@ class ElasticObj:
         )
         print(es.cat.indices())
 
+    def get_data(self):
+
+        host = 'http://*.*.*.*:9200/'
+        es = Elasticsearch('39.107.66.190:9200')
+        index_name = "monitor"
+        # 查找具体数据
+        query = {
+            "query": {
+                "bool": {
+                    "must": [
+                        {"match": {"serialNo": 368400630043389952}},  # 368389656708132864
+                    #    {"match": {"index_id": "3059508527443artui.cn83"}}
+                    ]
+                }
+            },
+            "size": 100
+        }
+
+#         query = {
+#   "query": {
+#     "match":{"uni_id":"368383052214448128"}
+#   }
+# }
+
+        res = es.search(
+            index=index_name,
+            body=query)
+        print(json.dumps(res,sort_keys=True, indent=4, separators=(',', ': '), ensure_ascii=False))  # 请求总结果
+        print( res['hits']['total'])
+
+    # lis = [{"article_content": "成都双流"}, {"article_title": "北京"}]
+    # data = get_data(5, 2, lis)
+
+    def es_handler(env):
+        """
+        创建链接
+        :param env:环境变量
+        :return: 链接
+        """
+        host = '39.107.66.190'
+        return Elasticsearch(
+            hosts=[{'host': host, 'port': 9200}],
+           # http_auth=awsauth,
+            use_ssl=True,
+            verify_certs=True,
+            connection_class=RequestsHttpConnection
+        )
 
 
+    def delete_data(self):
+        es = Elasticsearch('39.107.66.190:9200')
+        query = {'query': {'match': {"serialNo": 368389656708132864}}}  # 删除性别为女性的所有文档
+        es = Elasticsearch('39.107.66.190:9200')
+        # 删除所有文档
+        es.delete_by_query(index="monitor", body=query)
+        # data_list = []
+        # query = {'query': {'match': {"serialNo": 368389633027092480}}}
+        # data_list.append({'delete': query})
+        # self.es_handler('monitor').bulk(body=data_list)
+        #print("数据删除成功,id=", id)
 obj =ElasticObj()
 #obj = ElasticObj("ott1", "ott_type1")
 
 # obj.create_index()
 #obj.Get_Data_By_Body()
-obj.sigle_filed_query()
-obj.Get_Data_By_Body()
+#obj.sigle_filed_query()
+#obj.delete_data()
+obj.get_data()
+#obj.Get_Data_By_Body()
 # obj.bulk_Index_Data()
 # obj.IndexData()
 # obj.Delete_Index_Data(1)
