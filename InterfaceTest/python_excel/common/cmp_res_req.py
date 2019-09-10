@@ -1,8 +1,8 @@
 import json
 
 from jsonpath import jsonpath
-from InterfaceTest.python_excel.common.interface_run import InterfaceRun
-from InterfaceTest.python_excel.get_data.tsa_param_dic import TsaParamDict
+from python_excel.common.interface_run import InterfaceRun
+from python_excel.get_data.tsa_param_dic import TsaParamDict
 import logging
 from copy import  deepcopy
 import time

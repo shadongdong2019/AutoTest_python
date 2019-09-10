@@ -4,29 +4,29 @@ import sys
 import datetime
 import random
 import string
-from InterfaceTest.python_excel import log
+from python_excel import log
 import os
 import unittest
 import ddt
 
-from InterfaceTest.python_excel.common.CaseIsPass import CaseIsPass
-from InterfaceTest.python_excel.common.interface_run import InterfaceRun
-from InterfaceTest.python_excel.common.deal_response_data import DealResData
-from InterfaceTest.python_excel.get_data.tsa_param_dic import TsaParamDict
-from InterfaceTest.python_excel.HTMLTestRunner import HTMLTestRunner
-from InterfaceTest.python_excel.get_data.case_mes import CaseDetail
+from python_excel.common.CaseIsPass import CaseIsPass
+from python_excel.common.interface_run import InterfaceRun
+from python_excel.common.deal_response_data import DealResData
+from python_excel.get_data.tsa_param_dic import TsaParamDict
+from python_excel.HTMLTestRunner import HTMLTestRunner
+from python_excel.get_data.case_mes import CaseDetail
 from copy import deepcopy
-from InterfaceTest.python_excel.utils.operation_excel import OperationExcel
+from python_excel.utils.operation_excel import OperationExcel
 import json
 import  pprint
-from InterfaceTest.python_excel.common.cmp_res_req import CmpReqRes
+from python_excel.common.cmp_res_req import CmpReqRes
 from jsonpath import jsonpath
-from InterfaceTest.python_excel.get_data.case_error import CaseError
+from python_excel.get_data.case_error import CaseError
 import time
 import logging
-from InterfaceTest.python_excel.utils.operation_cfg import OperationCFG
-from InterfaceTest.python_excel.get_data.common_param_dic import CommonParamDict
-from InterfaceTest.python_excel.get_data.dependCase import DependCase
+from python_excel.utils.operation_cfg import OperationCFG
+from python_excel.get_data.common_param_dic import CommonParamDict
+from python_excel.get_data.dependCase import DependCase
 mylog = logging.getLogger(__file__)
 ope_cfg = OperationCFG("/home/ma/PycharmProjects/AutoTest_python/InterfaceTest/project_tree/TSA-IPPS-JC/config/caseRun.cfg","my_case_file")
 option_dict = ope_cfg.get_config_dict()
@@ -51,7 +51,7 @@ class CaseRun(unittest.TestCase):
     def setUp(self):
         self.interface_run = InterfaceRun()
         self.deal_res_data = DealResData()
-        self.op_excel = OperationExcel(**option_dict)
+        #self.op_excel = OperationExcel(**option_dict)
         self.method_req = "post"
         self.tsa_param = TsaParamDict()
         self.crr = CmpReqRes(**option_dict)
@@ -70,12 +70,13 @@ class CaseRun(unittest.TestCase):
 
         #获取请求接口不传入参数列表
         no_request_list = cpd.param.get_param_no_request_list()
+        no_request_dict = {} #存放不参数请求的参数
         #深拷贝参数字典
-        no_request_dict = {}
         req_data_dict = deepcopy(data_dict)
         if str(req_data_dict.get("IsDepend","")).lower() == "yes": #是否需要先执行依赖测试用例
             dep_case = DependCase(**req_data_dict)
-            dep_case.get_dep_data()
+            ss = dep_case.get_dep_data()
+            pp.pprint(ss)
 
         if req_data_dict.get("Requrl", None):
             url = req_data_dict.pop("Requrl")
@@ -117,7 +118,6 @@ class CaseRun(unittest.TestCase):
                  "no_verify_data_list":option_dict.get("no_verify_data_list",None)
         }
         start = time.time()
-        time.sleep(1)
         verify_res = self.crr.verify_is_pass(**kargs)
         end =time.time()
         hs = end -start

@@ -4,10 +4,10 @@ import datetime
 import random
 import string
 
-from InterfaceTest.python_excel.utils.operation_excel import OperationExcel
+from python_excel.utils.operation_excel import OperationExcel
 from copy import  deepcopy
-from InterfaceTest.python_excel.utils.operation_json import OperationJson
-from InterfaceTest.python_excel.get_data.param_global import ParamGlobal
+from python_excel.utils.operation_json import OperationJson
+from python_excel.get_data.param_global import ParamGlobal
 import logging
 import hashlib
 import os

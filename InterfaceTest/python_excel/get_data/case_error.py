@@ -1,6 +1,6 @@
 from copy import deepcopy
-from InterfaceTest.python_excel.get_data.param_global import ParamGlobal
-from InterfaceTest.python_excel.get_data.tsa_param_dic import TsaParamDict
+from python_excel.get_data.param_global import ParamGlobal
+from python_excel.get_data.tsa_param_dic import TsaParamDict
 import time
 import logging
 log = logging.getLogger(__file__)

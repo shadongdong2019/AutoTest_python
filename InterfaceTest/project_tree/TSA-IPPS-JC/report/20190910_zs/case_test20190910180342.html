@@ -1,0 +1,4479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>版权服务2.0生产环境接口测试报告（https）</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+<style type="text/css" media="screen">
+body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
+table       { font-size: 100%; }
+pre         { }
+
+/* -- heading ---------------------------------------------------------------------- */
+h1 {
+	font-size: 16pt;
+	color: gray;
+}
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+
+.heading .attribute {
+    margin-top: 1ex;
+    margin-bottom: 0;
+}
+
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+
+/* -- css div popup ------------------------------------------------------------------------ */
+a.popup_link {
+}
+
+a.popup_link:hover {
+    color: red;
+}
+
+.popup_window {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    padding: 10px;
+    background-color: #E6E6D6;
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 8pt;
+    width: 500px;
+}
+
+}
+/* -- report ------------------------------------------------------------------------ */
+#show_detail_line {
+    margin-top: 3ex;
+    margin-bottom: 1ex;
+}
+#result_table {
+    width: 80%;
+    border-collapse: collapse;
+    border: 1px solid #777;
+}
+#header_row {
+    font-weight: bold;
+    color: white;
+    background-color: #777;
+}
+#result_table td {
+    border: 1px solid #777;
+    padding: 2px;
+}
+#total_row  { font-weight: bold; }
+.passClass  { background-color: #6c6; }
+.failClass  { background-color: #c60; }
+.errorClass { background-color: #c00; }
+.passCase   { color: #6c6; }
+.failCase   { color: #c60; font-weight: bold; }
+.errorCase  { color: #c00; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+
+
+/* -- ending ---------------------------------------------------------------------- */
+#ending {
+}
+
+</style>
+
+</head>
+<body>
+<script language="javascript" type="text/javascript"><!--
+output_list = Array();
+
+/* level - 0:Summary; 1:Failed; 2:All */
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level < 1) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level > 1) {
+                tr.className = '';
+            }
+            else {
+                tr.className = 'hiddenRow';
+            }
+        }
+    }
+}
+
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        tid0 = 't' + cid.substr(1) + '.' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        if (toHide) {
+            document.getElementById('div_'+tid).style.display = 'none'
+            document.getElementById(tid).className = 'hiddenRow';
+        }
+        else {
+            document.getElementById(tid).className = '';
+        }
+    }
+}
+
+
+function showTestDetail(div_id){
+    var details_div = document.getElementById(div_id)
+    var displayState = details_div.style.display
+    // alert(displayState)
+    if (displayState != 'block' ) {
+        displayState = 'block'
+        details_div.style.display = 'block'
+    }
+    else {
+        details_div.style.display = 'none'
+    }
+}
+
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+
+/* obsoleted by detail in <div>
+function showOutput(id, name) {
+    var w = window.open("", //url
+                    name,
+                    "resizable,scrollbars,status,width=800,height=450");
+    d = w.document;
+    d.write("<pre>");
+    d.write(html_escape(output_list[id]));
+    d.write("\n");
+    d.write("<a href='javascript:window.close()'>close</a>\n");
+    d.write("</pre>\n");
+    d.close();
+}
+*/
+--></script>
+
+<div class='heading'>
+<h1>版权服务2.0生产环境接口测试报告（https）</h1>
+<p class='attribute'><strong>Start Time:</strong> 2019-09-10 18:03:42</p>
+<p class='attribute'><strong>Duration:</strong> 0:00:35.022454</p>
+<p class='attribute'><strong>Status:</strong> Pass 92</p>
+
+<p class='description'>取证接口-主流程测试用例-主要验证所有参数合法参数取证成功及必填参数非法数据取证失败</p>
+</div>
+
+
+
+<p id='show_detail_line'>Show
+<a href='javascript:showCase(0)'>Summary</a>
+<a href='javascript:showCase(1)'>Failed</a>
+<a href='javascript:showCase(2)'>All</a>
+</p>
+<table id='result_table'>
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row'>
+    <td>Test Group/Test case</td>
+    <td>Count</td>
+    <td>Pass</td>
+    <td>Fail</td>
+    <td>Error</td>
+    <td>View</td>
+</tr>
+
+<tr class='passClass'>
+    <td>CaseRun</td>
+    <td>92</td>
+    <td>92</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c1',92)">Detail</a></td>
+</tr>
+
+<tr id='pt1.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_01</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
+        pass</a>
+
+    <div id='div_pt1.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.1: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_001]'
+'取证接口测试目的：请求成功-回调成功-证书生成成功'
+'取证接口用例描述：必传参数-全部正确传入(1)'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "serialNo": "366633883330162688", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"825954cccb8913a0f40012545ead6c96YLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'fcc363065fbbed2e061e4f32ee394619YLZ3XCEE4J21N0YHQNEW', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': '3457b0acf13761adce3bed1a8bf0bccf'}")
+'取证接口响应耗时：21.763664960861206'
+'取证接口响应结果验证耗时：3.9717180728912354'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_02</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.2')" >
+        pass</a>
+
+    <div id='div_pt1.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.2: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_002]'
+'取证接口测试目的：请求成功-回调成功-证书生成成功'
+'取证接口用例描述：必传参数-全部正确传入(2)-更换用户信息'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"ssssssssssssssss", "method": "method", "applyName": '
+ '"！@#～%#￥……%……&amp;%……×&amp;（（——）——+，。", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"3a3e922813202232560c9e294539e815SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'5bf0cc9796cbe32441e01c4a3e2a993fSJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': '831d53a292775586e2718e41bc61b1a0'}")
+'取证接口响应耗时：0.3125171661376953'
+'取证接口响应结果验证耗时：0.00048732757568359375'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_03</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.3')" >
+        pass</a>
+
+    <div id='div_pt1.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.3: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_003]'
+'取证接口测试目的：请求成功-回调失败'
+'取证接口用例描述：必传参数-callbackUrl为 null-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"!@#@$#%$%$&gt;:&lt;|}{[]\\\\", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": " null", "salt": '
+ '"4510c9ff3b6c4e2c0a9604b734dc9f5cSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'3d5cd3b7a0bf16a59933d4545519789eSJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': 'a958b419dbb789f0ff47cce2d495a474'}")
+'取证接口响应耗时：0.22525763511657715'
+'取证接口响应结果验证耗时：0.0002605915069580078'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.4' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_04</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.4')" >
+        pass</a>
+
+    <div id='div_pt1.4' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.4').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.4: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_004]'
+'取证接口测试目的：请求成功-回调失败'
+'取证接口用例描述：必传参数-callbackUrl为 true-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"你好中国", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": " true", "salt": '
+ '"b96c6dc78b484f711168da25ccd685e9SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'95a855e6e698e4435f4dcba06e2a34c3SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': 'd05de6284556f4e22a55c2078e8c85b5'}")
+'取证接口响应耗时：0.4339585304260254'
+'取证接口响应结果验证耗时：0.0002467632293701172'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.5' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_05</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.5')" >
+        pass</a>
+
+    <div id='div_pt1.5' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.5').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.5: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_005]'
+'取证接口测试目的：请求成功-回调成功-证书生成成功'
+'取证接口用例描述：必传参数-applyIDNumber-32位数字-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"11011119780217123411011119780217", "method": "method", "applyName": "李明", '
+ '"url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"db3e9c7e3d65200b22191758e081495fSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'95c71158b1073ac56c8cbf00eac27d7aSJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': 'f78fa5c73ad6dcde7f65408875fcfe1b'}")
+'取证接口响应耗时：0.13143420219421387'
+'取证接口响应结果验证耗时：0.00024819374084472656'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.6' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_06</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.6')" >
+        pass</a>
+
+    <div id='div_pt1.6' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.6').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.6: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_006]'
+'取证接口测试目的：请求成功-回调成功-证书生成成功'
+'取证接口用例描述：必传参数-applyIDNumber-32位字符-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"ssssssssssssssssssssssssssssssss", "method": "method", "applyName": "李明", '
+ '"url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"d3e84a14b80ca7e290f366a1771ed838SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'6edabb854ac090a61823caa44f3cbbbfSJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': 'cffc872b1019e10adbeae1e2f7cb6474'}")
+'取证接口响应耗时：0.2987339496612549'
+'取证接口响应结果验证耗时：0.0002491474151611328'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.7' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_07</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.7')" >
+        pass</a>
+
+    <div id='div_pt1.7' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.7').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.7: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_007]'
+'取证接口测试目的：请求成功-回调成功-证书生成成功'
+'取证接口用例描述：必传参数-applyIDNumber-32位汉字-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"你好中国你好中国你好中国你好中国你好中国你好中国你好中国你好中国", "method": "method", "applyName": "李明", '
+ '"url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"84de9fe2c745c1da767c65b6404673c9SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'ccfb5f476a18d0109cee948ed2803d82SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': 'c3a70b055ce1052a810329f1b40f3bd8'}")
+'取证接口响应耗时：0.12436962127685547'
+'取证接口响应结果验证耗时：0.00025177001953125'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.8' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_08</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.8')" >
+        pass</a>
+
+    <div id='div_pt1.8' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.8').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.8: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_008]'
+'取证接口测试目的：请求成功-回调成功-证书生成成功'
+'取证接口用例描述：必传参数-applyName-64位数字-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": '
+ '"1101111978021712341101111978021711011119780217123411011119780217", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"70de6ab6b634b2255cc5130ec422c825SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'06a2451912f65056ffcf04cfad17b8a1SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': '4767a3175ce2a89b09da0a1236e2f924'}")
+'取证接口响应耗时：0.12562012672424316'
+'取证接口响应结果验证耗时：0.00030040740966796875'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.9' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_09</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.9')" >
+        pass</a>
+
+    <div id='div_pt1.9' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.9').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.9: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_009]'
+'取证接口测试目的：请求成功-回调成功-证书生成成功'
+'取证接口用例描述：必传参数-applyName-64位字符-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": '
+ '"ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"eb34efd943b8417e6f49d29561185d6bSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'1fcdef11cceef4ba0de047344f917ba2SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': '130d5361e53693421c394536a323badf'}")
+'取证接口响应耗时：0.16185212135314941'
+'取证接口响应结果验证耗时：0.0002732276916503906'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.10' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_10</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.10')" >
+        pass</a>
+
+    <div id='div_pt1.10' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.10').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.10: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_010]'
+'取证接口测试目的：请求成功-回调成功-证书生成成功'
+'取证接口用例描述：必传参数-applyName-64位汉字-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": '
+ '"李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"5df06dfa93da733b5fefe2ecbedc35f4SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'3d1ecf4008745cf54dbf1cd6573410baSJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': 'cbadbc8698ee4b62ec1deb262c7dfc27'}")
+'取证接口响应耗时：0.11134123802185059'
+'取证接口响应结果验证耗时：0.00024247169494628906'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.11' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_11</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.11')" >
+        pass</a>
+
+    <div id='div_pt1.11' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.11').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.11: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_011]'
+'取证接口测试目的：请求成功-回调成功-证书生成成功'
+'取证接口用例描述：必传参数-method-18位-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "methodmethodmethod", "applyName": "李明", '
+ '"url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"260415ea74f4926d26f96c9af7db560fSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'e46e1b8a5ad70b460073d89639e413cfSJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': '53a5a5e4172be75d4ec9cae562bd14ef'}")
+'取证接口响应耗时：0.1153256893157959'
+'取证接口响应结果验证耗时：0.0002422332763671875'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.12' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_12</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.12')" >
+        pass</a>
+
+    <div id='div_pt1.12' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.12').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.12: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_012]'
+'取证接口测试目的：请求成功-回调成功-证书生成成功'
+'取证接口用例描述：必传参数-url-256位-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577&amp;s=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"59d5a9efefcc354bc51251585e39c870SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'58ad212e9a6fdec9479cf980a83ff6f8SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': '22cf04be656fb1b6c0f4e517b8543af8'}")
+'取证接口响应耗时：0.1275036334991455'
+'取证接口响应结果验证耗时：0.00024366378784179688'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.13' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_13</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.13')" >
+        pass</a>
+
+    <div id='div_pt1.13' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.13').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.13: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_012]'
+'取证接口测试目的：请求成功-回调成功-证书生成成功'
+'取证接口用例描述：必传参数-remark-500个字符-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577&amp;s=00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"59d5a9efefcc354bc51251585e39c870SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'930f17f7e9208c3d6ac404f65c2baaabSJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': '246dd2a0e1a62aa07a165adeca00af8e'}")
+'取证接口响应耗时：0.11653876304626465'
+'取证接口响应结果验证耗时：0.0002658367156982422'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.14' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_14</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.14')" >
+        pass</a>
+
+    <div id='div_pt1.14' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.14').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.14: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_014]'
+'取证接口测试目的：请求成功-回调成功-证书生成成功'
+'取证接口用例描述：必传参数-callbackUrl-256个字符-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": '
+ '"留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留留", '
+ '"callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback?id=12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf123", '
+ '"salt": "04ca73a78955064c0e670e44964dd9f4SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'324130a5bd5b2721e6973977e31dd553SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': '8ac51ab50516d9712f22a48962a1dd90'}")
+'取证接口响应耗时：0.1902599334716797'
+'取证接口响应结果验证耗时：7.987022399902344e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.15' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_15</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.15')" >
+        pass</a>
+
+    <div id='div_pt1.15' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.15').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.15: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_015]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerID/partnerKey正确，但不是同一个账户的信息-其它参数正确传入(1)'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"f43f35cd2aeb9066abb60a80ce549e82YLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bYLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证接口响应耗时：0.05478930473327637'
+'取证接口响应结果验证耗时：0.00018453598022460938'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.16' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_16</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.16')" >
+        pass</a>
+
+    <div id='div_pt1.16' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.16').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.16: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_016]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerID/partnerKey正确，但不是同一个账户的信息-其它参数正确传入(2)'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"011b5ff587a88ef7e021e4d66c86bc9bSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证接口响应耗时：0.06441235542297363'
+'取证接口响应结果验证耗时：0.00018835067749023438'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.17' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_17</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.17')" >
+        pass</a>
+
+    <div id='div_pt1.17' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.17').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.17: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_017]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerID错误首位加0-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "0201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"66d26c6a4e3dac1a2cb7166f18027edeSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证接口响应耗时：0.0654604434967041'
+'取证接口响应结果验证耗时：0.0001819133758544922'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.18' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_18</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.18')" >
+        pass</a>
+
+    <div id='div_pt1.18' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.18').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.18: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_018]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerID错误末位加0-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "2019072002000581820", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"e595664adcbc351f3fc06797043d5716SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证接口响应耗时：0.06563520431518555'
+'取证接口响应结果验证耗时：0.00021147727966308594'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.19' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_19</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.19')" >
+        pass</a>
+
+    <div id='div_pt1.19' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.19').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.19: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_019]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerID错误-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "2019072002000581821", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"f53df583dec8b64a1800166abda95c43SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证接口响应耗时：0.06667637825012207'
+'取证接口响应结果验证耗时：0.0001811981201171875'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.20' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_20</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.20')" >
+        pass</a>
+
+    <div id='div_pt1.20' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.20').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.20: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_020]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerKey错误首位加0-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"0SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"e595664adcbc351f3fc06797043d57160SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001b0SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证接口响应耗时：0.0638270378112793'
+'取证接口响应结果验证耗时：0.00018167495727539062'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.21' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_21</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.21')" >
+        pass</a>
+
+    <div id='div_pt1.21' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.21').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.21: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_021]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerKey错误末位加0-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V5560", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"854dcace347228b9656638978163ee20SJ2P5TW43R0ZLCR6V5560"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bSJ2P5TW43R0ZLCR6V5560', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证接口响应耗时：0.06502604484558105'
+'取证接口响应结果验证耗时：0.00030422210693359375'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.22' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_22</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.22')" >
+        pass</a>
+
+    <div id='div_pt1.22' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.22').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.22: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_022]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerKey错误-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556s", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"0457707066d34c485f662c77bf13e968SJ2P5TW43R0ZLCR6V556s"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bSJ2P5TW43R0ZLCR6V556s', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证接口响应耗时：0.0631246566772461'
+'取证接口响应结果验证耗时：0.00018739700317382812'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.23' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_23</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.23')" >
+        pass</a>
+
+    <div id='div_pt1.23' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.23').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.23: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_023]'
+'取证接口测试目的：请求成功-回调成功-证书生成成功'
+'取证接口用例描述：必传参数-serialNo错误-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701761", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"27dd4ec720e27405586c2a56ff79529aSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'98e01fd92a56d8896f4deb463f076f80SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': 'b9eb3227655cfc405837777b01daadfd'}")
+'取证接口响应耗时：0.23551511764526367'
+'取证接口响应结果验证耗时：0.00024366378784179688'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.24' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_24</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.24')" >
+        pass</a>
+
+    <div id='div_pt1.24' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.24').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.24: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_024]'
+'取证接口测试目的：请求成功-回调成功-证书生成成功'
+'取证接口用例描述：必传参数-partnerID/partnerKey正确-serialNo正确-但serialNo不是partnerID申请的证书-其它参数正确传入(1)'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366583757303721984", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"9b08adc228b45ef6a93bd31a7774143bSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'2aa0f9855076be1e154a8707fcca090fSJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': 'e61ff017b106999127639c61d54757ed'}")
+'取证接口响应耗时：0.12822270393371582'
+'取证接口响应结果验证耗时：0.00024819374084472656'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.25' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_25</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.25')" >
+        pass</a>
+
+    <div id='div_pt1.25' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.25').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.25: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_025]'
+'取证接口测试目的：请求成功-回调成功-证书生成成功'
+'取证接口用例描述：必传参数-partnerID/partnerKey正确-serialNo正确-但serialNo不是partnerID申请的证书-其它参数正确传入(2)'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"41a6c497889e32e024d9a61f61da733dYLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'103e2314fb153774a9cf90c82e0e52b9YLZ3XCEE4J21N0YHQNEW', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': '70e86928a5977e987a1e3207bcd2d773'}")
+'取证接口响应耗时：0.12633204460144043'
+'取证接口响应结果验证耗时：7.033348083496094e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.26' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_26</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.26')" >
+        pass</a>
+
+    <div id='div_pt1.26' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.26').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.26: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_027]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-url错误-基它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "serialNo": "366633883330162688", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=1170968521054830257", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"ebeccc9f66c3ce272b18e420ed87c7d3YLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'940d0604149805c65ad87f5c43c37963YLZ3XCEE4J21N0YHQNEW', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': '664ef1c3186fd70420cb0f4426965dd7'}")
+'取证接口响应耗时：0.11219525337219238'
+'取证接口响应结果验证耗时：0.0002491474151611328'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.27' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_27</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.27')" >
+        pass</a>
+
+    <div id='div_pt1.27' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.27').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.27: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_028]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-salt错误-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"salt参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "serialNo": "366633883330162688", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"s557cf73cd912c7d6adf2dc037117eccSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'salt参数不合法', 'salt': "
+ "'498cc3ad1ebdbfe049bd3dd974b5ef23YLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.06458735466003418'
+'取证接口响应结果验证耗时：0.0001838207244873047'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.28' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_28</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.28')" >
+        pass</a>
+
+    <div id='div_pt1.28' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.28').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.28: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_029]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-salt错误-首位加0-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"salt参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "serialNo": "366633883330162688", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"079e58cb637a9554e42e81835e5972b9fYLZ3XCEE4J21N0YHQNEW"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'salt参数不合法', 'salt': "
+ "'498cc3ad1ebdbfe049bd3dd974b5ef23YLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.06793069839477539'
+'取证接口响应结果验证耗时：0.00018334388732910156'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.29' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_29</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.29')" >
+        pass</a>
+
+    <div id='div_pt1.29' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.29').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.29: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_030]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-salt错误-末位加0-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"salt参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "serialNo": "366633883330162688", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"79e58cb637a9554e42e81835e5972b9fYLZ3XCEE4J21N0YHQNEW0"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'salt参数不合法', 'salt': "
+ "'498cc3ad1ebdbfe049bd3dd974b5ef23YLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.0669713020324707'
+'取证接口响应结果验证耗时：0.00018215179443359375'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.30' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_30</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.30')" >
+        pass</a>
+
+    <div id='div_pt1.30' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.30').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.30: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_031]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-salt错误-52位字符-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"salt参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "serialNo": "366633883330162688", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"0000000000000000000000000000000000000000000000000000"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'salt参数不合法', 'salt': "
+ "'498cc3ad1ebdbfe049bd3dd974b5ef23YLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.06449437141418457'
+'取证接口响应结果验证耗时：0.00018286705017089844'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.31' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_31</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.31')" >
+        pass</a>
+
+    <div id='div_pt1.31' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.31').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.31: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_032]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-serialNo长度为17位-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"serialNo参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "36656409710770176", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"e2afb46778002998c78f76f72c97d80eSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'serialNo参数不合法', 'salt': "
+ "'58fd78ac41fe80817f18dc2c466323c2SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.06601452827453613'
+'取证接口响应结果验证耗时：0.0001888275146484375'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.32' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_32</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.32')" >
+        pass</a>
+
+    <div id='div_pt1.32' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.32').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.32: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_033]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-serialNo长度为19位-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"serialNo参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "3665640971077017601", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"5d8db92fb0e7a5449c7ca411776781ffSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'serialNo参数不合法', 'salt': "
+ "'58fd78ac41fe80817f18dc2c466323c2SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.06217312812805176'
+'取证接口响应结果验证耗时：0.00018715858459472656'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.33' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_33</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.33')" >
+        pass</a>
+
+    <div id='div_pt1.33' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.33').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.33: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_034]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-applyIDNumber长度33个数字0字符-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"applyIDNumber参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"000000000000000000000000000000000", "method": "method", "applyName": "李明", '
+ '"url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"78f5c91ef688ca3815ea4a49e5b4a6a0SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'applyIDNumber参数不合法', 'salt': "
+ "'5341f9e5e4cca12a7bd3a96b74e29bcaSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.06577038764953613'
+'取证接口响应结果验证耗时：0.00017952919006347656'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.34' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_34</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.34')" >
+        pass</a>
+
+    <div id='div_pt1.34' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.34').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.34: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_035]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-applyIDNumber长度33个数字字符-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"applyIDNumber参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"111111111111111111111111111111111", "method": "method", "applyName": "李明", '
+ '"url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"852c8db2f74d534c4bc17327593e6d9bSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'applyIDNumber参数不合法', 'salt': "
+ "'5341f9e5e4cca12a7bd3a96b74e29bcaSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.06557416915893555'
+'取证接口响应结果验证耗时：0.00019931793212890625'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.35' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_35</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.35')" >
+        pass</a>
+
+    <div id='div_pt1.35' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.35').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.35: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_036]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-applyIDNumber长度33个英文-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"applyIDNumber参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"sssssssssssssssssssssssssssssssss", "method": "method", "applyName": "李明", '
+ '"url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"e01ce00f8c8547521a478f2aebeb44beSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'applyIDNumber参数不合法', 'salt': "
+ "'5341f9e5e4cca12a7bd3a96b74e29bcaSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.06866788864135742'
+'取证接口响应结果验证耗时：0.00018095970153808594'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.36' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_36</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.36')" >
+        pass</a>
+
+    <div id='div_pt1.36' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.36').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.36: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_037]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-method长度为19个字符-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"method参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "sssssssssssssssssss", "applyName": "李明", '
+ '"url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"500822742c9997a8fa38aabf6ac0b4a6SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'method参数不合法', 'salt': "
+ "'90803046a278661b8ac0e4cfe3cc6ef7SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.06994175910949707'
+'取证接口响应结果验证耗时：9.274482727050781e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.37' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_37</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.37')" >
+        pass</a>
+
+    <div id='div_pt1.37' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.37').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.37: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_038]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-applyName长度65个字符-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"applyName参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": '
+ '"李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李明李", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"0da7334858c38d344a265d65fd7bc4f9SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'applyName参数不合法', 'salt': "
+ "'7e7864f69f492846dbeb7919b97a7ddaSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.06033492088317871'
+'取证接口响应结果验证耗时：0.00018739700317382812'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.38' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_38</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.38')" >
+        pass</a>
+
+    <div id='div_pt1.38' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.38').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.38: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_039]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-url不传长度257个字符-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"url参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577&amp;s=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"5bb0ef2fc16a12eb2d5ce5cc359a8008SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'url参数不合法', 'salt': "
+ "'0a8cf2601e0428e36fdb98362d43d840SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.06828498840332031'
+'取证接口响应结果验证耗时：0.00018024444580078125'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.39' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_39</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.39')" >
+        pass</a>
+
+    <div id='div_pt1.39' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.39').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.39: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_040]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-remark长度501个字符-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"remark参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "&lt;class \'dict\'&gt;: { \'TestTarg\': \'请求成功\', \'CaseDesc\': '
+ "'所有必传参数正确传入', 'ExpectValueForm': 'json', 'ExpectValue': "
+ '\'{\\\\\\"success\\\\\\":true,\\\\\\"resultCode\\\\\\":\\\\\\"0204000\\\\\\"}\', '
+ '\'ExpCallbackFlag\': \'{\\\\\\"callbackFlag\\\\\\":false}\', \'partnerID\': '
+ "'201907200200055052',  'YLZ3XCEE4J21N', 'serialNo': '～！@#￥%……&amp;×（）——+-={}·'「 "
+ "'：“《》？;',./': `|、0'， 'pageSize': '50'。 'callbackUrl': "
+ "'http://39.107.66.190:9999/v2/api/confirm/callback', 'salt': "
+ "'zzzzzzz979199aac2530c24ea51b679dYLZ3XCEE4J21N0YHQNEW', 'resultForm': "
+ '\'json\', \'result\': \'\', \'is_pass\': ", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"da61c77530c0c954babf10254bd2a7e3SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'remark参数不合法', 'salt': "
+ "'f9d029c10ea5e7456f47db6d8996a818SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.06612110137939453'
+'取证接口响应结果验证耗时：0.0001857280731201172'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.40' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_40</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.40')" >
+        pass</a>
+
+    <div id='div_pt1.40' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.40').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.40: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_041]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-callbackUrl长度为257个字符-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"callbackUrl参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback?id=12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf12345ascdf1231", '
+ '"salt": "287b23a99662cb0e088c15088553d3e9SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'callbackUrl参数不合法', 'salt': "
+ "'6a6c6216b41f55c687d6e9ab112e4bc4SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.06379175186157227'
+'取证接口响应结果验证耗时：0.0002090930938720703'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.41' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_41</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.41')" >
+        pass</a>
+
+    <div id='div_pt1.41' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.41').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.41: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_042]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-salt错误-51个字符-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"salt参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"557cf73cd912c7d6adf2dc037117eccSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'salt参数不合法', 'salt': "
+ "'498cc3ad1ebdbfe049bd3dd974b5ef23SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.06421232223510742'
+'取证接口响应结果验证耗时：0.00018215179443359375'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.42' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_42</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.42')" >
+        pass</a>
+
+    <div id='div_pt1.42' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.42').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.42: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_043]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-salt错误-51个字符-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"salt参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"6557cf73cd912c7d6adf2dc037117eccSJ2P5TW43R0ZLCR6V55"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'salt参数不合法', 'salt': "
+ "'498cc3ad1ebdbfe049bd3dd974b5ef23SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.0654304027557373'
+'取证接口响应结果验证耗时：0.0001850128173828125'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.43' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_43</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.43')" >
+        pass</a>
+
+    <div id='div_pt1.43' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.43').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.43: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_044]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-salt错误-53个字符首字符加s-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"salt参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"s6557cf73cd912c7d6adf2dc037117eccSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'salt参数不合法', 'salt': "
+ "'498cc3ad1ebdbfe049bd3dd974b5ef23SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.06491899490356445'
+'取证接口响应结果验证耗时：0.00018930435180664062'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.44' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_44</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.44')" >
+        pass</a>
+
+    <div id='div_pt1.44' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.44').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.44: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_045]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-salt错误-53个字符尾字符加s-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"salt参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"6557cf73cd912c7d6adf2dc037117eccSJ2P5TW43R0ZLCR6V556s"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'salt参数不合法', 'salt': "
+ "'498cc3ad1ebdbfe049bd3dd974b5ef23SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.06346821784973145'
+'取证接口响应结果验证耗时：0.00020503997802734375'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.45' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_45</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.45')" >
+        pass</a>
+
+    <div id='div_pt1.45' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.45').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.45: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_046]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerID不传-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"partnerID参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerKey": "SJ2P5TW43R0ZLCR6V556", "serialNo": '
+ '"366564097107701760", "applyIDNumber": "110111197802171234", "method": '
+ '"method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"4a47dd9f5bcf21bd29465a09288e114eSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'partnerID参数不完全', 'salt': "
+ "'d58b6a18100c05522c2119d2bd995aefSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.064361572265625'
+'取证接口响应结果验证耗时：0.0002110004425048828'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.46' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_46</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.46')" >
+        pass</a>
+
+    <div id='div_pt1.46' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.46').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.46: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_047]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerKey不传-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"partnerKey参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "serialNo": "366564097107701760", '
+ '"applyIDNumber": "110111197802171234", "method": "method", "applyName": '
+ '"李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"cd29dd979cd46f1d264957fd44b847ef"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'partnerKey参数不完全', 'salt': "
+ "'02b68f8e522b0494cd8ccf3fb35697c8null', 'success': False, 'resultCode': "
+ "'0202002'}")
+'取证接口响应耗时：0.06534504890441895'
+'取证接口响应结果验证耗时：0.00019621849060058594'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.47' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_47</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.47')" >
+        pass</a>
+
+    <div id='div_pt1.47' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.47').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.47: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_048]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-serialNo不传-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"serialNo参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "applyIDNumber": "110111197802171234", "method": '
+ '"method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"fcb3e3d5937b62d63a7b227fe667bb9dSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'serialNo参数不完全', 'salt': "
+ "'c5a4b0d3d63cfd6b6d62067670aa60c1SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06371355056762695'
+'取证接口响应结果验证耗时：0.0001800060272216797'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.48' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_48</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.48')" >
+        pass</a>
+
+    <div id='div_pt1.48' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.48').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.48: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_049]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-applyIDNumber不传-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"applyIDNumber参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "method": '
+ '"method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"b6f43492f3b94acade52f8083778d5e7SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'applyIDNumber参数不完全', 'salt': "
+ "'c73850a98ff7ea82d28d7ddabd8eb8ceSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06470561027526855'
+'取证接口响应结果验证耗时：0.00018310546875'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.49' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_49</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.49')" >
+        pass</a>
+
+    <div id='div_pt1.49' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.49').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.49: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_050]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-method不传-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"method参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"7cbf3e681f2842c680e481af1fac7416SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'method参数不完全', 'salt': "
+ "'70e4e9f68e6d02214f61ac09697c48afSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.0679013729095459'
+'取证接口响应结果验证耗时：0.00018787384033203125'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.50' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_50</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.50')" >
+        pass</a>
+
+    <div id='div_pt1.50' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.50').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.50: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_051]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-applyName不传-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"applyName参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"0874e09a7d0eef004e25fb6ec0648d82SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'applyName参数不完全', 'salt': "
+ "'599c4a9a89e675aac04a4f92ad30f48eSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06776905059814453'
+'取证接口响应结果验证耗时：0.0001804828643798828'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.51' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_51</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.51')" >
+        pass</a>
+
+    <div id='div_pt1.51' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.51').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.51: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_052]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-url不传-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"url参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "remark": '
+ '"ba1图片", "callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", '
+ '"salt": "0712c874b930c66c57a5deea418d4a3bSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'url参数不完全', 'salt': "
+ "'f3776b5322f668ab79302eb594708753SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06592106819152832'
+'取证接口响应结果验证耗时：0.0001819133758544922'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.52' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_52</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.52')" >
+        pass</a>
+
+    <div id='div_pt1.52' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.52').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.52: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_053]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-remark不传-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"remark参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"9d503c6fc3825df952365296e6667968SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'remark参数不完全', 'salt': "
+ "'b956c80e4874ffbb41b96eed25ac139fSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06361150741577148'
+'取证接口响应结果验证耗时：0.00020766258239746094'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.53' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_53</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.53')" >
+        pass</a>
+
+    <div id='div_pt1.53' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.53').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.53: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_054]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-callbackUrl不传-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"callbackUrl参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "salt": '
+ '"eb9916249068ed2982a7d8f5070d6278SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'callbackUrl参数不完全', 'salt': "
+ "'0bcb723eb9d34c84fd85c6fbee8b4508SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06502556800842285'
+'取证接口响应结果验证耗时：0.00018143653869628906'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.54' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_54</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.54')" >
+        pass</a>
+
+    <div id='div_pt1.54' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.54').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.54: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_055]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-salt不传-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"salt参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'salt参数不完全', 'salt': "
+ "'01b2e5b758a080fce9b8ee45c3a05ceeSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06327366828918457'
+'取证接口响应结果验证耗时：0.00020122528076171875'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.55' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_55</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.55')" >
+        pass</a>
+
+    <div id='div_pt1.55' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.55').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.55: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_056]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerID为空-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"partnerID参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerKey": "SJ2P5TW43R0ZLCR6V556", "serialNo": '
+ '"366564097107701760", "applyIDNumber": "110111197802171234", "method": '
+ '"method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": "p"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'partnerID参数不完全', 'salt': "
+ "'d58b6a18100c05522c2119d2bd995aefSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06388735771179199'
+'取证接口响应结果验证耗时：0.00018787384033203125'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.56' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_56</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.56')" >
+        pass</a>
+
+    <div id='div_pt1.56' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.56').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.56: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_057]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerKey为空-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"partnerKey参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "serialNo": "366564097107701760", '
+ '"applyIDNumber": "110111197802171234", "method": "method", "applyName": '
+ '"李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"cd29dd979cd46f1d264957fd44b847ef"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'partnerKey参数不完全', 'salt': "
+ "'02b68f8e522b0494cd8ccf3fb35697c8null', 'success': False, 'resultCode': "
+ "'0202002'}")
+'取证接口响应耗时：0.06342554092407227'
+'取证接口响应结果验证耗时：0.0001804828643798828'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.57' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_57</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.57')" >
+        pass</a>
+
+    <div id='div_pt1.57' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.57').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.57: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_058]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-serialNo为空-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"serialNo参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "applyIDNumber": "110111197802171234", "method": '
+ '"method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"fcb3e3d5937b62d63a7b227fe667bb9dSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'serialNo参数不完全', 'salt': "
+ "'c5a4b0d3d63cfd6b6d62067670aa60c1SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.0659182071685791'
+'取证接口响应结果验证耗时：0.00018668174743652344'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.58' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_58</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.58')" >
+        pass</a>
+
+    <div id='div_pt1.58' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.58').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.58: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_059]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-applyIDNumber为空-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"applyIDNumber参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "method": '
+ '"method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"b6f43492f3b94acade52f8083778d5e7SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'applyIDNumber参数不完全', 'salt': "
+ "'c73850a98ff7ea82d28d7ddabd8eb8ceSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06447720527648926'
+'取证接口响应结果验证耗时：0.0001900196075439453'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.59' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_59</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.59')" >
+        pass</a>
+
+    <div id='div_pt1.59' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.59').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.59: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_060]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-method为空-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"method参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"7cbf3e681f2842c680e481af1fac7416SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'method参数不完全', 'salt': "
+ "'70e4e9f68e6d02214f61ac09697c48afSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06313800811767578'
+'取证接口响应结果验证耗时：0.0001823902130126953'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.60' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_60</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.60')" >
+        pass</a>
+
+    <div id='div_pt1.60' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.60').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.60: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_061]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-applyName为空-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"applyName参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"0874e09a7d0eef004e25fb6ec0648d82SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'applyName参数不完全', 'salt': "
+ "'599c4a9a89e675aac04a4f92ad30f48eSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.0634145736694336'
+'取证接口响应结果验证耗时：0.0001780986785888672'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.61' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_61</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.61')" >
+        pass</a>
+
+    <div id='div_pt1.61' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.61').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.61: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_062]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-url为空-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"url参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "remark": '
+ '"ba1图片", "callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", '
+ '"salt": "0712c874b930c66c57a5deea418d4a3bSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'url参数不完全', 'salt': "
+ "'f3776b5322f668ab79302eb594708753SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.0656728744506836'
+'取证接口响应结果验证耗时：0.0001964569091796875'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.62' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_62</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.62')" >
+        pass</a>
+
+    <div id='div_pt1.62' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.62').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.62: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_063]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-remark为空-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"remark参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"callbackUrl": "http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"9d503c6fc3825df952365296e6667968SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'remark参数不完全', 'salt': "
+ "'b956c80e4874ffbb41b96eed25ac139fSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.062455177307128906'
+'取证接口响应结果验证耗时：4.9114227294921875e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.63' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_63</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.63')" >
+        pass</a>
+
+    <div id='div_pt1.63' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.63').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.63: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_064]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-callbackUrl为空-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"callbackUrl参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "salt": '
+ '"eb9916249068ed2982a7d8f5070d6278SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'callbackUrl参数不完全', 'salt': "
+ "'0bcb723eb9d34c84fd85c6fbee8b4508SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.050905466079711914'
+'取证接口响应结果验证耗时：0.00010657310485839844'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.64' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_64</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.64')" >
+        pass</a>
+
+    <div id='div_pt1.64' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.64').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.64: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_065]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-salt为空-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"salt参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'salt参数不完全', 'salt': "
+ "'01b2e5b758a080fce9b8ee45c3a05ceeSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06202054023742676'
+'取证接口响应结果验证耗时：0.00017905235290527344'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.65' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_65</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.65')" >
+        pass</a>
+
+    <div id='div_pt1.65' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.65').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.65: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_066]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerID为空格-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"partnerID参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": " ", "partnerKey": "SJ2P5TW43R0ZLCR6V556", "serialNo": '
+ '"366564097107701760", "applyIDNumber": "110111197802171234", "method": '
+ '"method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"d2c3af753773b8dd86c6bc4a7ce22090SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'partnerID参数不完全', 'salt': "
+ "'d58b6a18100c05522c2119d2bd995aefSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06353950500488281'
+'取证接口响应结果验证耗时：0.00018334388732910156'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.66' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_66</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.66')" >
+        pass</a>
+
+    <div id='div_pt1.66' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.66').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.66: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_067]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerKey为空格-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"partnerKey参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": " ", "serialNo": '
+ '"366564097107701760", "applyIDNumber": "110111197802171234", "method": '
+ '"method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"7c50d3c95c64e06083b6ef43451fe2c7 "}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'partnerKey参数不完全', 'salt': "
+ "'02b68f8e522b0494cd8ccf3fb35697c8 ', 'success': False, 'resultCode': "
+ "'0202002'}")
+'取证接口响应耗时：0.06574082374572754'
+'取证接口响应结果验证耗时：0.0001838207244873047'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.67' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_67</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.67')" >
+        pass</a>
+
+    <div id='div_pt1.67' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.67').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.67: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_068]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-serialNo为空格-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"serialNo参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": " ", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"5dc55d3e2ee6e48c4a68d3f59810d5f1SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'serialNo参数不完全', 'salt': "
+ "'c5a4b0d3d63cfd6b6d62067670aa60c1SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.062273502349853516'
+'取证接口响应结果验证耗时：0.000255584716796875'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.68' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_68</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.68')" >
+        pass</a>
+
+    <div id='div_pt1.68' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.68').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.68: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_069]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-applyIDNumber为空格-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"applyIDNumber参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": " '
+ '", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"5bfa9f2bcf51773e7abffd71ac137f91SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'applyIDNumber参数不完全', 'salt': "
+ "'c73850a98ff7ea82d28d7ddabd8eb8ceSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06455445289611816'
+'取证接口响应结果验证耗时：0.00018596649169921875'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.69' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_69</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.69')" >
+        pass</a>
+
+    <div id='div_pt1.69' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.69').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.69: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_070]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-method为空格-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"method参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": " ", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"13e121b7d7926ac26facdfe298579bf6SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'method参数不完全', 'salt': "
+ "'70e4e9f68e6d02214f61ac09697c48afSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06602025032043457'
+'取证接口响应结果验证耗时：0.0001823902130126953'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.70' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_70</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.70')" >
+        pass</a>
+
+    <div id='div_pt1.70' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.70').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.70: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_071]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-applyName为空格-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"applyName参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": " ", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"198d6b2e723a9a9cc2ac724db63772a4SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'applyName参数不完全', 'salt': "
+ "'599c4a9a89e675aac04a4f92ad30f48eSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06591320037841797'
+'取证接口响应结果验证耗时：0.00018286705017089844'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.71' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_71</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.71')" >
+        pass</a>
+
+    <div id='div_pt1.71' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.71').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.71: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_072]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-url为空格-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"url参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": " ", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"e8e631d17ee462d3b8a0c3332befffeeSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'url参数不完全', 'salt': "
+ "'f3776b5322f668ab79302eb594708753SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06431126594543457'
+'取证接口响应结果验证耗时：0.00020313262939453125'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.72' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_72</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.72')" >
+        pass</a>
+
+    <div id='div_pt1.72' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.72').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.72: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_073]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-remark为空格-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"remark参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": " ", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"bd337c3d918f3ad56288ec63e98383deSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'remark参数不完全', 'salt': "
+ "'b956c80e4874ffbb41b96eed25ac139fSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06664800643920898'
+'取证接口响应结果验证耗时：0.00020956993103027344'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.73' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_73</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.73')" >
+        pass</a>
+
+    <div id='div_pt1.73' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.73').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.73: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_074]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-callbackUrl为空格-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"callbackUrl参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": " ", "salt": '
+ '"b4a31c08846ec307580d92aa9509cf1dSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'callbackUrl参数不完全', 'salt': "
+ "'0bcb723eb9d34c84fd85c6fbee8b4508SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06547093391418457'
+'取证接口响应结果验证耗时：0.00018215179443359375'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.74' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_74</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.74')" >
+        pass</a>
+
+    <div id='div_pt1.74' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.74').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.74: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_075]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-salt为空格-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"salt参数不完全","success":false,"resultCode":"0202002"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": " "}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'salt参数不完全', 'salt': "
+ "'01b2e5b758a080fce9b8ee45c3a05ceeSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202002'}")
+'取证接口响应耗时：0.06480050086975098'
+'取证接口响应结果验证耗时：0.00020003318786621094'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.75' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_75</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.75')" >
+        pass</a>
+
+    <div id='div_pt1.75' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.75').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.75: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_076]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerID为 true-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": " true", "partnerKey": "SJ2P5TW43R0ZLCR6V556", '
+ '"serialNo": "366564097107701760", "applyIDNumber": "110111197802171234", '
+ '"method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"6fe7c50d0864d9e59060bcb2af32dcf9SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证接口响应耗时：0.06625962257385254'
+'取证接口响应结果验证耗时：0.00017976760864257812'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.76' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_76</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.76')" >
+        pass</a>
+
+    <div id='div_pt1.76' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.76').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.76: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_077]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerKey为 true-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": " true", "serialNo": '
+ '"366564097107701760", "applyIDNumber": "110111197802171234", "method": '
+ '"method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"2c4ad48d58d1e8313992e4ccc3e18cf2 true"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '用户名或密码错误', 'salt': '09627fbb569d7ba3ee6a7d5a0514001b "
+ "true', 'success': False, 'resultCode': '0203001'}")
+'取证接口响应耗时：0.0691385269165039'
+'取证接口响应结果验证耗时：0.00017881393432617188'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.77' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_77</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.77')" >
+        pass</a>
+
+    <div id='div_pt1.77' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.77').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.77: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_078]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-serialNo为 true-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"serialNo参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": " true", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"2eb7a723329ebfbc3cad24dfadb5e86aSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'serialNo参数不合法', 'salt': "
+ "'58fd78ac41fe80817f18dc2c466323c2SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.06702947616577148'
+'取证接口响应结果验证耗时：0.00019168853759765625'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.78' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_78</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.78')" >
+        pass</a>
+
+    <div id='div_pt1.78' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.78').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.78: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_079]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-applyIDNumber为 true-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": " '
+ 'true", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"bd754dc779d1750c61d68eb5efcf54aaSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'6b0e136b38786099fe7c8ac5c6d32a5dSJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': '386439c57886c7f87d5573a82c7089af'}")
+'取证接口响应耗时：0.15755200386047363'
+'取证接口响应结果验证耗时：0.00024127960205078125'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.79' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_79</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.79')" >
+        pass</a>
+
+    <div id='div_pt1.79' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.79').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.79: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_080]'
+'取证接口测试目的：请求成功-回调成功-证书生成成功'
+'取证接口用例描述：必传参数-method为 true-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": " true", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"8b57e1625c3a8ca0bb2ed892e6efa133SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'57fa76ded1fae36e82676724ca3ac0ecSJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': '56e8224ac77eddc108da7168e506fa7b'}")
+'取证接口响应耗时：0.31381988525390625'
+'取证接口响应结果验证耗时：0.0002636909484863281'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.80' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_80</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.80')" >
+        pass</a>
+
+    <div id='div_pt1.80' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.80').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.80: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_081]'
+'取证接口测试目的：请求成功-回调成功-证书生成成功'
+'取证接口用例描述：必传参数-apply trueame为 true-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": " true", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"53ac095585b5c600439bf027f0e30145SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'c69532fc7a3144916649c67d0896a34fSJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': 'ce4d70723fa203ff2c0415f39f471e46'}")
+'取证接口响应耗时：0.1618492603302002'
+'取证接口响应结果验证耗时：0.0002601146697998047'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.81' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_81</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.81')" >
+        pass</a>
+
+    <div id='div_pt1.81' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.81').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.81: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_082]'
+'取证接口测试目的：请求成功-回调成功-证书生成成功'
+'取证接口用例描述：必传参数-url为 true-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": " true", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"c255e56317a368774de0519c9d3a5707SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'807340139363c9d1c51ae5a7d95468efSJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': '08f021bd3a504e973a509b52bb8ab346'}")
+'取证接口响应耗时：0.16803622245788574'
+'取证接口响应结果验证耗时：0.00024056434631347656'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.82' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_82</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.82')" >
+        pass</a>
+
+    <div id='div_pt1.82' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.82').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.82: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_083]'
+'取证接口测试目的：请求成功-回调成功-证书生成成功'
+'取证接口用例描述：必传参数-remark为 true-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": " true", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"aa66f202dfbec53a4f8b446b7da6f57aSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'8aa3ac94ac645f64041a1217728726e9SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': '0beba0c1d8e3b1ab58fdb2540abbe48e'}")
+'取证接口响应耗时：0.15289568901062012'
+'取证接口响应结果验证耗时：0.0002455711364746094'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.83' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_83</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.83')" >
+        pass</a>
+
+    <div id='div_pt1.83' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.83').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.83: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_084]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-salt为 true-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"salt参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": " true"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'salt参数不合法', 'salt': "
+ "'498cc3ad1ebdbfe049bd3dd974b5ef23SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.06088590621948242'
+'取证接口响应结果验证耗时：6.246566772460938e-05'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.84' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_84</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.84')" >
+        pass</a>
+
+    <div id='div_pt1.84' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.84').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.84: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_085]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerID为 null-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": " null", "partnerKey": "SJ2P5TW43R0ZLCR6V556", '
+ '"serialNo": "366564097107701760", "applyIDNumber": "110111197802171234", '
+ '"method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"5da755fa08ee275935b053f6df4840e4SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '用户名或密码错误', 'salt': "
+ "'09627fbb569d7ba3ee6a7d5a0514001bSJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0203001'}")
+'取证接口响应耗时：0.05424308776855469'
+'取证接口响应结果验证耗时：0.00018453598022460938'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.85' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_85</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.85')" >
+        pass</a>
+
+    <div id='div_pt1.85' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.85').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.85: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_086]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-partnerKey为 null-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"用户名或密码错误","success":false,"resultCode":"0203001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": " null", "serialNo": '
+ '"366564097107701760", "applyIDNumber": "110111197802171234", "method": '
+ '"method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"6ce678591635e06c4c72939436dddb91 null"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '用户名或密码错误', 'salt': '09627fbb569d7ba3ee6a7d5a0514001b "
+ "null', 'success': False, 'resultCode': '0203001'}")
+'取证接口响应耗时：0.06678652763366699'
+'取证接口响应结果验证耗时：0.00018095970153808594'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.86' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_86</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.86')" >
+        pass</a>
+
+    <div id='div_pt1.86' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.86').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.86: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_087]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-serialNo为 null-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"serialNo参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": " null", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"8f33b7a487a3510c0b5e5cbc445e59f9SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'serialNo参数不合法', 'salt': "
+ "'58fd78ac41fe80817f18dc2c466323c2SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.06490325927734375'
+'取证接口响应结果验证耗时：0.00018286705017089844'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.87' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_87</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.87')" >
+        pass</a>
+
+    <div id='div_pt1.87' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.87').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.87: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_088]'
+'取证接口测试目的：请求成功-回调成功-证书生成成功'
+'取证接口用例描述：必传参数-applyIDNumber为 null-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": " '
+ 'null", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"bb5c180dafe07df7ecf4a1f59129a510SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'ee22781488d5cc753b51cfe1d5b54281SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': '165b743ca7fc309cb394a09053dc0d9a'}")
+'取证接口响应耗时：0.1833662986755371'
+'取证接口响应结果验证耗时：0.00024628639221191406'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.88' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_88</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.88')" >
+        pass</a>
+
+    <div id='div_pt1.88' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.88').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.88: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_089]'
+'取证接口测试目的：请求成功-回调成功-证书生成成功'
+'取证接口用例描述：必传参数-method为 null-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": " null", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"179e7b7956be139427d333aac7112f82SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'ef7d36a7f0127b9e71e3497c4bc44f33SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': 'e11969375bc4eb5e315f57c5eb36948c'}")
+'取证接口响应耗时：0.11332297325134277'
+'取证接口响应结果验证耗时：0.00024080276489257812'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.89' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_89</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.89')" >
+        pass</a>
+
+    <div id='div_pt1.89' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.89').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.89: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_090]'
+'取证接口测试目的：请求成功-回调成功-证书生成成功'
+'取证接口用例描述：必传参数-applyName为 null-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": " null", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"70e4f7f9450b2589969ec9ebd765dcd8SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'7aca0ddfff5634879e1030c304c6b332SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': '2c1ef95e8a4bc6e8ffc5fc1916d2302d'}")
+'取证接口响应耗时：0.11882162094116211'
+'取证接口响应结果验证耗时：0.0002448558807373047'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.90' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_90</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.90')" >
+        pass</a>
+
+    <div id='div_pt1.90' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.90').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.90: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_091]'
+'取证接口测试目的：请求成功-回调成功-证书生成成功'
+'取证接口用例描述：必传参数-url为 null-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":true}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": " null", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"7b12cc9d4ddb110b48160d440232015eSJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'404499154d5e82da3a0059599b1d9922SJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': 'a689ae113c774b2435f843231c189635'}")
+'取证接口响应耗时：0.1587226390838623'
+'取证接口响应结果验证耗时：0.00024437904357910156'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.91' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_91</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.91')" >
+        pass</a>
+
+    <div id='div_pt1.91' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.91').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.91: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_092]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-remark为 null-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": " null", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": '
+ '"647879ec6903044a428743b8abc91742SJ2P5TW43R0ZLCR6V556"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': '请求成功', 'salt': "
+ "'01c20357cc904e83050abf422f5e764fSJ2P5TW43R0ZLCR6V556', 'success': True, "
+ "'resultCode': '0204000', 'evidenceNo': 'a4f52fde714b78ed9d1b5b20285cabe9'}")
+'取证接口响应耗时：0.12139606475830078'
+'取证接口响应结果验证耗时：0.00024056434631347656'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.92' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_http_92</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.92')" >
+        pass</a>
+
+    <div id='div_pt1.92' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.92').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.92: '取证接口用例执行详情如下：'
+'取证接口执行测试用例编号：[BQ_QZ_093]'
+'取证接口测试目的：请求失败'
+'取证接口用例描述：必传参数-salt为 null-其它参数正确传入'
+'取证接口地址：http://39.107.66.190:9990/v2/api/evidence/opusEvidence'
+'取证接口预期接口返回值={"msg":"salt参数不合法","success":false,"resultCode":"0202001"}'
+'取证接口预期回调状态值={"callbackFlag":false}'
+'******************************************************************************'
+('请求参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "serialNo": "366564097107701760", "applyIDNumber": '
+ '"110111197802171234", "method": "method", "applyName": "李明", "url": '
+ '"http://m.uczzd.cn/ucnews/news?app=ucnews-iflow&amp;aid=11709685210548302577", '
+ '"remark": "ba1图片", "callbackUrl": '
+ '"http://39.107.66.190:9990/v2/api/confirm/callback", "salt": " null"}')
+'******************************************************************************'
+'取证接口响应返回数据共&lt;0&gt;条'
+("取证接口响应结果={'msg': 'salt参数不合法', 'salt': "
+ "'498cc3ad1ebdbfe049bd3dd974b5ef23SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0202001'}")
+'取证接口响应耗时：0.06733512878417969'
+'取证接口响应结果验证耗时：0.0001800060272216797'
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='total_row'>
+    <td>Total</td>
+    <td>92</td>
+    <td>92</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+
+</body>
+</html>

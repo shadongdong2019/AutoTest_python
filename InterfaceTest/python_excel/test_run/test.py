@@ -1,8 +1,8 @@
 from jsonpath import jsonpath
 
-from InterfaceTest.python_excel.common.interface_run import InterfaceRun
-from InterfaceTest.python_excel.get_data.tsa_param_dic import TsaParamDict
-from InterfaceTest.python_excel.utils.operation_json import OperationJson
+from python_excel.common.interface_run import InterfaceRun
+from python_excel.get_data.tsa_param_dic import TsaParamDict
+from python_excel.utils.operation_json import OperationJson
 op = OperationJson("../data_file/100_2.json")
 def test_download():
     print(op.read_data())

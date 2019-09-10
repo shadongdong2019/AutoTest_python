@@ -1,9 +1,11 @@
-from InterfaceTest.python_excel.get_data.common_param_dic import CommonParamDict
-from InterfaceTest.python_excel.get_data.param_global import ParamGlobal
-from InterfaceTest.python_excel.utils.operation_excel import OperationExcel
-from InterfaceTest.python_excel.get_data.get_data import GetData
-from InterfaceTest.python_excel.common.interface_run import InterfaceRun
-from InterfaceTest.python_excel.common.deal_response_data import DealResData
+import time
+from copy import deepcopy
+
+from jsonpath import jsonpath
+
+from python_excel.get_data.common_param_dic import CommonParamDict
+from python_excel.utils.operation_excel import OperationExcel
+
 from  jsonpath_rw import parse
 
 class DependCase:
@@ -13,44 +15,71 @@ class DependCase:
         self.case_id = self.kwargs.get("DepCaseID","") #获取依赖的测试用例ID
         self.ope_excel = OperationExcel(**self.kwargs)
         self.case_value_rownum = self.ope_excel.get_row_num_for_value(self.case_id)
+        self.hash_orders = self.kwargs.get("hash_orders",[]) #获取依赖的测试用例ID的参数顺序列表，用于生成salt
+        self.DepGetDataForm = self.kwargs.get("DepGetDataForm","")  #依赖提取数据格式
+        self.DepResList = self.kwargs.get("DepResList", [])  # 依赖参数列表
+
 
     #获取运行依赖case需要的各项请求数据
-    def get_dep_data(self,caseid=None):
-        # 获取参数名所在行返回参数名列表
-        self.kwargs["case_param_name_start"] = self.param_name_rownum  #写入用例开始行号
-        self.kwargs["case_start_rownum"] = self.case_value_rownum  # 写入用例开始行号
-        self.param_name_list = self.ope_excel.get_row_col_list_param_name(**self.kwargs)
-        # 实例参数名处理类-根据上面的参数名列表
-        self.param = ParamGlobal(self.param_name_list)
-        # 获取参数英文名列表
-        self.name_list = self.param.get_param_en_name_list()
-        # 获取参数值列表（仅获取从开始行到结束行的数所在，如果都为0表示所有记录）
-        self.name_value_list = self.ope_excel.get_row_col_list(**self.kwargs)
-        cpd = CommonParamDict(**self.kwargs)
-        data_http = cpd.deal_param()
-        return data_http
-
-
-    #运行依赖case
-    def run_depend_case(self):
-       res = self.run.main_request(self.req_method,self.req_url,self.req_data,self.req_headers)
-       deal_res = self.deal_res_data.deal_res_data(res,3)
-       return deal_res
-
-    #按规则获取依赖case返回的依赖数据
-    def get_run_dep_data(self,run_dep_res,dep_re):
+    def get_dep_data(self):
         '''
-        :param dep_re: 获取excel表格中依赖的数据规则
+        :return: 依赖测试用例执行结果
+        '''
+        # 获取参数名所在行返回参数名列表
+        self.kwargs["case_param_name_start"] = self.param_name_rownum  #用例参数名开始行号
+        self.kwargs["case_start_rownum"] = self.case_value_rownum  # 用例参数值开始行号
+        self.kwargs["hash_orders"] = self.hash_orders  # 用例参数顺序列表
+        self.kwargs["DepGetDataForm"] = self.hash_orders  # 用例参数顺序列表
+        cpd = CommonParamDict(**self.kwargs)
+        case_data = cpd.deal_param() #[[]]
+        no_request_list = cpd.param.get_param_no_request_list()
+        dep_res = self.deal_dep_param(no_request_list,case_data[0]) #获取依赖测试用列响应结果
+
+
+
+
+    def deal_dep_param(self,no_request_list,case_data):
+        '''
+        接口用例发送请求之前去除掉非接口传输参数
+        :param no_request_list: 获取请求接口不传入参数列表
+        :param case_data: 测试用例
         :return:
         '''
-        print(dep_re)
-        dep_data_re = parse(dep_re)
-        dep_data = dep_data_re.find(run_dep_res)
-        res = [dep_data.value for dep_data in dep_data]
-        print(res)
+        deal_param_list = []
+        no_request_dict = {}  # 存放不参数请求的参数
+        req_data_dict = deepcopy(case_data)         #深拷贝参数字典
+        for param  in no_request_list:
+            no_request_dict[param] = req_data_dict.pop(param)
+        deal_param_list.append(req_data_dict)
+        deal_param_list.append(no_request_dict)
+        req_s_time = time.time()
+        url = no_request_dict.get("Requrl","")
+        ori_res = self.interface_run.main_request(self.method_req, url, req_data_dict)
+        req_e_time = time.time()
+        hs = req_e_time -req_s_time
+        try:
+            res = ori_res.json()
+        except Exception as e:
+            res = ori_res.text
+        print("依赖测试用执请求接口用时：{}".format(hs))
         return res
 
-    def run_dep_case(self):
-        ori_res = self.interface_run.main_request(self.method_req, url, req_data_dict)
+
+    def deal_req_res(self,res_json):
+
+        res = jsonpath(res_json, self.DepGetDataForm)[0]
+        depresvaluelist = []
+        for dep_res in res:
+            depresvaluelist.append(dep_res)
+        dep_res_dict = dict(zip(res,self.depresvaluelist))
+        return dep_res_dict
+
+    def write_excel_value(self,dep_res):
+        dep_res_dict = self.deal_req_res(dep_res)
+        #self.ope_excel.
+        self.ope_excel.writer_data()
+
+
+
 
 

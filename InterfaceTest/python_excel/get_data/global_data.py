@@ -1,4 +1,4 @@
-from InterfaceTest.python_excel.utils.operation_json import OperationJson
+from python_excel.utils.operation_json import OperationJson
 
 
 class global_data:

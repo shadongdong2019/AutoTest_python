@@ -2,16 +2,46 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bef09d81-c4de-40f6-98c7-1c0866798c9e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/python_excel/common/CaseIsPass.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python_excel/utils/MongodbObj.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/case_file/BQ_JC_QZ_CASE.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/case_test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/config/caseRun.cfg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/jc_image/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/jc_image/10.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/jc_image/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/jc_image/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/jc_image/4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/jc_image/5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/jc_image/6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/jc_image/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/jc_image/7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/jc_image/8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/jc_image/9.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/report/20190909_zs/case_test20190909182117.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/report/20190910_zs/case_test20190910154631.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/report/20190910_zs/case_test20190910160053.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/report/20190910_zs/case_test20190910161351.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/report/20190910_zs/case_test20190910162152.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/report/20190910_zs/case_test20190910162259.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/report/20190910_zs/case_test20190910165030.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python_excel/common/RunReqDeal.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python_excel/utils/ConfigPath.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/case_file/BQ_JC_QZ_CASE.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/case_file/BQ_JC_QZ_CASE.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/case_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/case_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/config/caseRun.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/config/caseRun.cfg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/python_excel/common/cmp_res_req.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_excel/common/cmp_res_req.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_excel/get_data/case_error.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_excel/get_data/case_error.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_excel/get_data/case_mes.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_excel/get_data/case_mes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_excel/get_data/common_param_dic.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_excel/get_data/common_param_dic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_excel/get_data/dependCase.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_excel/get_data/dependCase.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_excel/get_data/depend_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_excel/get_data/depend_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_excel/get_data/get_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_excel/get_data/get_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_excel/get_data/global_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_excel/get_data/global_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_excel/get_data/tsa_param_dic.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_excel/get_data/tsa_param_dic.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/python_excel/test_run/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_excel/test_run/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_excel/utils/ElasticObj.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_excel/utils/ElasticObj.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_excel/test_run/test_run.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_excel/test_run/test_run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_excel/utils/operation_excel.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_excel/utils/operation_excel.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,23 +98,23 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/python_excel/unittest_run/case_test.py" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/python_excel/data_file" />
-      <recent name="$PROJECT_DIR$/python_excel/report" />
-      <recent name="$PROJECT_DIR$/python_excel/applay_file" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/python_excel/unittest_run" />
       <recent name="$PROJECT_DIR$/python_excel/data_file" />
       <recent name="$PROJECT_DIR$/python_excel" />
       <recent name="$PROJECT_DIR$/python_excel/applay_file" />
       <recent name="$PROJECT_DIR$/python_excel/hz_file" />
-      <recent name="$PROJECT_DIR$/python_excel/bq_0719" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/python_excel/data_file" />
+      <recent name="$PROJECT_DIR$/python_excel/report" />
+      <recent name="$PROJECT_DIR$/python_excel/applay_file" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -99,7 +129,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.case_main">
+  <component name="RunManager" selected="Python.case_test_qz">
     <configuration name="case_big_file" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="InterfaceTest" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -268,6 +298,50 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python_excel/unittest_run/case_run.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="case_test_qz" type="PythonConfigurationType" factoryName="Python">
+      <module name="InterfaceTest" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/case_test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="case_test_qz_py" type="PythonConfigurationType" factoryName="Python">
+      <module name="InterfaceTest" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python_excel/unittest_run" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python_excel/unittest_run/case_test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -500,6 +574,8 @@
       <item itemvalue="Python.case_value_space" />
       <item itemvalue="Python.case_hz_20" />
       <item itemvalue="Python.case_main" />
+      <item itemvalue="Python.case_test_qz" />
+      <item itemvalue="Python.case_test_qz_py" />
       <item itemvalue="Python.case_value_spec" />
       <item itemvalue="Python.case_big_file" />
       <item itemvalue="Python.case_param_no" />
@@ -611,6 +687,7 @@
       <workItem from="1566960954192" duration="1363000" />
       <workItem from="1567157121540" duration="577000" />
       <workItem from="1567588253298" duration="21000" />
+      <workItem from="1568107828312" duration="1962000" />
     </task>
     <servers />
   </component>
@@ -819,11 +896,6 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/python_excel/test_run/test.py</url>
-          <line>61</line>
-          <option name="timeStamp" value="422" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/python_excel/test_run/test.py</url>
           <line>12</line>
           <option name="timeStamp" value="424" />
         </line-breakpoint>
@@ -857,6 +929,31 @@
           <line>16</line>
           <option name="timeStamp" value="430" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/case_test.py</url>
+          <line>30</line>
+          <option name="timeStamp" value="431" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/python_excel/utils/operation_cfg.py</url>
+          <line>10</line>
+          <option name="timeStamp" value="432" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/python_excel/utils/operation_cfg.py</url>
+          <line>23</line>
+          <option name="timeStamp" value="433" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/python_excel/utils/operation_cfg.py</url>
+          <line>146</line>
+          <option name="timeStamp" value="434" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/python_excel/utils/operation_cfg.py</url>
+          <line>70</line>
+          <option name="timeStamp" value="435" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -885,6 +982,11 @@
         <watch expression="res" language="Python" />
         <watch expression="res.json()" language="Python" />
         <watch expression="res.content" language="Python" />
+        <watch expression="config.read(self.filename)" language="Python" />
+        <watch expression="config.options" language="Python" />
+        <watch expression="config.options(self.section)" language="Python" />
+        <watch expression="config.sections()" language="Python" />
+        <watch expression="e" language="Python" />
       </configuration>
     </watches-manager>
   </component>
@@ -893,6 +995,7 @@
     <SUITE FILE_PATH="coverage/InterfaceTest$__init__.coverage" NAME="__init__ Coverage Results" MODIFIED="1562661117054" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python_excel/log" />
     <SUITE FILE_PATH="coverage/InterfaceTest0719$case_run.coverage" NAME="case_run Coverage Results" MODIFIED="1563800255135" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python_excel/unittest_run" />
     <SUITE FILE_PATH="coverage/InterfaceTest0719$test.coverage" NAME="test Coverage Results" MODIFIED="1563763931107" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python_excel/test_run" />
+    <SUITE FILE_PATH="coverage/InterfaceTest$case_test_qz_py.coverage" NAME="case_test_qz_py Coverage Results" MODIFIED="1568108572020" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python_excel/unittest_run" />
     <SUITE FILE_PATH="coverage/InterfaceTest$case_param_no.coverage" NAME="case_param_no Coverage Results" MODIFIED="1565341766524" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python_excel/unittest_run" />
     <SUITE FILE_PATH="coverage/InterfaceTest$cmp_res_req.coverage" NAME="cmp_res_req Coverage Results" MODIFIED="1564128649615" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python_excel/common" />
     <SUITE FILE_PATH="coverage/InterfaceTest$case_value_space.coverage" NAME="case_value_space Coverage Results" MODIFIED="1565343575710" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python_excel/unittest_run" />
@@ -928,5 +1031,6 @@
     <SUITE FILE_PATH="coverage/InterfaceTest$test01.coverage" NAME="test01 Coverage Results" MODIFIED="1566196780164" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python_excel/test_run" />
     <SUITE FILE_PATH="coverage/InterfaceTest$operation_excel.coverage" NAME="operation_excel Coverage Results" MODIFIED="1562638342788" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python_excel/utils" />
     <SUITE FILE_PATH="coverage/InterfaceTest$apport_python_hook.coverage" NAME="apport_python_hook Coverage Results" MODIFIED="1564481151817" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="/usr/lib/python3/dist-packages" />
+    <SUITE FILE_PATH="coverage/InterfaceTest$case_test_qz.coverage" NAME="case_test_qz Coverage Results" MODIFIED="1568109789667" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ" />
   </component>
 </project>

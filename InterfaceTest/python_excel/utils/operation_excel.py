@@ -110,6 +110,23 @@ class OperationExcel:
             log.error("操作EXCEL表类获取值对应的行号出现异常，异常原因：{}".format(e))
             return None
 
+    def get_col_num_for_value(self,value):
+        '''
+        根据指定内容获取列号
+        :param value: 单元格内容
+        :return: 行号
+        '''
+        cols_data = self.get_cols_data()
+        try:
+            row_num = None
+            for index,data in enumerate(self.get_cols_data(1)):
+                if data == value:
+                    row_num = index
+            return row_num
+        except Exception as e:
+            log.error("操作EXCEL表类获取值对应的行号出现异常，异常原因：{}".format(e))
+            return None
+
     def get_row_col_list(self,**kwargs):
         '''
         获取指定行内容
@@ -144,6 +161,8 @@ class OperationExcel:
         :param rows:结束行，如默认表示所有行
         :return:行列表
         '''
+        if kwargs:
+            self.kwargs = kwargs
         start = self.kwargs.get("case_param_name_start",1)
         end   = self.kwargs.get("case_param_name_end",0)
         row_col_list = []
@@ -167,4 +186,5 @@ class OperationExcel:
 
 if __name__ == '__main__':
     oe = OperationExcel()
-    print(oe.get_cell_value(1,2))
+    #print(oe.get_cell_value(1,2))
+    oe.get_col_num_for_value()
