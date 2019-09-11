@@ -58,8 +58,10 @@ class CommonParamDict:
                         continue
                     salt_N = False
                     for key in list(param_dict.keys()):
-
-                        key_value = param_dict.get(key)
+                        try:
+                            key_value = eval(param_dict.get(key))
+                        except Exception as e :
+                            key_value = param_dict.get(key)
                         if not key_value and key not in no_param :
                             del param_dict[key]
                         if str(key_value).upper() == 'N' or str(key_value).upper() == 'NN': #参数值为N表示此参数不传
@@ -166,7 +168,10 @@ class CommonParamDict:
         :return: salt值
         '''
         xn_case = []
-        hash_order =self.kargs.get("hash_orders",None)
+        try:
+            hash_order =eval(self.kargs.get("hash_orders",None))
+        except Exception as e :
+            hash_order = self.kargs.get("hash_orders", None)
         value_order_list = []
         for param_name in hash_order:
           xn_case.append(case_dict.get(param_name,""))

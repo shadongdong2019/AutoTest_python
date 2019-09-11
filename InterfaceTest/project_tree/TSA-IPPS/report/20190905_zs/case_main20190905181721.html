@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>版权服务2.0生产环境接口测试报告（https）</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+<style type="text/css" media="screen">
+body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
+table       { font-size: 100%; }
+pre         { }
+
+/* -- heading ---------------------------------------------------------------------- */
+h1 {
+	font-size: 16pt;
+	color: gray;
+}
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+
+.heading .attribute {
+    margin-top: 1ex;
+    margin-bottom: 0;
+}
+
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+
+/* -- css div popup ------------------------------------------------------------------------ */
+a.popup_link {
+}
+
+a.popup_link:hover {
+    color: red;
+}
+
+.popup_window {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    padding: 10px;
+    background-color: #E6E6D6;
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 8pt;
+    width: 500px;
+}
+
+}
+/* -- report ------------------------------------------------------------------------ */
+#show_detail_line {
+    margin-top: 3ex;
+    margin-bottom: 1ex;
+}
+#result_table {
+    width: 80%;
+    border-collapse: collapse;
+    border: 1px solid #777;
+}
+#header_row {
+    font-weight: bold;
+    color: white;
+    background-color: #777;
+}
+#result_table td {
+    border: 1px solid #777;
+    padding: 2px;
+}
+#total_row  { font-weight: bold; }
+.passClass  { background-color: #6c6; }
+.failClass  { background-color: #c60; }
+.errorClass { background-color: #c00; }
+.passCase   { color: #6c6; }
+.failCase   { color: #c60; font-weight: bold; }
+.errorCase  { color: #c00; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+
+
+/* -- ending ---------------------------------------------------------------------- */
+#ending {
+}
+
+</style>
+
+</head>
+<body>
+<script language="javascript" type="text/javascript"><!--
+output_list = Array();
+
+/* level - 0:Summary; 1:Failed; 2:All */
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level < 1) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level > 1) {
+                tr.className = '';
+            }
+            else {
+                tr.className = 'hiddenRow';
+            }
+        }
+    }
+}
+
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        tid0 = 't' + cid.substr(1) + '.' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        if (toHide) {
+            document.getElementById('div_'+tid).style.display = 'none'
+            document.getElementById(tid).className = 'hiddenRow';
+        }
+        else {
+            document.getElementById(tid).className = '';
+        }
+    }
+}
+
+
+function showTestDetail(div_id){
+    var details_div = document.getElementById(div_id)
+    var displayState = details_div.style.display
+    // alert(displayState)
+    if (displayState != 'block' ) {
+        displayState = 'block'
+        details_div.style.display = 'block'
+    }
+    else {
+        details_div.style.display = 'none'
+    }
+}
+
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+
+/* obsoleted by detail in <div>
+function showOutput(id, name) {
+    var w = window.open("", //url
+                    name,
+                    "resizable,scrollbars,status,width=800,height=450");
+    d = w.document;
+    d.write("<pre>");
+    d.write(html_escape(output_list[id]));
+    d.write("\n");
+    d.write("<a href='javascript:window.close()'>close</a>\n");
+    d.write("</pre>\n");
+    d.close();
+}
+*/
+--></script>
+
+<div class='heading'>
+<h1>版权服务2.0生产环境接口测试报告（https）</h1>
+<p class='attribute'><strong>Start Time:</strong> 2019-09-05 18:17:21</p>
+<p class='attribute'><strong>Duration:</strong> 0:00:15.122355</p>
+<p class='attribute'><strong>Status:</strong> Failure 3</p>
+
+<p class='description'>确权接口-主流程测试用例-主要验证所有参数合法参数确权成功及必填参数非法数据确权失败</p>
+</div>
+
+
+
+<p id='show_detail_line'>Show
+<a href='javascript:showCase(0)'>Summary</a>
+<a href='javascript:showCase(1)'>Failed</a>
+<a href='javascript:showCase(2)'>All</a>
+</p>
+<table id='result_table'>
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row'>
+    <td>Test Group/Test case</td>
+    <td>Count</td>
+    <td>Pass</td>
+    <td>Fail</td>
+    <td>Error</td>
+    <td>View</td>
+</tr>
+
+<tr class='failClass'>
+    <td>CaseRun</td>
+    <td>3</td>
+    <td>0</td>
+    <td>3</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c1',3)">Detail</a></td>
+</tr>
+
+<tr id='ft1.1' class='none'>
+    <td class='failCase'><div class='testcase'>test_apply_http_1</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.1')" >
+        fail</a>
+
+    <div id='div_ft1.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.1: '确权接口用例执行详情如下：'
+'确权接口执行测试用例编号：[BQ_S_001]'
+'确权接口测试目的：申请接口-申请成功- 回调成功'
+'确权接口用例描述：http-所有必填参数-全部正确传入（作品hash值与作品文件一致）-用户接口校验码按服务器顺序进行hash传入'
+'确权接口地址：http://39.107.66.190:9990/v2/api/confirm/opusConfirm'
+'确权接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'确权接口预期回调状态值={"callbackFlag":true}'
+'确权接口请求耗时：0.651374340057373'
+('确权接口响应结果={"msg":"请求成功","salt":"8ada27d915f2ee52d47a5d61d095b568YLZ3XCEE4J21N0YHQNEW","data":[{"timestampDate":"2019-09-05 '
+ '18:17:24","serialNo":"367052682617434112","timestamp":"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"}],"success":true,"resultCode":"0204000"}')
+下载接口请求响应时间：0.11495351791381836
+下载接口请求响应时间：0.06818222999572754
+'确权接口响应结果验证耗时：1.321885585784912'
+'------------------------------------------------------------------------------------------'
+'注：作品文件（file）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+('确权接口传入参数={"partnerID": "201907200200055052", "partnerKey": '
+ '"YLZ3XCEE4J21N0YHQNEW", "opusName": "《战争与和平》", "fileExtension": "jpeg", '
+ '"opusDescribe": '
+ '"一八一二年，俄、法两国再度交战，安德烈·保尔康斯基在战役中身受重伤，而俄军节节败退，眼见莫斯科将陷于敌人之手了。罗斯托夫将原本用来搬运家产的马车，改去运送伤兵，娜达莎方能于伤兵中发现将要死去的安德烈·保尔康斯基。她向他谢罪并热诚看护他，但一切都是徒劳了，安德烈·保尔康斯基仍然逃不过死亡之神而去世了。彼尔化装成农夫，想伺机刺杀拿破仑，但却被法军逮捕而成为俘虏。其爱妻伦于战火中", '
+ '"applyType": "101", "applyUserType": "101", "applyNationality": "CN", '
+ '"applyName": "皮志云", "applyIDType": "101", "applyIDNumber": '
+ '"210203197503102721", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "salt": '
+ '"c628a631424e0e1a6919290a4ed4aa4bYLZ3XCEE4J21N0YHQNEW", "file": '
+ '"../hz_file/2.png"}')
+'------------------------------------------------------------------------------------------'
+'下载接口请求地址=http://ipp.tsa.cn/v2/api/confirm/downloadOpusCertificate'
+("下载接口请求数据={'partnerID': '201907200200055052', 'partnerKey': "
+ "'YLZ3XCEE4J21N0YHQNEW', 'serialNo': '367052682617434112', 'salt': "
+ "'85b1e7313ae5a0827c2327a36abc54c8YLZ3XCEE4J21N0YHQNEW'}")
+("下载接口响应数据={'msg': '没找到367052682617434112相关信息', 'salt': "
+ "'9105d1cc046ba0aa845b3e2b7978bbc0YLZ3XCEE4J21N0YHQNEW', 'success': False, "
+ "'resultCode': '0206001'}")
+'注：下载接口响应数据中因文件流data参数过大，所以不写入测试报告，以防止测试报告过大'
+'------------------------------------------------------------------------------------------'
+Traceback (most recent call last):
+  File "/home/ma/.local/lib/python3.6/site-packages/ddt.py", line 145, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/ma/PycharmProjects/InterfaceTest/python_excel/unittest_run/case_main.py", line 193, in test_apply_http
+    self.assertTrue(is_pass,"测试用例执行未通过")
+AssertionError: False is not true : 测试用例执行未通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.2' class='none'>
+    <td class='failCase'><div class='testcase'>test_apply_http_2</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.2')" >
+        fail</a>
+
+    <div id='div_ft1.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.2: '确权接口用例执行详情如下：'
+'确权接口执行测试用例编号：[BQ_S_001]'
+'确权接口测试目的：申请接口-申请成功- 回调成功'
+'确权接口用例描述：http-所有必填参数-全部正确传入（作品hash值与作品文件一致）-用户接口校验码按服务器顺序进行hash传入'
+'确权接口地址：http://39.107.66.190:9990/v2/api/confirm/opusConfirm'
+'确权接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'确权接口预期回调状态值={"callbackFlag":true}'
+'确权接口请求耗时：0.5739469528198242'
+('确权接口响应结果={"msg":"请求成功","salt":"62adafb99a556bcb1c7f0dad752c3202SJ2P5TW43R0ZLCR6V556","data":[{"timestampDate":"2019-09-05 '
+ '18:17:29","serialNo":"367052704507506688","timestamp":"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"}],"success":true,"resultCode":"0204000"}')
+下载接口请求响应时间：0.07628178596496582
+下载接口请求响应时间：0.07278084754943848
+'确权接口响应结果验证耗时：1.282146692276001'
+'------------------------------------------------------------------------------------------'
+'注：作品文件（file）值过大会影响测试报告打开速度，测试报告仅显示用例中的文件地址'
+('确权接口传入参数={"partnerID": "201907200200058182", "partnerKey": '
+ '"SJ2P5TW43R0ZLCR6V556", "opusName": "《战争与和平》", "fileExtension": "jpeg", '
+ '"opusDescribe": '
+ '"一八一二年，俄、法两国再度交战，安德烈·保尔康斯基在战役中身受重伤，而俄军节节败退，眼见莫斯科将陷于敌人之手了。罗斯托夫将原本用来搬运家产的马车，改去运送伤兵，娜达莎方能于伤兵中发现将要死去的安德烈·保尔康斯基。她向他谢罪并热诚看护他，但一切都是徒劳了，安德烈·保尔康斯基仍然逃不过死亡之神而去世了。彼尔化装成农夫，想伺机刺杀拿破仑，但却被法军逮捕而成为俘虏。其爱妻伦于战火中", '
+ '"applyType": "101", "applyUserType": "101", "applyNationality": "CN", '
+ '"applyName": "皮志云", "applyIDType": "101", "applyIDNumber": '
+ '"210203197503102721", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "salt": '
+ '"6bf32dc33df96eb93dd8b407fbdd7d76SJ2P5TW43R0ZLCR6V556", "file": '
+ '"../hz_file/2.png"}')
+'------------------------------------------------------------------------------------------'
+'下载接口请求地址=http://ipp.tsa.cn/v2/api/confirm/downloadOpusCertificate'
+("下载接口请求数据={'partnerID': '201907200200058182', 'partnerKey': "
+ "'SJ2P5TW43R0ZLCR6V556', 'serialNo': '367052704507506688', 'salt': "
+ "'66a1bf99da18ac2507e4e06689dfe591SJ2P5TW43R0ZLCR6V556'}")
+("下载接口响应数据={'msg': '没找到367052704507506688相关信息', 'salt': "
+ "'62ac519d09b704b7cbba6ff190b85130SJ2P5TW43R0ZLCR6V556', 'success': False, "
+ "'resultCode': '0206001'}")
+'注：下载接口响应数据中因文件流data参数过大，所以不写入测试报告，以防止测试报告过大'
+'------------------------------------------------------------------------------------------'
+Traceback (most recent call last):
+  File "/home/ma/.local/lib/python3.6/site-packages/ddt.py", line 145, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/ma/PycharmProjects/InterfaceTest/python_excel/unittest_run/case_main.py", line 193, in test_apply_http
+    self.assertTrue(is_pass,"测试用例执行未通过")
+AssertionError: False is not true : 测试用例执行未通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.3' class='none'>
+    <td class='failCase'><div class='testcase'>test_apply_http_3</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.3')" >
+        fail</a>
+
+    <div id='div_ft1.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.3: '确权接口用例执行详情如下：'
+'确权接口执行测试用例编号：[BQ_S_006]'
+'确权接口测试目的：申请接口-申请成功- 回调成功'
+'确权接口用例描述：http-选择性必填参数-作品hash值正确传入，作品文件不传，其它必填信息正确传入-用户接口校验码按服务器顺序进行hash传入'
+'确权接口地址：http://39.107.66.190:9990/v2/api/confirm/opusConfirm'
+'确权接口预期接口返回值={"success":true,"resultCode":"0204000"}'
+'确权接口预期回调状态值={"callbackFlag":true}'
+'确权接口请求耗时：0.1419386863708496'
+('确权接口响应结果={"msg":"请求成功","salt":"909201a3957cd1db44007aa180ee2b40UWTGXVIPC3BYD3ZJZSKE","data":[{"timestampDate":"2019-09-05 '
+ '18:17:34","serialNo":"367052725785210880","timestamp":"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"}],"success":true,"resultCode":"0204000"}')
+下载接口请求响应时间：0.07001972198486328
+下载接口请求响应时间：0.07265567779541016
+'确权接口响应结果验证耗时：1.275177001953125'
+'------------------------------------------------------------------------------------------'
+('确权接口传入参数={"partnerID": "201907200200058528", "partnerKey": '
+ '"UWTGXVIPC3BYD3ZJZSKE", "hash": '
+ '"CF1BE883E1B8EA5E3C949268EB1D1C5EEE7E54FC2CEB8655B6A5901745042AB2", '
+ '"opusName": "《红与黑》", "fileExtension": "json", "opusDescribe": '
+ '"《红与黑》是19世纪法国乃至欧洲文学的一座丰碑。小说围绕主人公于连的个人奋斗及两次爱情经历的描写，揭示了复辟王朝时期的波澜的阶级大博斗，反映了政治黑暗、教会腐败，贵族反动和资产阶级利欲熏心的广阔生活画面。于连的两次爱情动机都是以爱情占有为出发点最终要达到自己的政治目的。", '
+ '"applyType": "103", "applyUserType": "102", "applyNationality": "CN", '
+ '"applyName": "马敬", "applyIDType": "999", "applyIDNumber": '
+ '"210203197503102721", "callbackUrl": '
+ '"http://39.107.66.190:9999/v2/api/confirm/callback", "salt": '
+ '"8c246f7222e21f3463cd0d32dd3d225aUWTGXVIPC3BYD3ZJZSKE"}')
+'------------------------------------------------------------------------------------------'
+'下载接口请求地址=http://ipp.tsa.cn/v2/api/confirm/downloadOpusCertificate'
+("下载接口请求数据={'partnerID': '201907200200058528', 'partnerKey': "
+ "'UWTGXVIPC3BYD3ZJZSKE', 'serialNo': '367052725785210880', 'salt': "
+ "'1c52f1e0c2ecafbce8e0be90dfe67929UWTGXVIPC3BYD3ZJZSKE'}")
+("下载接口响应数据={'msg': '没找到367052725785210880相关信息', 'salt': "
+ "'c82cff869e3c3a746aeb25cf7a8e09acUWTGXVIPC3BYD3ZJZSKE', 'success': False, "
+ "'resultCode': '0206001'}")
+'注：下载接口响应数据中因文件流data参数过大，所以不写入测试报告，以防止测试报告过大'
+'------------------------------------------------------------------------------------------'
+Traceback (most recent call last):
+  File "/home/ma/.local/lib/python3.6/site-packages/ddt.py", line 145, in wrapper
+    return func(self, *args, **kwargs)
+  File "/home/ma/PycharmProjects/InterfaceTest/python_excel/unittest_run/case_main.py", line 193, in test_apply_http
+    self.assertTrue(is_pass,"测试用例执行未通过")
+AssertionError: False is not true : 测试用例执行未通过
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='total_row'>
+    <td>Total</td>
+    <td>3</td>
+    <td>0</td>
+    <td>3</td>
+    <td>0</td>
+    <td>&nbsp;</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+
+</body>
+</html>

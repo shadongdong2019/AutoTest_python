@@ -1,6 +1,6 @@
-from InterfaceTest.python_excel.utils.operation_excel import OperationExcel
-from InterfaceTest.python_excel.utils.operation_json import OperationJson
-from InterfaceTest.python_excel.get_data.global_data import *
+from python_excel.utils.operation_excel import OperationExcel
+from python_excel.utils.operation_json import OperationJson
+from python_excel.get_data.global_data import *
 class GetData:
     def __init__(self,excel_filename=None,json_filanme=None,excel_sheetid=0):
         self.excel_filename =excel_filename

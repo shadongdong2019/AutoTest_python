@@ -3,21 +3,32 @@ from copy import deepcopy
 
 from jsonpath import jsonpath
 
+from python_excel.common.interface_run import InterfaceRun
 from python_excel.get_data.common_param_dic import CommonParamDict
 from python_excel.utils.operation_excel import OperationExcel
 
 from  jsonpath_rw import parse
 
 class DependCase:
-    def __init__(self,**kwargs):
-        self.kwargs = kwargs  #获取的用户中的参数值，不是配置文件中的参数值
-        self.param_name_rownum = int(self.kwargs.get("DepParamName",0))#获取依赖的参数名所在行
-        self.case_id = self.kwargs.get("DepCaseID","") #获取依赖的测试用例ID
-        self.ope_excel = OperationExcel(**self.kwargs)
-        self.case_value_rownum = self.ope_excel.get_row_num_for_value(self.case_id)
-        self.hash_orders = self.kwargs.get("hash_orders",[]) #获取依赖的测试用例ID的参数顺序列表，用于生成salt
-        self.DepGetDataForm = self.kwargs.get("DepGetDataForm","")  #依赖提取数据格式
-        self.DepResList = self.kwargs.get("DepResList", [])  # 依赖参数列表
+    def __init__(self,case_dict,case_config):
+        self.case_dict = case_dict  # 获取的用户中的参数值，不是配置文件中的参数值
+        self.case_config = case_config  # 获取执行接口用例配置文件内容，写回值时获取正确的sheetid
+        self.ope_excel = OperationExcel(**self.case_dict)
+        self.interface_run = InterfaceRun()
+        self.case_rownum = int( self.ope_excel.get_row_num_for_value(self.case_dict.get("CaseID", 0)))  # 获取依赖的参数名所在行
+        self.param_name_rownum = int(self.case_dict.get("DepParamName",0))#获取依赖的参数名所在行
+        self.case_id = self.case_dict.get("DepCaseID","") #获取依赖的测试用例ID
+        self.case_value_rownum = self.ope_excel.get_row_num_for_value(self.case_id) #根据caseid获取行号
+        self.case_row_value = self.ope_excel.get_sheet().row_values(self.param_name_rownum) #根据参数名所在行号获取整行内容
+        self.hash_orders = self.case_dict.get("hash_orders",[]) #获取依赖的测试用例ID的参数顺序列表，用于生成salt
+        self.DepGetDataForm = self.case_dict.get("DepGetDataForm","")  #依赖提取数据格式
+        self.DepResList = self.case_dict.get("DepResList", [])  # 依赖参数列表
+        try:
+            self.DepParamList = eval(case_dict.get("DepParamList",[]))
+        except Exception as e :
+            self.DepParamList = case_dict.get("DepParamList", [])
+
+
 
 
     #获取运行依赖case需要的各项请求数据
@@ -26,14 +37,15 @@ class DependCase:
         :return: 依赖测试用例执行结果
         '''
         # 获取参数名所在行返回参数名列表
-        self.kwargs["case_param_name_start"] = self.param_name_rownum  #用例参数名开始行号
-        self.kwargs["case_start_rownum"] = self.case_value_rownum  # 用例参数值开始行号
-        self.kwargs["hash_orders"] = self.hash_orders  # 用例参数顺序列表
-        self.kwargs["DepGetDataForm"] = self.hash_orders  # 用例参数顺序列表
-        cpd = CommonParamDict(**self.kwargs)
+        self.case_dict["case_param_name_start"] = self.param_name_rownum  #用例参数名开始行号
+        self.case_dict["case_start_rownum"] = self.case_value_rownum  # 用例参数值开始行号
+        # self.case_dict["hash_orders"] = self.hash_orders  # 用例参数顺序列表
+        # self.case_dict["DepGetDataForm"] = self.hash_orders  # 用例参数顺序列表
+        cpd = CommonParamDict(**self.case_dict)
         case_data = cpd.deal_param() #[[]]
         no_request_list = cpd.param.get_param_no_request_list()
         dep_res = self.deal_dep_param(no_request_list,case_data[0]) #获取依赖测试用列响应结果
+        self.write_excel_value(dep_res)
 
 
 
@@ -54,7 +66,7 @@ class DependCase:
         deal_param_list.append(no_request_dict)
         req_s_time = time.time()
         url = no_request_dict.get("Requrl","")
-        ori_res = self.interface_run.main_request(self.method_req, url, req_data_dict)
+        ori_res = self.interface_run.main_request("post", url, req_data_dict)
         req_e_time = time.time()
         hs = req_e_time -req_s_time
         try:
@@ -66,18 +78,36 @@ class DependCase:
 
 
     def deal_req_res(self,res_json):
+        '''
+        将依赖测试用例执行结果按提取规则及参数处理后转为字段的形式
+        :case_dict
+        :param res_json: 依赖测试用例响应结果转为json形式
+        :return:
+        '''
 
-        res = jsonpath(res_json, self.DepGetDataForm)[0]
-        depresvaluelist = []
+        res = jsonpath(res_json, self.DepGetDataForm)[0][0]
+        dep_res_dict = {}
         for dep_res in res:
-            depresvaluelist.append(dep_res)
-        dep_res_dict = dict(zip(res,self.depresvaluelist))
+            if dep_res in self.DepParamList:
+                dep_res_dict[dep_res]=res.get(dep_res,"")
         return dep_res_dict
 
     def write_excel_value(self,dep_res):
+        '''
+        将依赖数据结果写回到excel表格指定的单元格中
+        :param dep_res:
+        :return:
+        '''
+        ope_excel = OperationExcel(**self.case_config)
+        case_param_name_start = self.case_config.get("case_param_name_start",0) #测试用例参数名开始行
+        case_row_value = ope_excel.get_sheet().row_values(case_param_name_start)
+        row_num = self.case_rownum
         dep_res_dict = self.deal_req_res(dep_res)
-        #self.ope_excel.
-        self.ope_excel.writer_data()
+        for update_param in dep_res_dict.keys():
+            for index,update_value in enumerate(case_row_value):
+                if update_param in str(update_value).split("-")[1]:
+                    col_num = index
+                    ope_excel.writer_data(row_num,col_num,update_value)
 
 
 

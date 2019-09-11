@@ -74,7 +74,7 @@ class CaseRun(unittest.TestCase):
         #深拷贝参数字典
         req_data_dict = deepcopy(data_dict)
         if str(req_data_dict.get("IsDepend","")).lower() == "yes": #是否需要先执行依赖测试用例
-            dep_case = DependCase(**req_data_dict)
+            dep_case = DependCase(req_data_dict,option_dict)
             ss = dep_case.get_dep_data()
             pp.pprint(ss)
 

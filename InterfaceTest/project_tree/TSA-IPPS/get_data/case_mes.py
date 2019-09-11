@@ -1,4 +1,4 @@
-from InterfaceTest.python_excel.utils.operation_excel import OperationExcel
+from python_excel.utils.operation_excel import OperationExcel
 import logging
 from jsonpath_rw import parse
 

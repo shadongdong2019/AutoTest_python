@@ -1,7 +1,7 @@
-from InterfaceTest.python_excel.utils.operation_excel import OperationExcel
-from InterfaceTest.python_excel.get_data.get_data import GetData
-from InterfaceTest.python_excel.common.interface_run import InterfaceRun
-from InterfaceTest.python_excel.common.deal_response_data import DealResData
+from python_excel.utils.operation_excel import OperationExcel
+from python_excel.get_data.get_data import GetData
+from python_excel.common.interface_run import InterfaceRun
+from python_excel.common.deal_response_data import DealResData
 from  jsonpath_rw import parse
 
 class DependData:

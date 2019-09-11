@@ -1,0 +1,11 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1565056457402,2763,13_hash请求,200,,基准测试 1-1,text,true,,4110,8730480,6,6,http://ipp.tsa.cn/v2/api/confirm/opusConfirm,2762,0,443
+1565056457811,2687,13_hash请求,200,,基准测试 1-2,text,true,,4117,8730480,6,6,http://ipp.tsa.cn/v2/api/confirm/opusConfirm,2687,0,287
+1565056458254,2717,13_hash请求,200,,基准测试 1-3,text,true,,4117,8730480,6,6,http://ipp.tsa.cn/v2/api/confirm/opusConfirm,2717,0,301
+1565056458779,2192,13_hash请求,200,,基准测试 1-4,text,true,,4117,8730480,6,6,http://ipp.tsa.cn/v2/api/confirm/opusConfirm,2192,0,321
+1565056459265,2298,13_hash请求,200,,基准测试 1-5,text,true,,4117,8730480,5,5,http://ipp.tsa.cn/v2/api/confirm/opusConfirm,2298,0,241
+1565056460248,6175,13_hash请求,200,,基准测试 1-7,text,true,,4117,8730480,5,5,http://ipp.tsa.cn/v2/api/confirm/opusConfirm,6175,0,230
+1565056460767,6094,13_hash请求,200,,基准测试 1-8,text,true,,4117,8730480,4,4,http://ipp.tsa.cn/v2/api/confirm/opusConfirm,6094,0,232
+1565056459754,7108,13_hash请求,200,,基准测试 1-6,text,true,,4117,8730480,4,4,http://ipp.tsa.cn/v2/api/confirm/opusConfirm,7107,0,226
+1565056461755,5653,13_hash请求,200,,基准测试 1-10,text,true,,4110,8730480,2,2,http://ipp.tsa.cn/v2/api/confirm/opusConfirm,5653,0,229
+1565056461248,6160,13_hash请求,200,,基准测试 1-9,text,true,,4117,8730480,2,2,http://ipp.tsa.cn/v2/api/confirm/opusConfirm,6160,0,221

@@ -1,6 +1,6 @@
 from copy import deepcopy
-from InterfaceTest.python_excel.get_data.param_global import ParamGlobal
-from InterfaceTest.python_excel.get_data.tsa_param_dic import TsaParamDict
+from python_excel.get_data.param_global import ParamGlobal
+from python_excel.get_data.tsa_param_dic import TsaParamDict
 import time
 import logging
 log = logging.getLogger(__file__)
@@ -35,7 +35,7 @@ class CaseError:
         if filename:
             self.filename = filename
         else:
-            self.filename = ""
+            self.filename = "../data_file/case_data.xlsx"
 
         self.param = ParamGlobal()
         self.tsa_p_d =TsaParamDict(self.filename,sheetid)

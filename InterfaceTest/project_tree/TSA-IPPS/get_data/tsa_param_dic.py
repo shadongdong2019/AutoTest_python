@@ -4,10 +4,10 @@ import datetime
 import random
 import string
 
-from InterfaceTest.python_excel.utils.operation_excel import OperationExcel
+from python_excel.utils.operation_excel import OperationExcel
 from copy import  deepcopy
-from InterfaceTest.python_excel.utils.operation_json import OperationJson
-from InterfaceTest.python_excel.get_data.param_global import ParamGlobal
+from python_excel.utils.operation_json import OperationJson
+from python_excel.get_data.param_global import ParamGlobal
 import logging
 import hashlib
 import os
@@ -22,13 +22,13 @@ class TsaParamDict:
             if filename:
                 self.filename = filename
             else:
-                self.filename = ""
+                self.filename = "../data_file/case_data_ysc.xlsx"
             self.sheetid = sheetid
             self.op_excel = OperationExcel(self.filename,sheetid)
             self.name_value_list = self.op_excel.get_row_col_list()
             # print(self.name_value_list)
             self.name_list = self.name_value_list[0]
-            self.op_json = OperationJson("/home/ma/PycharmProjects/AutoTest_python/InterfaceTest/project_tree/TSA-IPPS/case_file/data_file/emun.json")
+            self.op_json = OperationJson("../data_file/emun.json")
             self.param = ParamGlobal()
         except Exception as e:
             log.error("接口参数处理类初始化异常，异常原因：{}".format(e))

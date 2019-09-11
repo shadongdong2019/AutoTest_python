@@ -1,0 +1,3 @@
+Label,# Samples,Average,Median,90% Line,95% Line,99% Line,Min,Max,Error %,Throughput,Received KB/sec,Sent KB/sec
+基准测试:13_hash请求,3000,844,533,1297,2001,7002,145,13566,0.000%,78.35558,314.28,668.93
+TOTAL,3000,844,533,1297,2001,7002,145,13566,0.000%,78.35558,314.28,668.93
