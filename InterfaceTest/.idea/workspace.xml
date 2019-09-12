@@ -2,81 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bef09d81-c4de-40f6-98c7-1c0866798c9e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/python_excel/utils/ElasticObjBak.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/case_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/case_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/config/caseRun.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/config/caseRun.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190910_zs/case_test20190910154631.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190910_zs/case_test20190910160053.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190910_zs/case_test20190910161351.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190910_zs/case_test20190910162152.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190910_zs/case_test20190910162259.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190910_zs/case_test20190910165030.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190910_zs/case_test20190910171920.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190910_zs/case_test20190910172026.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190910_zs/case_test20190910172059.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190910_zs/case_test20190910172820.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190910_zs/case_test20190910180221.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190910_zs/case_test20190910180236.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190910_zs/case_test20190910180249.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911162021.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911162259.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911163124.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911163522.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911164938.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911165214.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911165247.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911165414.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911165430.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911165505.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911165657.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911165918.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911172351.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911172418.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911172559.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911172702.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911172813.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911173421.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911173431.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911173444.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911173505.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911173616.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911173631.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911173643.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911173710.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911173815.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911174607.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911174653.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911175755.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911175803.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911175812.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911175921.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911175935.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911180059.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911180133.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911180140.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911180147.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-JC/report/20190911_zs/case_test20190911180227.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/config/caseRun.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/config/caseRun.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/report/20190910_zs/case_test20190910154631.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/report/20190910_zs/case_test20190910160053.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/report/20190910_zs/case_test20190910161351.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/report/20190910_zs/case_test20190910162152.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/report/20190910_zs/case_test20190910162259.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_tree/TSA-IPPS-QZ/report/20190910_zs/case_test20190910165030.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_excel/common/cmp_res_req.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_excel/common/cmp_res_req.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_excel/get_data/dependCase.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_excel/get_data/dependCase.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_excel/get_data/tsa_param_dic.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_excel/log/case_main20190911.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_excel/log/case_test20190903.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_excel/log/case_test20190904.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_excel/log/case_test20190905.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_excel/log/case_test20190906.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_excel/log/case_test20190909.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_excel/log/case_test20190910.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_excel/log/case_test20190911.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_excel/utils/ElasticObj.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_excel/utils/ElasticObj.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python_excel/utils/operation_excel.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_excel/utils/operation_excel.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -771,7 +697,7 @@
       <workItem from="1567588253298" duration="21000" />
       <workItem from="1568107828312" duration="25546000" />
       <workItem from="1568253286616" duration="465000" />
-      <workItem from="1568253762945" duration="19634000" />
+      <workItem from="1568253762945" duration="20484000" />
     </task>
     <servers />
   </component>
