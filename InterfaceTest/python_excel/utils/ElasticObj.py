@@ -1,13 +1,14 @@
 #coding:utf8
+import csv
 import json
-import os
 import time
 from os import walk
-import csv
-from datetime import datetime
-from elasticsearch import Elasticsearch, RequestsHttpConnection
-from elasticsearch.helpers import bulk
 
+from elasticsearch import Elasticsearch
+from elasticsearch.helpers import bulk
+from elasticsearch_dsl import Search
+
+from python_excel.utils.operation_cfg import OperationCFG
 
 
 class ElasticObj:
@@ -17,291 +18,106 @@ class ElasticObj:
         :param index_name: 索引名称
         :param index_type: 索引类型
         '''
-        self.index_name ="monitor" #kwargs.get("index_name","")
-        self.index_type ="monitor" #kwargs.get("index_type","")
-        self.ip = kwargs.get("ip","")
+        self.kwargs = kwargs
+        self.index_name =self.kwargs.get("index_name","")
+        self.ip = self.kwargs.get("ip","")
         # 无用户名密码状态
-        #self.es = Elasticsearch([ip])
-        #用户名密码状态
-        self.es = Elasticsearch(["39.107.66.190:9200"])
+        self.es = Elasticsearch([self.ip])
 
-    def create_index(self,index_name="ott",index_type="ott_type"):
-        '''
-        创建索引,创建索引名称为ott，类型为ott_type的索引
-        :param ex: Elasticsearch对象
-        :return:
-        '''
-        #创建映射
-        _index_mappings = {
-            "mappings": {
-                self.index_type: {
-                    "properties": {
-                        "title": {
-                            "type": "text",
-                            "index": True,
-                            "analyzer": "ik_max_word",
-                            "search_analyzer": "ik_max_word"
-                        },
-                        "date": {
-                            "type": "text",
-                            "index": True
-                        },
-                        "keyword": {
-                            "type": "string",
-                            "index": "not_analyzed"
-                        },
-                        "source": {
-                            "type": "string",
-                            "index": "not_analyzed"
-                        },
-                        "link": {
-                            "type": "string",
-                            "index": "not_analyzed"
-                        }
-                    }
-                }
-
-            }
-        }
-        if self.es.indices.exists(index=self.index_name) is not True:
-            res = self.es.indices.create(index=self.index_name, body=_index_mappings)
-            print(res)
-
-
-    def IndexData(self):
-        es = Elasticsearch()
-        csvdir = 'D:/work/ElasticSearch/exportExcels'
-        filenamelist = []
-        for (dirpath, dirnames, filenames) in walk(csvdir):
-            filenamelist.extend(filenames)
-            break
-        total = 0
-        for file in filenamelist:
-            csvfile = csvdir + '/' + file
-            self.Index_Data_FromCSV(csvfile,es)
-            total += 1
-            print(total)
-            time.sleep(10)
-
-    def Index_Data_FromCSV(self,csvfile):
-        '''
-        从CSV文件中读取数据，并存储到es中
-        :param csvfile: csv文件，包括完整路径
-        :return:
-        '''
-        list = csv.ReadCSV(csvfile)
-        index = 0
-        doc = {}
-        for item in list:
-            if index > 1:#第一行是标题
-                doc['title'] = item[0]
-                doc['link'] = item[1]
-                doc['date'] = item[2]
-                doc['source'] = item[3]
-                doc['keyword'] = item[4]
-                res = self.es.index(index=self.index_name, doc_type=self.index_type, body=doc)
-                print(res['created'])
-            index += 1
-            print(index)
-
-    def Index_Data(self):
-        '''
-        数据存储到es
-        :return:
-        '''
-        list = [
-            {   "date": "2017-09-13",
-                "source": "慧聪网",
-                "link": "http://info.broadcast.hc360.com/2017/09/130859749974.shtml",
-                "keyword": "电视",
-                "title": "付费 电视 行业面临的转型和挑战"
-             },
-            {   "date": "2017-09-13",
-                "source": "中国文明网",
-                "link": "http://www.wenming.cn/xj_pd/yw/201709/t20170913_4421323.shtml",
-                "keyword": "电视",
-                "title": "电视 专题片《巡视利剑》广获好评：铁腕反腐凝聚党心民心"
-             }
-              ]
-        for item in list:
-            res = self.es.index(index=self.index_name, doc_type=self.index_type, body=item)
-            print(res['created'])
-
-    def bulk_Index_Data(self):
-        '''
-        用bulk将批量数据存储到es
-        :return:
-        '''
-        list = [
-            {"date": "2017-09-13",
-             "source": "慧聪网",
-             "link": "http://info.broadcast.hc360.com/2017/09/130859749974.shtml",
-             "keyword": "电视",
-             "title": "付费 电视 行业面临的转型和挑战"
-             },
-            {"date": "2017-09-13",
-             "source": "中国文明网",
-             "link": "http://www.wenming.cn/xj_pd/yw/201709/t20170913_4421323.shtml",
-             "keyword": "电视",
-             "title": "电视 专题片《巡视利剑》广获好评：铁腕反腐凝聚党心民心"
-             },
-            {"date": "2017-09-13",
-             "source": "人民电视",
-             "link": "http://tv.people.com.cn/BIG5/n1/2017/0913/c67816-29533981.html",
-             "keyword": "电视",
-             "title": "中国第21批赴刚果（金）维和部隊启程--人民 电视 --人民网"
-             },
-            {"date": "2017-09-13",
-             "source": "站长之家",
-             "link": "http://www.chinaz.com/news/2017/0913/804263.shtml",
-             "keyword": "电视",
-             "title": "电视 盒子 哪个牌子好？ 吐血奉献三大选购秘笈"
-             }
-        ]
-        ACTIONS = []
-        i = 1
-        for line in list:
-            action = {
-                "_index": self.index_name,
-                "_type": self.index_type,
-                "_id": i, #_id 也可以默认生成，不赋值
-                "_source": {
-                    "date": line['date'],
-                    "source": line['source'].decode('utf8'),
-                    "link": line['link'],
-                    "keyword": line['keyword'].decode('utf8'),
-                    "title": line['title'].decode('utf8')}
-            }
-            i += 1
-            ACTIONS.append(action)
-            # 批量处理
-        success, _ = bulk(self.es, ACTIONS, index=self.index_name, raise_on_error=True)
-        print('Performed %d actions' % success)
-
-    def Delete_Index_Data(self,id):
-        '''
-        删除索引中的一条
-        :param id:
-        :return:
-        '''
-        res = self.es.delete(index=self.index_name, doc_type=self.index_type, id=id)
-        print(res)
-
-    def Get_Data_Id(self,id):
-
-        res = self.es.get(index=self.index_name, doc_type=self.index_type,id=id)
-        print(res['_source'])
-
-        print('------------------------------------------------------------------')
-        #
-        # # 输出查询到的结果
-        for hit in res['hits']['hits']:
-            # print hit['_source']
-            print(hit['_source']['date'],hit['_source']['source'],hit['_source']['link'],hit['_source']['keyword'],hit['_source']['title'])
-
-    def Get_Data_By_Body(self):
-        # doc = {'query': {'match_all': {}}}
-        # doc = {
-        #     "query": {
-        #         "match": {
-        #             "keyword": "电视"
-        #         }
-        #     }
-        # }
-
-        doc ={
-                "query": {
-                    "match": {
-                        "serialNo": 366633883330162688
-                    }
-                }
-            }
-
-        _searched = self.es.search(index=self.index_name, body=doc)
-
-        for hit in _searched['hits']['hits']:
-            # print hit['_source']
-            print(hit['_source']['date'], hit['_source']['source'], hit['_source']['link'], hit['_source']['keyword'], \
-            hit['_source']['title'])
 
     def sigle_filed_query(self):
-        es = Elasticsearch(
-            ['39.107.66.190:9200']
-        )
-        print(es.cat.indices())
+        '''
+        打印库里所有的索引
+        :return:
+        '''
+        print(self.es.cat.indices())
 
-    def get_data(self):
+    def deal_config_query(self,res=None):
+        '''
+        处理配置名件中的查询条件
+        键值对，值为“”表示需获取响应结果中的数据
+        键值铎，有值表示使用默认值
+        :res:请求响应结果
+        :return: 处理后的qeury查询条件
+        '''
 
-        host = 'http://*.*.*.*:9200/'
-        es = Elasticsearch('39.107.66.190:9200')
-        index_name = "monitor"
+        query_res = []
+        query_filed = self.kwargs.get("query_filed","")
+        for key in query_filed.keys():
+            bool = {}
+            must = {}
+            list_z = []
+            match_phrase = {}
+            condition = {}
+            query = {}
+            if query_filed[key] == "" and res:
+                query["query"] = res[key]
+                condition[key] = query
+            else:
+                query["query"] = query_filed[key]
+                condition[key] = query
+            match_phrase["match_phrase"] = condition
+            list_z.append(match_phrase)
+            must["must"] = list_z
+            bool["bool"]=must
+            query_res.append(bool)
+        return query_res
+
+
+    def get_data(self,query=None,index=None):
+        '''
+        根据查询条件获取返回结果
+        :param query: 查询条件
+        :param index: 索引名称
+        :return: 返回查询结果及查询条数
+        '''
+        # query = [
+        #                 {"match": {"serialNo": 368400630043389952}},
+        #                 {"match": {"is_result": 1}}
+        #             ]
+        if not query:
+            query = self.deal_config_query()
+        if index:
+            self.index_name = index
         # 查找具体数据
         query = {
             "query": {
                 "bool": {
-                    "must": [
-                        {"match": {"serialNo": 368400630043389952}},  # 368389656708132864
-                    #    {"match": {"index_id": "3059508527443artui.cn83"}}
-                    ]
+                    "filter": query
                 }
             },
             "size": 100
         }
-
-#         query = {
-#   "query": {
-#     "match":{"uni_id":"368383052214448128"}
-#   }
-# }
-
-        res = es.search(
-            index=index_name,
+        res = self.es.search(
+            index=self.index_name,
             body=query)
+        res_json =json.dumps(res,sort_keys=True, indent=4, separators=(',', ': '), ensure_ascii=False) #返回json格式的查询结果
         print(json.dumps(res,sort_keys=True, indent=4, separators=(',', ': '), ensure_ascii=False))  # 请求总结果
-        print( res['hits']['total'])
+        total = res['hits']['total'] #查询总条数
+        print(total)
+        return res_json,total
 
-    # lis = [{"article_content": "成都双流"}, {"article_title": "北京"}]
-    # data = get_data(5, 2, lis)
 
-    def es_handler(env):
-        """
-        创建链接
-        :param env:环境变量
-        :return: 链接
-        """
-        host = '39.107.66.190'
-        return Elasticsearch(
-            hosts=[{'host': host, 'port': 9200}],
-           # http_auth=awsauth,
-            use_ssl=True,
-            verify_certs=True,
-            connection_class=RequestsHttpConnection
-        )
-
+    def get_data_dsl(self):
+        # using参数是指定Elasticsearch实例对象，index指定索引，可以缩小范围，index接受一个列表作为多个索引，且也可以用正则表示符合某种规则的索引都可以被索引，如index=["bank", "banner", "country"]又如index=["b*"]后者可以同时索引所有以b开头的索引，search中同样可以指定具体doc-type
+        s = Search(using=self.es, index=self.index_name)
+        res = s.query("match", serialNo="368400630043389952").query("match", is_result="1").highlight("is_result").execute()
+        print(type(res))
+        #print(json.dumps(res,sort_keys=True, indent=4, separators=(',', ': '), ensure_ascii=False))
 
     def delete_data(self):
-        es = Elasticsearch('39.107.66.190:9200')
-        query = {'query': {'match': {"serialNo": 368389656708132864}}}  # 删除性别为女性的所有文档
-        es = Elasticsearch('39.107.66.190:9200')
+        query = {'query': {'match': {"serialNo": 368389656708132864,"is_result":1}}}  # 删除性别为女性的所有文档
         # 删除所有文档
-        es.delete_by_query(index="monitor", body=query)
-        # data_list = []
-        # query = {'query': {'match': {"serialNo": 368389633027092480}}}
-        # data_list.append({'delete': query})
-        # self.es_handler('monitor').bulk(body=data_list)
-        #print("数据删除成功,id=", id)
-obj =ElasticObj()
-#obj = ElasticObj("ott1", "ott_type1")
+        self.es.delete_by_query(index="monitor", body=query)
 
-# obj.create_index()
-#obj.Get_Data_By_Body()
-#obj.sigle_filed_query()
-#obj.delete_data()
-obj.get_data()
-#obj.Get_Data_By_Body()
-# obj.bulk_Index_Data()
-# obj.IndexData()
-# obj.Delete_Index_Data(1)
-# csvfile = 'D:/work/ElasticSearch/exportExcels/2017-08-31_info.csv'
-# obj.Index_Data_FromCSV(csvfile)
-#obj.GetData(es)
+
+
+
+if __name__ == "__main__":
+    ope_cfg = OperationCFG(
+        "/home/ma/PycharmProjects/AutoTest_python/InterfaceTest/project_tree/TSA-IPPS-JC/config/caseRun.cfg",
+        "my_case_file")
+    option_dict = ope_cfg.get_config_dict()
+    obj =ElasticObj(**option_dict)
+    obj.get_data()
+    #obj.get_data_dsl()

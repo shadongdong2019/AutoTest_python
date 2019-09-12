@@ -11,18 +11,18 @@ from  jsonpath_rw import parse
 
 class DependCase:
     def __init__(self,case_dict,case_config):
-        self.case_dict = case_dict  # 获取的用户中的参数值，不是配置文件中的参数值
+        self.case_dict = case_dict  # 获取的用例中的参数值，不是配置文件中的参数值
         self.case_config = case_config  # 获取执行接口用例配置文件内容，写回值时获取正确的sheetid
-        self.ope_excel = OperationExcel(**self.case_dict)
+        self.ope_excel_case = OperationExcel(**self.case_dict)
+        self.ope_excel_config = OperationExcel(**self.case_config)
         self.interface_run = InterfaceRun()
-        self.case_rownum = int( self.ope_excel.get_row_num_for_value(self.case_dict.get("CaseID", 0)))  # 获取依赖的参数名所在行
+        self.case_rownum = int(self.ope_excel_config.get_row_num_for_value(self.case_dict.get("CaseID", 0),))  # 获取测试用例参数名所在行
         self.param_name_rownum = int(self.case_dict.get("DepParamName",0))#获取依赖的参数名所在行
         self.case_id = self.case_dict.get("DepCaseID","") #获取依赖的测试用例ID
-        self.case_value_rownum = self.ope_excel.get_row_num_for_value(self.case_id) #根据caseid获取行号
-        self.case_row_value = self.ope_excel.get_sheet().row_values(self.param_name_rownum) #根据参数名所在行号获取整行内容
+        self.case_value_rownum = self.ope_excel_case.get_row_num_for_value(self.case_id) #根据依赖caseid获取依赖测试用例执行行号
+        self.case_row_value = self.ope_excel_case.get_sheet().row_values(self.param_name_rownum) #根据参数名所在行号获取整行内容
         self.hash_orders = self.case_dict.get("hash_orders",[]) #获取依赖的测试用例ID的参数顺序列表，用于生成salt
         self.DepGetDataForm = self.case_dict.get("DepGetDataForm","")  #依赖提取数据格式
-        self.DepResList = self.case_dict.get("DepResList", [])  # 依赖参数列表
         try:
             self.DepParamList = eval(case_dict.get("DepParamList",[]))
         except Exception as e :
@@ -45,7 +45,19 @@ class DependCase:
         case_data = cpd.deal_param() #[[]]
         no_request_list = cpd.param.get_param_no_request_list()
         dep_res = self.deal_dep_param(no_request_list,case_data[0]) #获取依赖测试用列响应结果
-        self.write_excel_value(dep_res)
+        dep_res_dict = self.deal_req_res(dep_res)
+        write_flag = self.write_excel_value(dep_res)
+        count = 1
+        while True:
+            if not write_flag:
+                write_flag = self.write_excel_value(dep_res)
+                count = count +1
+                if count>3:
+                    break
+            else:
+                break
+        print("依赖用例执行测试的结果={}".format(dep_res))
+        return dep_res_dict
 
 
 
@@ -98,6 +110,7 @@ class DependCase:
         :param dep_res:
         :return:
         '''
+        write_flag = False
         ope_excel = OperationExcel(**self.case_config)
         case_param_name_start = self.case_config.get("case_param_name_start",0) #测试用例参数名开始行
         case_row_value = ope_excel.get_sheet().row_values(case_param_name_start)
@@ -108,6 +121,8 @@ class DependCase:
                 if update_param in str(update_value).split("-")[1]:
                     col_num = index
                     ope_excel.writer_data(row_num,col_num,update_value)
+                    write_flag = True
+        return write_flag
 
 
 

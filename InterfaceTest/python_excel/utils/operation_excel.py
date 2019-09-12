@@ -15,6 +15,7 @@ class OperationExcel:
             self.sheetid = int(sheetid)
             self.sheet_obj = self.get_sheet(self.filename,self.sheetid)
             self.rows = self.sheet_obj.nrows
+            self.cols = self.sheet_obj.ncols
         except Exception as e:
             log.error("操作EXCEL表类初始化异常，异常原因：{}".format(e))
 
@@ -94,21 +95,28 @@ class OperationExcel:
             log.error("操作EXCEL表类获取列数据异常，异常原因：{}".format(e))
             return None
 
-    def get_row_num_for_value(self,value):
+    def get_row_num_for_value(self,value,col=None):
         '''
-        根据指定内容获取行号
-        :param value: 单元格内容
+        根据传入值获取所在行号，如果传入列号，直接执行if下语句，如果未传列号，循环所有行和列比对值，第一个相同值即返回，不再循环
+        :param value: 需要查找的查单元格值
+        :param col: 列号
         :return: 行号
         '''
         try:
-            row_num = None
-            for index,data in enumerate(self.get_cols_data(1)):
-                if data == value:
-                    row_num = index
-            return row_num
+            if col:
+                row_num = None
+                for index,data in enumerate(self.get_cols_data(col)):
+                    if data == value:
+                        row_num = index
+                return row_num
+            else:
+                for row in range(0,self.rows):
+                    for col in range(0,self.cols):
+                        if value == self.get_cell_value(row,col):
+                            return row
         except Exception as e:
             log.error("操作EXCEL表类获取值对应的行号出现异常，异常原因：{}".format(e))
-            return None
+        return None
 
     def get_col_num_for_value(self,value):
         '''

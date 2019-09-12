@@ -2,10 +2,14 @@ import json
 
 from jsonpath import jsonpath
 from python_excel.common.interface_run import InterfaceRun
-from python_excel.get_data.tsa_param_dic import TsaParamDict
 import logging
 from copy import  deepcopy
 import time
+from python_excel.utils.ElasticObj import ElasticObj
+from python_excel.utils.MongodbObj import MongodbObj
+from python_excel.utils.MysqlObj import MysqlObj
+from python_excel.utils.OracleObj import OracleObj
+
 log = logging.getLogger(__file__)
 class CmpReqRes:
     '''
@@ -15,7 +19,17 @@ class CmpReqRes:
         self.kwargs = kwargs
         self.option_dict = self.kwargs.get("option_dict", {}) #获取配置文件字典
         self.inter_run = InterfaceRun()
-        self.tsa = TsaParamDict("",1)
+        database_type = self.kwargs("database_type")
+        if str(database_type).lower() == "es":
+            self.conne = ElasticObj(**self.kwargs)
+        elif str(database_type).lower() == "mysql":
+            self.conne = MysqlObj(**self.kwargs)
+        elif str(database_type).lower() == "oracle":
+            self.conne = OracleObj(**self.kwargs)
+        elif str(database_type).lower() == "mangodb":
+            self.conne = MongodbObj(**self.kwargs)
+        else:
+            self.conne = None
 
     def verify_is_pass(self, **kwargs):
         '''
@@ -76,27 +90,31 @@ class CmpReqRes:
 
         # 是否需要验证回调状态数据
         is_verify_callbackurl = kwargs.get("is_verify_callbackurl", False)
+
+        #不需要验证字段列表
+        no_verify_filed = self.kwargs.get("no_verify_filed",[])
+        res_json = self.conne.get_data()
         database_str_hd = None
         database_str = None
         database_flag = False
         expCallbackFlag = kwargs.get("expCallbackFlag", None)
-        url = self.kwargs.get("verify_url", None)
+        #url = self.kwargs.get("verify_url", None)
         req = kwargs.get("req", None)
-        no_verify_data_list = kwargs.get("no_verify_data_list", None)
+
         try:
             expCF_dict = json.loads(expCallbackFlag)
             expCF_value = expCF_dict.get("callbackFlag")
         except Exception as e:
             expCF_value = expCallbackFlag
         try:
-            json_obj = self.inter_run.main_request("get", url).json()
-            res = jsonpath(json_obj, "$.._source")[0]
+            #json_obj = self.inter_run.main_request("get", url).json()
+            res = jsonpath(res_json, "$.._source")[0]
             req_keys = req.keys()
 
             callbackurl_flag = False
             if is_verify_database:
                 for key in req_keys:
-                    if req.get(key) == str(res.get(key)) and req.get(key) not in no_verify_data_list:
+                    if req.get(key) == str(res.get(key)) and req.get(key) not in no_verify_filed:
                         database_flag = True
                         database_str = "数据库存储验证结果：一致（申请接口参数请求值与数据库存储值一致）"
                     else:

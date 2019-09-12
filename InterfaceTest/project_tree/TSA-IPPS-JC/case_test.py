@@ -12,16 +12,11 @@ import ddt
 from python_excel.common.CaseIsPass import CaseIsPass
 from python_excel.common.interface_run import InterfaceRun
 from python_excel.common.deal_response_data import DealResData
-from python_excel.get_data.tsa_param_dic import TsaParamDict
 from python_excel.HTMLTestRunner import HTMLTestRunner
-from python_excel.get_data.case_mes import CaseDetail
 from copy import deepcopy
-from python_excel.utils.operation_excel import OperationExcel
 import json
 import  pprint
 from python_excel.common.cmp_res_req import CmpReqRes
-from jsonpath import jsonpath
-from python_excel.get_data.case_error import CaseError
 import time
 import logging
 from python_excel.utils.operation_cfg import OperationCFG
@@ -53,7 +48,6 @@ class CaseRun(unittest.TestCase):
         self.deal_res_data = DealResData()
         #self.op_excel = OperationExcel(**option_dict)
         self.method_req = "post"
-        self.tsa_param = TsaParamDict()
         self.crr = CmpReqRes(**option_dict)
         self.cp = CaseIsPass(**option_dict)
     def tearDown(self):
@@ -75,8 +69,10 @@ class CaseRun(unittest.TestCase):
         req_data_dict = deepcopy(data_dict)
         if str(req_data_dict.get("IsDepend","")).lower() == "yes": #是否需要先执行依赖测试用例
             dep_case = DependCase(req_data_dict,option_dict)
-            ss = dep_case.get_dep_data()
-            pp.pprint(ss)
+            update_data = dep_case.get_dep_data()
+            for data  in update_data.keys():
+                req_data_dict[data] = update_data[data]
+
 
         if req_data_dict.get("Requrl", None):
             url = req_data_dict.pop("Requrl")
@@ -115,7 +111,7 @@ class CaseRun(unittest.TestCase):
                  "partnerID":req_data_dict.get("partnerID"),
                  "partnerKey":req_data_dict.get("partnerKey"),
                  "expCallbackFlag":no_request_dict["ExpCallbackFlag"],
-                 "no_verify_data_list":option_dict.get("no_verify_data_list",None)
+                 "no_verify_filed":option_dict.get("no_verify_filed",None) #数据库中无需验证字段
         }
         start = time.time()
         verify_res = self.crr.verify_is_pass(**kargs)
